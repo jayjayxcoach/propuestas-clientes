@@ -13,7 +13,8 @@
   var REVISAR = location.protocol === "file:" || location.hostname === "localhost" ||
     location.hostname === "127.0.0.1" || /[?&]revisar\b/.test(location.search);
   var QUIET = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var pendientes = [];
+  var pendientes = {};
+  var faltanClips = 0;
 
   /* ---------- utilidades ---------- */
   function esc(s) {
@@ -23,7 +24,7 @@
   }
   function fromRoot(p) { return !p ? "" : /^(https?:|data:|\/)/.test(p) ? p : ROOT + p; }
   function fill(s) { return String(s || "").replace(/\{negocio\}/g, P.negocio || "tu negocio"); }
-  function pend(msg) { if (pendientes.indexOf(msg) === -1) { pendientes.push(msg); renderCheck(); } }
+  function pend(msg, key) { pendientes[key || msg] = msg; renderCheck(); }
   function wa(msg) {
     var n = String(A.whatsapp || "").replace(/\D/g, "");
     return n ? "https://wa.me/" + n + "?text=" + encodeURIComponent(msg) : "#";
@@ -46,9 +47,10 @@
   };
 
   /* ---------- piezas ---------- */
-  function frameVF(src, label) {
-    return '<div class="frame vf is-empty">' +
-      (src ? '<video muted loop playsinline preload="metadata" data-src="' + esc(fromRoot(src)) + '" data-file="' + esc(src) + '"></video>' : "") +
+  function frameVF(src, label, extra, group) {
+    return '<div class="frame vf is-empty' + (extra ? " " + extra : "") + '">' +
+      (src ? '<video muted loop playsinline preload="metadata" data-src="' + esc(fromRoot(src)) + '" data-file="' + esc(src) + '"' +
+        (group ? ' data-group="' + esc(group) + '"' : "") + '></video>' : "") +
       '<div class="empty">' + I.cam + '<span>' + esc(label) + '</span><small class="file">' + esc(src || "") + '</small></div>' +
       '<div class="vf-ui" aria-hidden="true"><i></i><i></i><i></i><i></i>' +
       '<span class="vf-rec"><b></b>REC</span><span class="vf-tc">00:00:00:00</span></div>' +
@@ -133,12 +135,12 @@
       return '<li><span>' + esc(p.nombre) + '</span><span>' + esc(p.rol) + '</span></li>';
     }).join("");
     var facts = (e.datos || []).map(function (d) { return '<span class="chip">' + esc(d) + '</span>'; }).join("");
+    var photo = e.foto ? '<div class="team-photo is-empty">' +
+      '<img alt="El equipo de ' + esc(A.nombre) + '" data-src="' + esc(fromRoot(e.foto)) + '" data-file="' + esc(e.foto) + '">' +
+      '<div class="empty">' + I.people + '<span>Foto del equipo</span><small class="file">' + esc(e.foto) + '</small></div></div>' : "";
     return '<section class="wrap" id="equipo" aria-labelledby="equipo-t">' +
       head("Quiénes somos", "", "equipo") +
-      '<div class="team glass">' +
-      '<div class="team-photo is-empty">' +
-      (e.foto ? '<img alt="El equipo de ' + esc(A.nombre) + '" data-src="' + esc(fromRoot(e.foto)) + '" data-file="' + esc(e.foto) + '">' : "") +
-      '<div class="empty">' + I.people + '<span>Foto del equipo</span><small class="file">' + esc(e.foto || "") + '</small></div></div>' +
+      '<div class="team glass' + (photo ? "" : " no-photo") + '">' + photo +
       '<div class="team-text"><p>' + esc(e.texto) + '</p>' +
       (people ? '<ul class="people">' + people + '</ul>' : "") +
       (facts ? '<div class="facts">' + facts + '</div>' : "") +
@@ -190,6 +192,29 @@
     return h + '</section>';
   }
 
+  function grabacion() {
+    var g = A.grabacion;
+    if (!g || !(g.pasos || []).length) return "";
+    var chips = (g.datos || []).map(function (d) { return '<span class="chip">' + esc(fill(d)) + '</span>'; }).join("");
+    var h = '<section class="wrap shoot" id="grabacion" aria-labelledby="grabacion-t">' +
+      '<div class="shoot-top glass">' +
+      '<div class="shoot-intro"><h2 id="grabacion-t">' + esc(fill(g.titulo)) + '</h2>' +
+      '<p class="lede">' + esc(fill(g.texto)) + '</p>' +
+      (chips ? '<div class="facts">' + chips + '</div>' : "") + '</div>' +
+      frameVF(g.clip, "Un día de grabación", "wide", "proceso") +
+      '</div>' +
+      '<ol class="thread"><span class="thread-fill" aria-hidden="true"></span>';
+    g.pasos.forEach(function (s, i) {
+      h += '<li class="tstep">' +
+        '<span class="node" aria-hidden="true">' + (i + 1) + '</span>' +
+        '<article class="tcard glass">' +
+        frameVF(s.clip, s.titulo, "clip", "proceso") +
+        '<div class="tbody"><p class="vnum">Paso ' + (i + 1) + '</p><h3>' + esc(fill(s.titulo)) + '</h3><p>' + esc(fill(s.detalle)) + '</p></div>' +
+        '</article></li>';
+    });
+    return h + '</ol></section>';
+  }
+
   function inversion() {
     var inc = (A.incluye || []).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join("");
     return '<section class="wrap" id="inversion" aria-labelledby="inversion-t">' +
@@ -214,7 +239,7 @@
       return '<li><div><h3>' + esc(fill(s.paso)) + '</h3><p>' + esc(fill(s.detalle)) + '</p></div></li>';
     }).join("");
     return '<section class="wrap" id="proceso" aria-labelledby="proceso-t">' +
-      head("Cómo trabajamos", "Así de simple es hacer tus videos con nosotros.", "proceso") +
+      head("Cómo empezamos", "De tu primer mensaje a tus videos listos para publicar.", "proceso") +
       '<ol class="steps glass">' + steps + '</ol></section>';
   }
 
@@ -240,12 +265,13 @@
       checkEl.setAttribute("aria-label", "Revisión antes de enviar");
       document.body.appendChild(checkEl);
     }
-    var ok = !pendientes.length;
+    var list = Object.keys(pendientes).map(function (k) { return pendientes[k]; });
+    var ok = !list.length;
     checkEl.classList.toggle("ok", ok);
     checkEl.innerHTML = '<h4>' + (ok ? "Lista para enviar" : "Antes de enviar") +
       '<button type="button" aria-label="Cerrar">Cerrar</button></h4>' +
       '<p>Este panel solo lo ves tú. El cliente no lo ve.</p>' +
-      '<ul>' + (ok ? '<li><span>Todo completo.</span></li>' : pendientes.map(function (x) { return '<li><span>' + x + '</span></li>'; }).join("")) + '</ul>';
+      '<ul>' + (ok ? '<li><span>Todo completo.</span></li>' : list.map(function (x) { return '<li><span>' + x + '</span></li>'; }).join("")) + '</ul>';
     checkEl.querySelector("button").onclick = function () { checkEl.remove(); checkEl = null; REVISAR = false; };
   }
 
@@ -259,11 +285,34 @@
 
     var app = document.getElementById("app");
     app.innerHTML = '<div class="wallpaper" aria-hidden="true"></div>' + topbar() +
-      '<main>' + hero() + portafolio() + resenas() + equipo() + videos() + inversion() + proceso() + cierre() + '</main>';
+      '<main>' + hero() + portafolio() + resenas() + equipo() + videos() + grabacion() + inversion() + proceso() + cierre() + '</main>';
 
     wireMedia(app);
     wireButtons(app);
+    wireThread(app);
     renderCheck();
+  }
+
+  // El hilo del día de grabación se va llenando a medida que bajas
+  function wireThread(root) {
+    var ol = root.querySelector(".thread");
+    if (!ol) return;
+    var fill = ol.querySelector(".thread-fill");
+    var nodes = Array.prototype.slice.call(ol.querySelectorAll(".node"));
+    if (QUIET) { ol.style.setProperty("--p", "1"); nodes.forEach(function (n) { n.classList.add("on"); }); return; }
+    var queued = false;
+    function update() {
+      queued = false;
+      var r = ol.getBoundingClientRect();
+      var mark = window.innerHeight * 0.6;
+      var p = Math.max(0, Math.min(1, (mark - r.top) / r.height));
+      ol.style.setProperty("--p", p.toFixed(4));
+      nodes.forEach(function (n) { n.classList.toggle("on", n.getBoundingClientRect().top + n.offsetHeight / 2 < mark); });
+    }
+    function onScroll() { if (!queued) { queued = true; requestAnimationFrame(update); } }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    update();
   }
 
   function wireButtons(root) {
@@ -288,7 +337,12 @@
       v.addEventListener("loadeddata", function () { frame.classList.remove("is-empty"); });
       v.addEventListener("error", function () {
         v.remove();
-        pend("Falta el video <code>" + esc(v.dataset.file) + "</code>");
+        if (v.dataset.group === "proceso") {
+          faltanClips++;
+          pend("Faltan " + faltanClips + " clips del día de grabación en <code>assets/proceso/</code> (los nombres están en <code>assets/agencia.js</code>).", "clips");
+        } else {
+          pend("Falta el video <code>" + esc(v.dataset.file) + "</code>");
+        }
       });
       v.src = v.dataset.src;
     });

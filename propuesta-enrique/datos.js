@@ -12,71 +12,71 @@ window.PROPUESTA = {
   lugar: "La Libertad",
   rubro: "fisioterapia",
 
-  fecha: "28 de octubre de 2026",
-  valida_hasta: "4 de noviembre de 2026",
+  fecha: "29 de octubre de 2026",
+  valida_hasta: "5 de noviembre de 2026",
 
   cantidad: 5,
   precio: 99,
 
-  intro: "Revisamos los videos de fisioterapia que más se están viendo ahora mismo en Instagram y TikTok, y elegimos cinco formatos que podemos grabar en tu consultorio. La idea es simple: que tu trabajo se vea igual de profesional en video que en persona.",
+  intro: "Revisamos los videos de fisioterapia que más se están viendo ahora mismo en Instagram y elegimos cinco formatos que podemos grabar en tu consultorio. La idea es simple: que tu trabajo se vea igual de profesional en video que en persona.",
 
   mensaje_whatsapp: "Hola, soy Enrique de Fismedica. Vi la propuesta y quiero mis 5 videos.",
 
   // ---------- Los videos ----------
   // referencia.url    → enlace del reel original (Instagram o TikTok)
-  // referencia.cuenta → usuario del creador, para darle crédito (ej. "@fisio.ejemplo")
-  // referencia.vistas → opcional, ej. "1,2 M de vistas"
+  // referencia.cuenta → usuario del creador, para darle crédito
+  // referencia.vistas → lo que logró el video (me gusta, comentarios)
   // referencia.captura → opcional, imagen del reel (jpg) dentro de esta carpeta
   videos: [
     {
-      titulo: "Tres ejercicios antes de levantarte",
-      formato: "Demostración en camilla",
-      duracion: "30 a 45 s",
-      texto_pantalla: "3 ejercicios para la espalda baja antes de levantarte",
-      gancho: "Si te duele la espalda baja al levantarte, haz estos tres ejercicios antes de poner un pie en el piso.",
-      porque: "Es el tipo de video que la gente guarda y le manda a alguien de la familia, porque le sirve en ese mismo momento. Te muestra enseñando, que es justo lo que un paciente quiere ver antes de ir a consulta.",
-      como: "Lo grabamos en tu camilla con dos cámaras: una abierta y otra cerca del movimiento. Tú explicas y alguien de tu equipo hace cada ejercicio, con su nombre en pantalla.",
-      referencia: { url: "", cuenta: "", vistas: "", captura: "" }
+      titulo: "Las peores lesiones de rodilla",
+      formato: "Ranking",
+      duracion: "45 a 60 s",
+      texto_pantalla: "Peores lesiones de rodilla, de menos a más",
+      gancho: "Estas son las peores lesiones de rodilla que vemos en el consultorio, de la menos grave a la peor.",
+      porque: "Un ranking hace que la gente se quede hasta el final para ver cuál es la número uno. Y al cerrar pidiendo que comenten su lesión, el video se llena de comentarios que además te dan ideas para los siguientes.",
+      como: "Tú sentado frente a la cámara, con una lista del 1 al 7 que se va llenando en pantalla con un ícono por lesión. Cerramos invitando a comentar su lesión para responderles con otro video.",
+      referencia: { url: "https://www.instagram.com/reel/DerlzCMo2PR/", cuenta: "@andreapalazzolo.fisioterapia", vistas: "177 mil me gusta y 1,6 mil comentarios", captura: "" }
     },
     {
-      titulo: "Lo que carga tu cuello con el celular",
-      formato: "Explicación con modelo",
-      duracion: "35 a 50 s",
-      texto_pantalla: "Lo que carga tu cuello cuando miras el celular",
-      gancho: "Esto es lo que le pasa a tu cuello cuando pasas tres horas al día mirando el celular.",
-      porque: "Casi todo el mundo se siente identificado, y se entiende aunque el video esté sin sonido, que es como mucha gente ve los reels.",
-      como: "Usamos un modelo de columna para mostrar cómo se inclina el cuello. Cerramos con un estiramiento que tus pacientes pueden hacer en la oficina.",
-      referencia: { url: "", cuenta: "", vistas: "", captura: "" }
+      titulo: "Un ejercicio para dejar de andar encorvado",
+      formato: "Ejercicio guiado",
+      duracion: "45 a 60 s",
+      texto_pantalla: "Si andas encorvado todo el día, haz esto",
+      gancho: "Si pasas el día encorvado, este ejercicio en el piso te ayuda a enderezar la postura en menos de un minuto.",
+      porque: "Al final pide escribir una palabra en los comentarios para recibir la rutina completa. Por eso tiene más de 21 mil comentarios: cada uno es una persona que levantó la mano y a la que le puedes escribir.",
+      como: "Cámara baja, a la altura del piso, y un texto grande en pantalla para cada paso. Cerramos pidiendo que comenten una palabra, por ejemplo POSTURA, para mandarles la rutina por mensaje.",
+      referencia: { url: "https://www.instagram.com/reel/DKppwjKC9fY/", cuenta: "@fisioterapiatualcance", vistas: "69,6 mil me gusta y 21,3 mil comentarios", captura: "" }
     },
     {
-      titulo: "Mito o verdad",
-      formato: "Respuestas rápidas",
-      duracion: "30 a 40 s",
-      texto_pantalla: "Hielo o calor: mito o verdad",
-      gancho: "Tres cosas que la gente cree sobre el dolor de espalda y que no son verdad.",
-      porque: "Los mitos generan comentarios, porque cada persona tiene su opinión. Y te ponen en el lugar del que sabe, sin tener que vender nada.",
-      como: "Tú frente a la cámara con un fondo limpio del consultorio. Cada mito aparece en pantalla y lo respondes en una o dos frases, con cortes rápidos entre uno y otro.",
-      referencia: { url: "", cuenta: "", vistas: "", captura: "" }
+      titulo: "El primer ejercicio para la rodilla",
+      formato: "Explicación en consultorio",
+      duracion: "40 a 60 s",
+      texto_pantalla: "Si te duele la rodilla al subir escaleras",
+      gancho: "Todos los días nos llegan pacientes con dolor de rodilla al subir escaleras, y este es el primer ejercicio que les enseño.",
+      porque: "Es sencillo de seguir y muestra tu consultorio tal como es: tu camilla, tu uniforme y tu forma de explicar. La gente ve dónde la van a atender y quién la va a atender.",
+      como: "Grabamos en tu consultorio con la luz bien cuidada. Una toma tuya explicando y otra cerca de la pierna para que el movimiento se entienda. Cerramos recordando que cada caso se evalúa en consulta.",
+      referencia: { url: "https://www.instagram.com/reel/DehjXXmDKti/", cuenta: "@drlopezmartinez", vistas: "18,4 mil me gusta", captura: "" }
     },
     {
-      titulo: "La pregunta que más nos hacen",
-      formato: "Pregunta frecuente",
-      duracion: "30 a 45 s",
-      texto_pantalla: "¿Cuántas sesiones voy a necesitar?",
-      gancho: "Todos los días nos llegan pacientes preguntando cuántas sesiones van a necesitar, y aquí te lo explico.",
-      porque: "Responde la duda que frena a mucha gente antes de escribir. Quien lo ve llega a su primera cita sabiendo qué esperar.",
-      como: "Una toma tuya hablando a cámara, mezclada con escenas de una sesión: la evaluación, el tratamiento y el paciente saliendo. Con permiso del paciente, o con alguien de tu equipo haciendo de paciente.",
-      referencia: { url: "", cuenta: "", vistas: "", captura: "" }
+      titulo: "El mito que más escuchas en consulta",
+      formato: "Mito o verdad",
+      duracion: "40 a 60 s",
+      texto_pantalla: "Te lo digo aunque me cueste pacientes",
+      gancho: "Te lo digo aunque me cueste pacientes: esto que todos creen sobre el dolor de espalda no es verdad.",
+      porque: "Arranca contradiciendo algo que casi todos creen, y por eso nadie lo pasa de largo. Te pone como el que explica las cosas claras, sin vender nada, y la gente comenta para dar su opinión.",
+      como: "Tú a cámara en primer plano, con subtítulos palabra por palabra como en la referencia. Antes de grabar elegimos contigo el mito que más escuchas de tus pacientes.",
+      referencia: { url: "https://www.instagram.com/reel/Db62BjFhSIG/", cuenta: "@sensia.cl", vistas: "550 comentarios", captura: "" }
     },
     {
-      titulo: "Tu primera cita en Fismedica",
-      formato: "Recorrido",
-      duracion: "20 a 30 s",
-      texto_pantalla: "Así es tu primera cita en Fismedica",
-      gancho: "Así es tu primera cita en Fismedica, aquí en La Libertad.",
-      porque: "A mucha gente le da cosa ir a un lugar que no conoce. Ver la entrada, la sala y a quien la va a atender quita ese miedo.",
-      como: "Lo armamos con tomas de todo el día de grabación: la llegada, la recepción, la evaluación y el tratamiento, con música y textos cortos. Queda ideal para fijarlo en tu perfil.",
-      referencia: { url: "", cuenta: "", vistas: "", captura: "" }
+      titulo: "Cinco ejercicios para la espalda baja",
+      formato: "Rutina",
+      duracion: "45 a 60 s",
+      texto_pantalla: "5 ejercicios para la espalda baja",
+      gancho: "Si terminas el día con la espalda baja cargada, guarda estos cinco ejercicios.",
+      porque: "Es útil, la gente lo guarda para hacerlo en casa y de paso muestra el espacio donde haces la rehabilitación. Al final invita a agendar una evaluación sin sonar a anuncio.",
+      como: "Grabamos en tu área de tratamiento con dos ángulos: uno abierto para ubicar el lugar y otro cerca para cada ejercicio. Cerramos con tu número de WhatsApp en pantalla.",
+      referencia: { url: "https://www.instagram.com/reel/Dd5ANFUualc/", cuenta: "@dralorenadurancamargo", vistas: "3 mil me gusta", captura: "" }
     }
   ]
 };
