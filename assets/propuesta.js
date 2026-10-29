@@ -313,16 +313,6 @@
   function wireEmbeds(root) {
     var screens = Array.prototype.slice.call(root.querySelectorAll(".screen.has-embed"));
     if (!screens.length) return;
-    var ro = "ResizeObserver" in window ? new ResizeObserver(function (entries) {
-      entries.forEach(function (en) { fit(en.target); });
-    }) : null;
-    function fit(screen) {
-      var f = screen.querySelector("iframe.embed");
-      if (!f) return;
-      var k = screen.clientWidth / Number(screen.dataset.ew);
-      f.style.transform = "scale(" + k + ")";
-      f.style.height = Math.ceil(screen.clientHeight / k) + "px";
-    }
     function load(screen) {
       if (screen.querySelector("iframe.embed")) return;
       var f = document.createElement("iframe");
@@ -332,16 +322,11 @@
       f.setAttribute("scrolling", "no");
       f.setAttribute("allowfullscreen", "");
       f.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; clipboard-write");
-      f.style.width = screen.dataset.ew + "px";
-      f.style.height = screen.dataset.eh + "px";
       screen.appendChild(f);
-      fit(screen);
-      if (ro) ro.observe(screen);
     }
     function unload(screen) {
       var f = screen.querySelector("iframe.embed");
       if (f) f.remove();
-      if (ro) ro.unobserve(screen);
     }
     // Cargar cada reel cuando se acerca a la pantalla
     if ("IntersectionObserver" in window) {
