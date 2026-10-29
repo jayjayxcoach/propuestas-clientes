@@ -1,0 +1,5 @@
+# Solo se publican la página de inicio, el 404 y las carpetas de propuestas.
+exclude:
+  - README.md
+  - assets/portafolio/LEEME.md
+  - assets/equipo/LEEME.md

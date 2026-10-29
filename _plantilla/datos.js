@@ -1,7 +1,7 @@
 /* =========================================================
    PLANTILLA DE PROPUESTA
-   1. Copia la carpeta _plantilla y ponle el nombre del negocio
-      en minúsculas y sin espacios (ej. "fismedica").
+   1. Copia la carpeta _plantilla y llámala propuesta-[nombre del cliente]
+      en minúsculas y sin espacios (ej. "propuesta-enrique").
    2. Llena este archivo.
    3. Cambia las 4 líneas de vista previa en index.html.
    Lo de la agencia (portafolio, equipo, proceso) vive en
