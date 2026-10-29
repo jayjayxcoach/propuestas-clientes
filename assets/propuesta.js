@@ -151,10 +151,19 @@
     if (!r || !r.url) return "";
     var tiktok = /tiktok\.com/i.test(r.url);
     return '<div class="ref"><a class="btn-ref" href="' + esc(r.url) + '" target="_blank" rel="noopener">' +
-      (tiktok ? I.tt : I.ig) + 'Ver el video de referencia</a>' +
+      (tiktok ? I.tt : I.ig) + (tiktok ? 'Abrir en TikTok' : 'Abrir en Instagram') + '</a>' +
       (r.cuenta || r.vistas ? '<span>' + (r.cuenta ? 'De ' + esc(r.cuenta) : "") +
         (r.cuenta && r.vistas ? ", " : "") + (r.vistas ? esc(r.vistas) : "") + '</span>' : "") +
       '</div>';
+  }
+
+  // Reproductor oficial de Instagram o TikTok para un enlace de referencia
+  function embedUrl(url) {
+    var m = String(url || "").match(/instagram\.com\/(reel|reels|p|tv)\/([A-Za-z0-9_-]+)/i);
+    if (m) return { src: "https://www.instagram.com/" + (m[1].toLowerCase() === "p" ? "p" : "reel") + "/" + m[2] + "/embed/", w: 326, h: 580 };
+    m = String(url || "").match(/tiktok\.com\/.*\/video\/(\d+)/i);
+    if (m) return { src: "https://www.tiktok.com/player/v1/" + m[1] + "?music_info=0&description=0&rel=0", w: 326, h: 580 };
+    return null;
   }
 
   function videos() {
@@ -167,15 +176,21 @@
     list.forEach(function (v, i) {
       var r = v.referencia || {};
       var shot = r.captura ? '<img class="poster" src="' + esc(r.captura) + '" alt="Captura del video de referencia">' : "";
+      var emb = embedUrl(r.url);
+      var toggle = emb ? '<div class="seg" role="group" aria-label="Qué ver en el teléfono">' +
+        '<button type="button" data-view="ref" aria-pressed="true">La referencia</button>' +
+        '<button type="button" data-view="mock" aria-pressed="false">Tu versión</button></div>' : "";
       h += '<article class="vcard glass">' +
-        '<div class="frame phone"><div class="screen t' + ((i % 5) + 1) + '">' +
+        '<div class="vmedia">' + toggle +
+        '<div class="frame phone"><div class="screen t' + ((i % 5) + 1) + (emb ? ' has-embed show-ref' : '') + '"' +
+        (emb ? ' data-embed="' + esc(emb.src) + '" data-ew="' + emb.w + '" data-eh="' + emb.h + '" data-title="' + esc("Reel de referencia" + (r.cuenta ? " de " + r.cuenta : "")) + '"' : "") + '>' +
         '<span class="island" aria-hidden="true"></span>' + shot +
         (shot ? "" : '<div class="mock" aria-hidden="true">' +
           '<span class="mock-handle"><b></b>' + esc(String(P.negocio || "").toLowerCase()) + '</span>' +
           '<span class="mock-text">' + esc(v.texto_pantalla || v.titulo) + '</span>' +
           '<span class="mock-tag">Idea para ' + esc(P.negocio) + '</span>' +
           '<span class="mock-side"><i></i><i></i><i></i></span></div>') +
-        '</div></div>' +
+        '</div></div></div>' +
         '<div class="vbody">' +
         '<p class="vnum">Video ' + (i + 1) + '</p>' +
         '<h3>' + esc(v.titulo) + '</h3>' +
@@ -289,8 +304,67 @@
 
     wireMedia(app);
     wireButtons(app);
+    wireEmbeds(app);
     wireThread(app);
     renderCheck();
+  }
+
+  // Reels de referencia: reproductor oficial dentro del teléfono, con selector "La referencia / Tu versión"
+  function wireEmbeds(root) {
+    var screens = Array.prototype.slice.call(root.querySelectorAll(".screen.has-embed"));
+    if (!screens.length) return;
+    var ro = "ResizeObserver" in window ? new ResizeObserver(function (entries) {
+      entries.forEach(function (en) { fit(en.target); });
+    }) : null;
+    function fit(screen) {
+      var f = screen.querySelector("iframe.embed");
+      if (!f) return;
+      var k = screen.clientWidth / Number(screen.dataset.ew);
+      f.style.transform = "scale(" + k + ")";
+      f.style.height = Math.ceil(screen.clientHeight / k) + "px";
+    }
+    function load(screen) {
+      if (screen.querySelector("iframe.embed")) return;
+      var f = document.createElement("iframe");
+      f.className = "embed";
+      f.src = screen.dataset.embed;
+      f.title = screen.dataset.title || "Reel de referencia";
+      f.setAttribute("scrolling", "no");
+      f.setAttribute("allowfullscreen", "");
+      f.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; clipboard-write");
+      f.style.width = screen.dataset.ew + "px";
+      f.style.height = screen.dataset.eh + "px";
+      screen.appendChild(f);
+      fit(screen);
+      if (ro) ro.observe(screen);
+    }
+    function unload(screen) {
+      var f = screen.querySelector("iframe.embed");
+      if (f) f.remove();
+      if (ro) ro.unobserve(screen);
+    }
+    // Cargar cada reel cuando se acerca a la pantalla
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting && en.target.classList.contains("show-ref")) { load(en.target); io.unobserve(en.target); }
+        });
+      }, { rootMargin: "400px 0px" });
+      screens.forEach(function (s) { io.observe(s); });
+    } else {
+      screens.forEach(load);
+    }
+    // Selector
+    root.querySelectorAll(".seg button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var media = b.closest(".vmedia");
+        var screen = media.querySelector(".screen");
+        var ref = b.dataset.view === "ref";
+        media.querySelectorAll(".seg button").forEach(function (o) { o.setAttribute("aria-pressed", String(o === b)); });
+        screen.classList.toggle("show-ref", ref);
+        if (ref) load(screen); else unload(screen);
+      });
+    });
   }
 
   // El hilo del día de grabación se va llenando a medida que bajas
