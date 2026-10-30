@@ -765,3 +765,23 @@ section { padding: clamp(64px, 10vw, 120px) 0 0; }
 /* ---------- Rendimiento: animaciones decorativas solo cuando se ven ---------- */
 .lens, .bridge::after, .vf-rec b { animation-play-state: paused; }
 .in-view .lens, .in-view .bridge::after, .in-view .vf-rec b { animation-play-state: running; }
+
+/* ---------- Reproductor de los videos de referencia ---------- */
+.playbtn {
+  position: absolute; left: 50%; top: 50%; z-index: 4;
+  width: 68px; height: 68px;
+  margin: -34px 0 0 -34px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.35);
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  display: grid; place-items: center;
+  padding: 0 0 0 4px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,.7);
+}
+.playbtn svg { width: 28px; height: 28px; }
+.playbtn:active { transform: scale(.94); }
+.frame.is-playing .playbtn,
+.frame.is-playing .island,
+.frame.is-playing .screen::after { display: none; }

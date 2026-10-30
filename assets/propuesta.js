@@ -56,8 +56,8 @@
 
   /* ---------- piezas ---------- */
   // Todos los videos se cargan solo cuando se acercan a la pantalla (data-src)
-  function videoTag(src, group, poster) {
-    return '<video muted loop playsinline preload="none" data-src="' + esc(src) + '" data-file="' + esc(src) + '"' +
+  function videoTag(src, group, poster, player) {
+    return '<video ' + (player ? 'data-player="1"' : 'muted loop') + ' playsinline preload="none" data-src="' + esc(src) + '" data-file="' + esc(src) + '"' +
       (group ? ' data-group="' + esc(group) + '"' : "") + (poster ? ' poster="' + esc(poster) + '"' : "") + '></video>';
   }
   function frameVF(src, label, extra, group) {
@@ -73,9 +73,10 @@
     opts = opts || {};
     return '<div class="frame phone is-empty' + (opts.poster ? " has-poster" : "") + '"><div class="screen' + (opts.extra ? " " + opts.extra : "") + '">' +
       '<span class="island" aria-hidden="true"></span>' +
-      (src ? videoTag(src, opts.group, opts.poster) : "") +
+      (src ? videoTag(src, opts.group, opts.poster, opts.player) : "") +
       '<div class="empty">' + I.play + '<span>' + esc(label) + '</span><small class="file">' + esc(src || "") + '</small></div>' +
-      (src && opts.sound ? '<button class="sound" type="button" aria-label="Activar sonido" aria-pressed="false">' + I.mute + '</button>' : "") +
+      (src && opts.player ? '<button class="playbtn" type="button" aria-label="Reproducir video con sonido">' + I.play + '</button>' : "") +
+      (src && opts.sound && !opts.player ? '<button class="sound" type="button" aria-label="Activar sonido" aria-pressed="false">' + I.mute + '</button>' : "") +
       '</div></div>';
   }
   function head(title, lede, id) {
@@ -197,7 +198,7 @@
       var r = v.referencia || {};
       h += '<article class="vcard glass">' +
         '<div class="vmedia">' +
-        framePhone(r.video || "", "Video de referencia", { sound: true, poster: r.poster, group: "referencias" }) +
+        framePhone(r.video || "", "Video de referencia", { player: true, poster: r.poster, group: "referencias" }) +
         stats(r) +
         (r.cuenta ? '<p class="credit">Reel de ' + (r.url ? '<a href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.cuenta) + '</a>' : esc(r.cuenta)) + '</p>' : "") +
         '</div>' +
@@ -389,12 +390,33 @@
       var seen = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
           var v = en.target;
+          if (v.dataset.player) { if (!en.isIntersecting && !v.paused) v.pause(); return; }
           if (en.isIntersecting && !QUIET) { attach(v); var p = v.play(); if (p && p.catch) p.catch(function () {}); }
           else if (!v.paused) v.pause();
         });
       }, { threshold: 0.35 });
       vids.forEach(function (v) { near.observe(v); seen.observe(v); });
     }
+
+    // Reproductor de referencias: play desde el inicio, con audio y con controles
+    root.querySelectorAll(".playbtn").forEach(function (b) {
+      var frame = b.closest(".frame");
+      var v = frame.querySelector("video");
+      if (!v) return;
+      b.addEventListener("click", function () {
+        attach(v);
+        vids.forEach(function (o) { if (o !== v) { if (o.dataset.player) { if (!o.paused) o.pause(); } else { o.muted = true; } } });
+        root.querySelectorAll(".sound").forEach(function (o) {
+          o.setAttribute("aria-pressed", "false"); o.setAttribute("aria-label", "Activar sonido"); o.innerHTML = I.mute;
+        });
+        v.muted = false;
+        v.controls = true;
+        try { v.currentTime = 0; } catch (e) {}
+        frame.classList.add("is-playing");
+        var p = v.play(); if (p && p.catch) p.catch(function () {});
+      });
+      v.addEventListener("ended", function () { frame.classList.remove("is-playing"); v.controls = false; });
+    });
 
     // Sonido (solo un video con sonido a la vez)
     root.querySelectorAll(".sound").forEach(function (b) {
