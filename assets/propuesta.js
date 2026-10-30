@@ -14,7 +14,7 @@
     location.hostname === "127.0.0.1" || /[?&]revisar\b/.test(location.search);
   var QUIET = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var pendientes = {};
-  var faltanClips = 0;
+  var faltan = {};
 
   /* ---------- utilidades ---------- */
   function esc(s) {
@@ -23,7 +23,9 @@
     });
   }
   function fromRoot(p) { return !p ? "" : /^(https?:|data:|\/)/.test(p) ? p : ROOT + p; }
-  function fill(s) { return String(s || "").replace(/\{negocio\}/g, P.negocio || "tu negocio"); }
+  function fill(s) {
+    return String(s || "").replace(/\{negocio\}/g, P.negocio || "tu negocio").replace(/\{reserva\}/g, A.reserva || 25);
+  }
   function pend(msg, key) { pendientes[key || msg] = msg; renderCheck(); }
   function wa(msg) {
     var n = String(A.whatsapp || "").replace(/\D/g, "");
@@ -37,31 +39,43 @@
   var I = {
     play: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>',
     cam: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="6" width="13" height="12" rx="3"/><path d="M15.5 10.5l6-3.5v10l-6-3.5"/></svg>',
-    people: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5"/><circle cx="17" cy="9" r="2.6"/><path d="M16.5 14.6c2.4.2 4.2 1.9 5 5.4"/></svg>',
     arrow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>',
     mute: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M22 9l-6 6M16 9l6 6"/></svg>',
     sound: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>',
-    ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg>',
-    tt: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.4 2.2 1.9 3.8 4.1 4v3.1c-1.5 0-2.9-.4-4.1-1.2v6.3a6 6 0 1 1-6-6c.3 0 .7 0 1 .1v3.2a2.9 2.9 0 1 0 2 2.7V3h3z"/></svg>',
+    eye: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
+    heart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-9.2-8.6C1.3 8.4 3.2 5 6.6 5c2 0 3.4 1.2 4.1 2.5h2.6C14 6.2 15.4 5 17.4 5c3.4 0 5.3 3.4 3.8 6.4C19 15.6 12 20 12 20z"/></svg>',
+    comment: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20.5l1.6-5A8.5 8.5 0 1 1 21 11.5z"/></svg>',
+    share: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 3L11 14"/><path d="M22 3l-7 19-4-8-8-4z"/></svg>',
+    calendar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="3"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><path d="M8.5 14.5l2.3 2.2 4.7-4.7"/></svg>',
+    card: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="3"/><path d="M2.5 9.5h19M6.5 15h4"/></svg>',
+    review: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10 6h4"/><path d="M9.5 13.5l1.8 1.8 3.5-3.6"/></svg>',
+    folder: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M12 11v6M9.5 14.5L12 17l2.5-2.5"/></svg>',
+    gift: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="5" rx="1.5"/><path d="M5 13v6.5a1.5 1.5 0 0 0 1.5 1.5h11a1.5 1.5 0 0 0 1.5-1.5V13M12 8v13"/><path d="M12 8S10.5 3.5 7.8 3.5a2.2 2.2 0 0 0 0 4.5H12zM12 8s1.5-4.5 4.2-4.5a2.2 2.2 0 0 1 0 4.5H12z"/></svg>',
     wa: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2A9.8 9.8 0 0 0 3.6 17l-1.3 4.8 4.9-1.3A9.8 9.8 0 1 0 12 2.2zm0 17.8c-1.5 0-3-.4-4.2-1.2l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3 2.7 2.7 0 0 0-.8 2c0 1.2.9 2.3 1 2.5.1.2 1.7 2.6 4.1 3.6 1.5.7 2.1.7 2.9.6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.4-.2z"/></svg>'
   };
 
   /* ---------- piezas ---------- */
+  // Todos los videos se cargan solo cuando se acercan a la pantalla (data-src)
+  function videoTag(src, group, poster) {
+    return '<video muted loop playsinline preload="none" data-src="' + esc(src) + '" data-file="' + esc(src) + '"' +
+      (group ? ' data-group="' + esc(group) + '"' : "") + (poster ? ' poster="' + esc(poster) + '"' : "") + '></video>';
+  }
   function frameVF(src, label, extra, group) {
     return '<div class="frame vf is-empty' + (extra ? " " + extra : "") + '">' +
-      (src ? '<video muted loop playsinline preload="metadata" data-src="' + esc(fromRoot(src)) + '" data-file="' + esc(src) + '"' +
-        (group ? ' data-group="' + esc(group) + '"' : "") + '></video>' : "") +
+      (src ? videoTag(fromRoot(src), group) : "") +
       '<div class="empty">' + I.cam + '<span>' + esc(label) + '</span><small class="file">' + esc(src || "") + '</small></div>' +
       '<div class="vf-ui" aria-hidden="true"><i></i><i></i><i></i><i></i>' +
       '<span class="vf-rec"><b></b>REC</span><span class="vf-tc">00:00:00:00</span></div>' +
       '</div>';
   }
-  function framePhone(src, label) {
-    return '<div class="frame phone is-empty"><div class="screen">' +
+  // opts: { sound: true, poster: "", group: "" }
+  function framePhone(src, label, opts) {
+    opts = opts || {};
+    return '<div class="frame phone is-empty' + (opts.poster ? " has-poster" : "") + '"><div class="screen' + (opts.extra ? " " + opts.extra : "") + '">' +
       '<span class="island" aria-hidden="true"></span>' +
-      (src ? '<video muted loop playsinline preload="metadata" data-src="' + esc(fromRoot(src)) + '" data-file="' + esc(src) + '"></video>' : "") +
+      (src ? videoTag(src, opts.group, opts.poster) : "") +
       '<div class="empty">' + I.play + '<span>' + esc(label) + '</span><small class="file">' + esc(src || "") + '</small></div>' +
-      (src ? '<button class="sound" type="button" aria-label="Activar sonido" aria-pressed="false">' + I.mute + '</button>' : "") +
+      (src && opts.sound ? '<button class="sound" type="button" aria-label="Activar sonido" aria-pressed="false">' + I.mute + '</button>' : "") +
       '</div></div>';
   }
   function head(title, lede, id) {
@@ -88,7 +102,7 @@
       '<span class="brand-mark" aria-hidden="true">' + esc(A.inicial || "N") + '</span>' +
       '<div class="notif-top"><span>' + esc(A.nombre) + '</span><span>ahora</span></div>' +
       '<div class="notif-title">Tu propuesta está lista</div>' +
-      '<div class="notif-body">' + esc(P.cantidad) + ' videos pensados para ' + esc(P.negocio) + ', grabados en tu consultorio y editados por nosotros. Desliza para verla.</div>' +
+      '<div class="notif-body">' + esc(P.cantidad) + ' videos pensados para ' + esc(P.negocio) + ', grabados en tu local y editados por nosotros. Desliza para verla.</div>' +
       '</div>' +
       '</section>';
   }
@@ -100,15 +114,27 @@
       head("Esto ya lo grabamos aquí en la península", "A la izquierda, cómo se ve un día de grabación con nosotros. A la derecha, el video que salió de ese día.", "portafolio") +
       '<div class="cases">';
     list.forEach(function (c) {
-      h += '<article class="case glass">' +
+      h += '<article class="case glass anim">' +
         '<div class="case-info"><h3>' + esc(c.cliente) + '</h3>' +
         '<p class="case-place">' + esc(c.lugar) + '</p>' +
         '<p class="case-what">' + esc(c.trabajo) + '</p></div>' +
         '<div class="morph">' +
-        '<figure>' + frameVF(c.backstage, "Detrás de cámara") + '<figcaption>Detrás de cámara</figcaption></figure>' +
-        '<div class="bridge" aria-hidden="true"><span class="lens glass">' + I.arrow + '</span></div>' +
-        '<figure>' + framePhone(c.final, "Video final") + '<figcaption>Video final</figcaption></figure>' +
+        '<figure>' + frameVF(c.backstage, "Detrás de cámara", "", "portafolio") + '<figcaption>Detrás de cámara</figcaption></figure>' +
+        '<div class="bridge" aria-hidden="true"><span class="lens">' + I.arrow + '</span></div>' +
+        '<figure>' + framePhone(c.final ? fromRoot(c.final) : "", "Video final", { sound: true, group: "portafolio" }) + '<figcaption>Video final</figcaption></figure>' +
         '</div></article>';
+    });
+    return h + '</div></section>';
+  }
+
+  function mejores() {
+    var m = A.mejores;
+    if (!m || !(m.videos || []).length) return "";
+    var h = '<section class="wrap" id="mejores" aria-labelledby="mejores-t">' +
+      head(m.titulo, m.texto, "mejores") + '<div class="best">';
+    m.videos.forEach(function (v, i) {
+      h += '<figure class="best-item">' + framePhone(v.video ? fromRoot(v.video) : "", "Video " + (i + 1), { group: "mejores" }) +
+        (v.cliente ? '<figcaption>' + esc(v.cliente) + '</figcaption>' : "") + '</figure>';
     });
     return h + '</div></section>';
   }
@@ -137,7 +163,7 @@
     var facts = (e.datos || []).map(function (d) { return '<span class="chip">' + esc(d) + '</span>'; }).join("");
     var photo = e.foto ? '<div class="team-photo is-empty">' +
       '<img alt="El equipo de ' + esc(A.nombre) + '" data-src="' + esc(fromRoot(e.foto)) + '" data-file="' + esc(e.foto) + '">' +
-      '<div class="empty">' + I.people + '<span>Foto del equipo</span><small class="file">' + esc(e.foto) + '</small></div></div>' : "";
+      '<div class="empty"><span>Foto del equipo</span><small class="file">' + esc(e.foto) + '</small></div></div>' : "";
     return '<section class="wrap" id="equipo" aria-labelledby="equipo-t">' +
       head("Quiénes somos", "", "equipo") +
       '<div class="team glass' + (photo ? "" : " no-photo") + '">' + photo +
@@ -147,63 +173,47 @@
       '</div></div></section>';
   }
 
-  function refLink(r) {
-    if (!r || !r.url) return "";
-    var tiktok = /tiktok\.com/i.test(r.url);
-    return '<div class="ref"><a class="btn-ref" href="' + esc(r.url) + '" target="_blank" rel="noopener">' +
-      (tiktok ? I.tt : I.ig) + (tiktok ? 'Abrir en TikTok' : 'Abrir en Instagram') + '</a>' +
-      (r.cuenta || r.vistas ? '<span>' + (r.cuenta ? 'De ' + esc(r.cuenta) : "") +
-        (r.cuenta && r.vistas ? ", " : "") + (r.vistas ? esc(r.vistas) : "") + '</span>' : "") +
-      '</div>';
-  }
-
-  // Reproductor oficial de Instagram o TikTok para un enlace de referencia
-  function embedUrl(url) {
-    var m = String(url || "").match(/instagram\.com\/(reel|reels|p|tv)\/([A-Za-z0-9_-]+)/i);
-    if (m) return { src: "https://www.instagram.com/" + (m[1].toLowerCase() === "p" ? "p" : "reel") + "/" + m[2] + "/embed/", w: 326, h: 580 };
-    m = String(url || "").match(/tiktok\.com\/.*\/video\/(\d+)/i);
-    if (m) return { src: "https://www.tiktok.com/player/v1/" + m[1] + "?music_info=0&description=0&rel=0", w: 326, h: 580 };
-    return null;
+  function stats(r) {
+    var items = [
+      [r.vistas, "vistas", I.eye],
+      [r.me_gusta, "me gusta", I.heart],
+      [r.comentarios, "comentarios", I.comment],
+      [r.compartidos, "compartidos", I.share]
+    ].filter(function (x) { return x[0]; });
+    if (!items.length) return "";
+    return '<ul class="stats">' + items.map(function (x) {
+      return '<li>' + x[2] + '<b>' + esc(x[0]) + '</b><span>' + x[1] + '</span></li>';
+    }).join("") + '</ul>';
   }
 
   function videos() {
     var list = P.videos || [];
-    var sinRef = list.filter(function (v) { return !(v.referencia && v.referencia.url); }).length;
-    if (sinRef) pend("Faltan " + sinRef + " de " + list.length + " enlaces de referencia en <code>datos.js</code>.");
+    var sinVideo = list.filter(function (v) { return !(v.referencia && v.referencia.video); }).length;
+    if (sinVideo) pend("Faltan " + sinVideo + " de " + list.length + " videos de referencia en <code>datos.js</code>.");
     var h = '<section class="wrap" id="propuesta" aria-labelledby="propuesta-t">' +
       head("Preparamos esto solo para " + P.negocio, P.intro, "propuesta") +
       '<div class="videos">';
     list.forEach(function (v, i) {
       var r = v.referencia || {};
-      var shot = r.captura ? '<img class="poster" src="' + esc(r.captura) + '" alt="Captura del video de referencia">' : "";
-      var emb = embedUrl(r.url);
-      var toggle = emb ? '<div class="seg" role="group" aria-label="Qué ver en el teléfono">' +
-        '<button type="button" data-view="ref" aria-pressed="true">La referencia</button>' +
-        '<button type="button" data-view="mock" aria-pressed="false">Tu versión</button></div>' : "";
       h += '<article class="vcard glass">' +
-        '<div class="vmedia">' + toggle +
-        '<div class="frame phone"><div class="screen t' + ((i % 5) + 1) + (emb ? ' has-embed show-ref' : '') + '"' +
-        (emb ? ' data-embed="' + esc(emb.src) + '" data-ew="' + emb.w + '" data-eh="' + emb.h + '" data-title="' + esc("Reel de referencia" + (r.cuenta ? " de " + r.cuenta : "")) + '"' : "") + '>' +
-        '<span class="island" aria-hidden="true"></span>' + shot +
-        (shot ? "" : '<div class="mock" aria-hidden="true">' +
-          '<span class="mock-handle"><b></b>' + esc(String(P.negocio || "").toLowerCase()) + '</span>' +
-          '<span class="mock-text">' + esc(v.texto_pantalla || v.titulo) + '</span>' +
-          '<span class="mock-tag">Idea para ' + esc(P.negocio) + '</span>' +
-          '<span class="mock-side"><i></i><i></i><i></i></span></div>') +
-        '</div></div></div>' +
+        '<div class="vmedia">' +
+        framePhone(r.video || "", "Video de referencia", { sound: true, poster: r.poster, group: "referencias" }) +
+        stats(r) +
+        (r.cuenta ? '<p class="credit">Reel de ' + (r.url ? '<a href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.cuenta) + '</a>' : esc(r.cuenta)) + '</p>' : "") +
+        '</div>' +
         '<div class="vbody">' +
         '<p class="vnum">Video ' + (i + 1) + '</p>' +
         '<h3>' + esc(v.titulo) + '</h3>' +
         '<div class="facts">' + (v.formato ? '<span class="chip">' + esc(v.formato) + '</span>' : "") +
         (v.duracion ? '<span class="chip">' + esc(v.duracion) + '</span>' : "") + '</div>' +
-        (v.gancho ? '<p class="hook"><small>Así empieza</small>' + esc(v.gancho) + '</p>' : "") +
+        (v.gancho ? '<p class="hook"><small>Así empieza el tuyo</small>' + esc(v.gancho) + '</p>' : "") +
         '<div class="why">' +
-        '<div><h4>Por qué te lo proponemos</h4><p>' + esc(v.porque) + '</p></div>' +
+        '<div><h4>Por qué lo estamos haciendo</h4><p>' + esc(v.porque) + '</p></div>' +
         '<div><h4>Cómo lo grabamos en ' + esc(P.negocio) + '</h4><p>' + esc(v.como) + '</p></div>' +
-        '</div>' + refLink(r) +
+        '</div>' +
         '</div></article>';
     });
-    h += '</div><p class="note">Los videos de referencia muestran el formato y el estilo. Los tuyos se graban desde cero, en tu consultorio, con tu equipo y con tu voz.</p>';
+    h += '</div><p class="note">Los videos de referencia muestran el formato y el estilo. Los tuyos se graban desde cero, en tu local, con tu equipo y con tu voz.</p>';
     return h + '</section>';
   }
 
@@ -213,17 +223,17 @@
     var chips = (g.datos || []).map(function (d) { return '<span class="chip">' + esc(fill(d)) + '</span>'; }).join("");
     var h = '<section class="wrap shoot" id="grabacion" aria-labelledby="grabacion-t">' +
       '<div class="shoot-top glass">' +
-      '<div class="shoot-intro"><h2 id="grabacion-t">' + esc(fill(g.titulo)) + '</h2>' +
+      '<h2 id="grabacion-t">' + esc(fill(g.titulo)) + '</h2>' +
       '<p class="lede">' + esc(fill(g.texto)) + '</p>' +
-      (chips ? '<div class="facts">' + chips + '</div>' : "") + '</div>' +
-      frameVF(g.clip, "Un día de grabación", "wide", "proceso") +
+      (chips ? '<div class="facts">' + chips + '</div>' : "") +
       '</div>' +
       '<ol class="thread"><span class="thread-fill" aria-hidden="true"></span>';
     g.pasos.forEach(function (s, i) {
+      var media = s.clip ? frameVF(s.clip, s.titulo, "clip", "proceso")
+        : '<div class="ticon" aria-hidden="true">' + (I[s.icono] || I.calendar) + '</div>';
       h += '<li class="tstep">' +
         '<span class="node" aria-hidden="true">' + (i + 1) + '</span>' +
-        '<article class="tcard glass">' +
-        frameVF(s.clip, s.titulo, "clip", "proceso") +
+        '<article class="tcard glass anim' + (s.clip ? "" : " is-icon") + '">' + media +
         '<div class="tbody"><p class="vnum">Paso ' + (i + 1) + '</p><h3>' + esc(fill(s.titulo)) + '</h3><p>' + esc(fill(s.detalle)) + '</p></div>' +
         '</article></li>';
     });
@@ -231,7 +241,8 @@
   }
 
   function inversion() {
-    var inc = (A.incluye || []).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join("");
+    var inc = (A.incluye || []).map(function (x) { return '<li>' + esc(fill(x)) + '</li>'; }).join("");
+    var b = A.bono;
     return '<section class="wrap" id="inversion" aria-labelledby="inversion-t">' +
       head("Tu inversión", "", "inversion") +
       '<div class="price glass">' +
@@ -245,7 +256,8 @@
       (P.valida_hasta ? '<span class="valid">Válida hasta el ' + esc(P.valida_hasta) + '.</span>' : "") + '</div>' +
       '</div>' +
       '<div><ul class="includes">' + inc + '</ul>' +
-      (A.pago ? '<p class="pay">' + esc(A.pago) + '</p>' : "") + '</div>' +
+      (b ? '<div class="bonus">' + I.gift + '<div><p class="bonus-tag">Bono incluido</p><h3>' + esc(b.titulo) + '</h3><p>' + esc(fill(b.texto)) + '</p></div></div>' : "") +
+      (A.pago ? '<p class="pay">' + esc(fill(A.pago)) + '</p>' : "") + '</div>' +
       '</div></section>';
   }
 
@@ -270,7 +282,7 @@
       '</footer>';
   }
 
-  /* ---------- panel de revisión ---------- */
+  /* ---------- panel de revisión (solo para el equipo) ---------- */
   var checkEl = null;
   function renderCheck() {
     if (!REVISAR || !document.body) return;
@@ -300,78 +312,13 @@
 
     var app = document.getElementById("app");
     app.innerHTML = '<div class="wallpaper" aria-hidden="true"></div>' + topbar() +
-      '<main>' + hero() + portafolio() + resenas() + equipo() + videos() + grabacion() + inversion() + proceso() + cierre() + '</main>';
+      '<main>' + hero() + portafolio() + mejores() + resenas() + equipo() + videos() + grabacion() + inversion() + proceso() + cierre() + '</main>';
 
     wireMedia(app);
     wireButtons(app);
-    wireEmbeds(app);
+    wireAnim(app);
     wireThread(app);
     renderCheck();
-  }
-
-  // Reels de referencia: reproductor oficial dentro del teléfono, con selector "La referencia / Tu versión"
-  function wireEmbeds(root) {
-    var screens = Array.prototype.slice.call(root.querySelectorAll(".screen.has-embed"));
-    if (!screens.length) return;
-    function load(screen) {
-      if (screen.querySelector("iframe.embed")) return;
-      var f = document.createElement("iframe");
-      f.className = "embed";
-      f.src = screen.dataset.embed;
-      f.title = screen.dataset.title || "Reel de referencia";
-      f.setAttribute("scrolling", "no");
-      f.setAttribute("allowfullscreen", "");
-      f.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; clipboard-write");
-      screen.appendChild(f);
-    }
-    function unload(screen) {
-      var f = screen.querySelector("iframe.embed");
-      if (f) f.remove();
-    }
-    // Cargar cada reel cuando se acerca a la pantalla
-    if ("IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          if (en.isIntersecting && en.target.classList.contains("show-ref")) { load(en.target); io.unobserve(en.target); }
-        });
-      }, { rootMargin: "400px 0px" });
-      screens.forEach(function (s) { io.observe(s); });
-    } else {
-      screens.forEach(load);
-    }
-    // Selector
-    root.querySelectorAll(".seg button").forEach(function (b) {
-      b.addEventListener("click", function () {
-        var media = b.closest(".vmedia");
-        var screen = media.querySelector(".screen");
-        var ref = b.dataset.view === "ref";
-        media.querySelectorAll(".seg button").forEach(function (o) { o.setAttribute("aria-pressed", String(o === b)); });
-        screen.classList.toggle("show-ref", ref);
-        if (ref) load(screen); else unload(screen);
-      });
-    });
-  }
-
-  // El hilo del día de grabación se va llenando a medida que bajas
-  function wireThread(root) {
-    var ol = root.querySelector(".thread");
-    if (!ol) return;
-    var fill = ol.querySelector(".thread-fill");
-    var nodes = Array.prototype.slice.call(ol.querySelectorAll(".node"));
-    if (QUIET) { ol.style.setProperty("--p", "1"); nodes.forEach(function (n) { n.classList.add("on"); }); return; }
-    var queued = false;
-    function update() {
-      queued = false;
-      var r = ol.getBoundingClientRect();
-      var mark = window.innerHeight * 0.6;
-      var p = Math.max(0, Math.min(1, (mark - r.top) / r.height));
-      ol.style.setProperty("--p", p.toFixed(4));
-      nodes.forEach(function (n) { n.classList.toggle("on", n.getBoundingClientRect().top + n.offsetHeight / 2 < mark); });
-    }
-    function onScroll() { if (!queued) { queued = true; requestAnimationFrame(update); } }
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    update();
   }
 
   function wireButtons(root) {
@@ -380,8 +327,24 @@
     });
   }
 
+  // Las animaciones decorativas solo corren mientras su bloque está en pantalla
+  function wireAnim(root) {
+    var els = root.querySelectorAll(".anim");
+    if (!("IntersectionObserver" in window)) { els.forEach(function (e) { e.classList.add("in-view"); }); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { en.target.classList.toggle("in-view", en.isIntersecting); });
+    });
+    els.forEach(function (e) { io.observe(e); });
+  }
+
+  var GRUPOS = {
+    portafolio: "Faltan {n} videos del portafolio en <code>assets/portafolio/</code> (los nombres están en <code>assets/agencia.js</code>).",
+    mejores: "Faltan {n} de los 6 videos de muestra en <code>assets/mejores/</code>.",
+    proceso: "Faltan {n} clips del día de grabación en <code>assets/proceso/</code>.",
+    referencias: "Faltan {n} videos de referencia de este cliente."
+  };
+
   function wireMedia(root) {
-    // Foto del equipo
     root.querySelectorAll(".team-photo img[data-src]").forEach(function (img) {
       var box = img.closest(".team-photo");
       img.onload = function () { box.classList.remove("is-empty"); };
@@ -389,28 +352,56 @@
       img.src = img.dataset.src;
     });
 
-    // Videos del portafolio
     var vids = Array.prototype.slice.call(root.querySelectorAll("video[data-src]"));
-    vids.forEach(function (v) {
+    var playing = [];
+
+    function attach(v) {
+      if (v.dataset.loaded) return;
+      v.dataset.loaded = "1";
       var frame = v.closest(".frame");
       v.addEventListener("loadeddata", function () { frame.classList.remove("is-empty"); });
       v.addEventListener("error", function () {
         v.remove();
-        if (v.dataset.group === "proceso") {
-          faltanClips++;
-          pend("Faltan " + faltanClips + " clips del día de grabación en <code>assets/proceso/</code> (los nombres están en <code>assets/agencia.js</code>).", "clips");
+        var g = v.dataset.group;
+        if (g && GRUPOS[g]) {
+          faltan[g] = (faltan[g] || 0) + 1;
+          pend(GRUPOS[g].replace("{n}", faltan[g]), "g-" + g);
         } else {
           pend("Falta el video <code>" + esc(v.dataset.file) + "</code>");
         }
       });
+      v.addEventListener("play", function () { if (playing.indexOf(v) === -1) playing.push(v); startTick(); });
+      v.addEventListener("pause", function () { playing = playing.filter(function (x) { return x !== v; }); });
+      v.preload = "metadata";
       v.src = v.dataset.src;
-    });
+    }
 
-    // Sonido
+    // Con poster, el video queda "listo" visualmente aunque no haya cargado
+    root.querySelectorAll(".frame.has-poster").forEach(function (f) { f.classList.remove("is-empty"); });
+
+    if (REVISAR || !("IntersectionObserver" in window)) {
+      vids.forEach(attach); // en revisión se cargan todos para listar lo que falta
+    }
+    if ("IntersectionObserver" in window) {
+      var near = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { attach(en.target); near.unobserve(en.target); } });
+      }, { rootMargin: "600px 0px" });
+      var seen = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          var v = en.target;
+          if (en.isIntersecting && !QUIET) { attach(v); var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+          else if (!v.paused) v.pause();
+        });
+      }, { threshold: 0.35 });
+      vids.forEach(function (v) { near.observe(v); seen.observe(v); });
+    }
+
+    // Sonido (solo un video con sonido a la vez)
     root.querySelectorAll(".sound").forEach(function (b) {
       b.addEventListener("click", function () {
         var v = b.parentNode.querySelector("video");
         if (!v) return;
+        attach(v);
         var turnOn = v.muted;
         vids.forEach(function (o) { o.muted = true; });
         root.querySelectorAll(".sound").forEach(function (o) {
@@ -418,40 +409,54 @@
         });
         if (turnOn) {
           v.muted = false;
-          v.play().catch(function () {});
+          var p = v.play(); if (p && p.catch) p.catch(function () {});
           b.setAttribute("aria-pressed", "true"); b.setAttribute("aria-label", "Silenciar"); b.innerHTML = I.sound;
         }
       });
     });
 
-    // Reproducir solo lo que está a la vista
-    if ("IntersectionObserver" in window && !QUIET) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          var v = en.target;
-          if (en.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
-          else v.pause();
-        });
-      }, { threshold: 0.35 });
-      vids.forEach(function (v) { io.observe(v); });
-    }
-
-    // Código de tiempo del visor
-    var tcs = vids.filter(function (v) { return v.closest(".vf"); });
-    if (tcs.length) {
-      var tick = function () {
-        tcs.forEach(function (v) {
-          if (!v.isConnected || v.paused) return;
-          var t = v.currentTime, el = v.closest(".vf").querySelector(".vf-tc");
-          var f = Math.floor((t % 1) * 30), s = Math.floor(t) % 60, m = Math.floor(t / 60) % 60;
-          el.textContent = "00:" + pad(m) + ":" + pad(s) + ":" + pad(f);
-        });
-        requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
+    // Código de tiempo de los visores: solo corre mientras hay un video sonando
+    var ticking = false;
+    function startTick() { if (!ticking) { ticking = true; requestAnimationFrame(tick); } }
+    function tick() {
+      var any = false;
+      playing.forEach(function (v) {
+        var vf = v.closest(".vf");
+        if (!vf || !v.isConnected) return;
+        any = true;
+        var t = v.currentTime, el = vf.querySelector(".vf-tc");
+        var f = Math.floor((t % 1) * 30), s = Math.floor(t) % 60, m = Math.floor(t / 60) % 60;
+        el.textContent = "00:" + pad(m) + ":" + pad(s) + ":" + pad(f);
+      });
+      if (any && playing.length) requestAnimationFrame(tick); else ticking = false;
     }
   }
   function pad(n) { return (n < 10 ? "0" : "") + n; }
+
+  // El hilo del día de grabación se va llenando a medida que bajas
+  function wireThread(root) {
+    var ol = root.querySelector(".thread");
+    if (!ol) return;
+    var nodes = Array.prototype.slice.call(ol.querySelectorAll(".node"));
+    if (QUIET) { ol.style.setProperty("--p", "1"); nodes.forEach(function (n) { n.classList.add("on"); }); return; }
+    var queued = false, last = -1;
+    function update() {
+      queued = false;
+      var r = ol.getBoundingClientRect();
+      var vh = window.innerHeight;
+      if (r.bottom < -200 || r.top > vh + 200) return; // fuera de pantalla: no hacemos nada
+      var mark = vh * 0.6;
+      var p = Math.max(0, Math.min(1, (mark - r.top) / r.height));
+      if (Math.abs(p - last) < 0.002) return;
+      last = p;
+      ol.style.setProperty("--p", p.toFixed(3));
+      nodes.forEach(function (n) { var b = n.getBoundingClientRect(); n.classList.toggle("on", b.top + b.height / 2 < mark); });
+    }
+    function onScroll() { if (!queued) { queued = true; requestAnimationFrame(update); } }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    update();
+  }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", build);
   else build();

@@ -33,7 +33,11 @@ window.PROPUESTA = {
       gancho: "",
       porque: "",
       como: "",
-      referencia: { url: "", cuenta: "", vistas: "", captura: "" }
+      referencia: {
+        video: "referencias/ref-1.mp4", poster: "referencias/ref-1.jpg",
+        url: "", cuenta: "",
+        vistas: "", me_gusta: "", comentarios: "", compartidos: ""
+      }
     }
   ]
 };

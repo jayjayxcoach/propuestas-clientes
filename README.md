@@ -12,8 +12,11 @@ assets/
   propuesta.js      Arma la página (no hace falta tocarlo)
   fonts/            Tipografías
   portafolio/       Videos de detrás de cámara y videos finales
+  mejores/          Los 6 videos de muestra (en silencio y en loop)
+  proceso/          Clips de la experiencia de grabación
   equipo/           Foto del equipo
 _plantilla/         Carpeta base para crear una propuesta nueva
+_herramientas/      Script que descarga los reels de referencia (no se publica)
 propuesta-enrique/  Propuesta de Enrique (Fismedica)
 ```
 
@@ -26,6 +29,10 @@ propuesta-enrique/  Propuesta de Enrique (Fismedica)
 5. Haz commit y push. La página queda en `https://jaypersonalbrand.com/<carpeta>/`.
 
 Para revisar una propuesta ya publicada con el panel, agrega `?revisar` al final del enlace.
+
+## Videos de referencia
+
+Claude saca el enlace de cada reel, escribe la lista en `_herramientas/lista.txt` y ejecuta `descargar-referencias.bat`. Los originales quedan en `_descargas/` (no se suben a GitHub); a la web solo van las versiones comprimidas dentro de `referencias/` de cada cliente.
 
 ## Publicar con GitHub Pages (solo la primera vez)
 

@@ -1,13 +1,12 @@
-# Clips del día de grabación
+# Clips de la experiencia de grabación
 
-Clips cortos en loop (vertical, sin sonido, 3 a 6 segundos, menos de 4 MB cada uno). Súbelos aquí con estos nombres exactos:
+Clips cortos en loop (vertical, sin sonido, 3 a 6 segundos, menos de 3 MB cada uno). Súbelos aquí con estos nombres:
 
-- `dia-de-grabacion.mp4` (el del cuadro de arriba, mejor horizontal)
-- `montaje.mp4`
+- `montaje.mp4` (llegamos y montamos el set)
+- `plan.mp4` (te contamos el plan)
 - `calentamiento-vocal.mp4`
-- `direccion.mp4`
-- `guion-y-toma.mp4`
-- `grabacion.mp4`
-- `edicion.mp4`
+- `direccion.mp4` (dirección frente a cámara)
+- `grabacion.mp4` (grabamos toma por toma)
+- `edicion.mp4` (color y edición)
 
-Los textos de cada paso se cambian en `assets/agencia.js`, en la parte `grabacion`.
+Los pasos sin clip (agendar, pagos, revisión y entrega) llevan un ícono. Los textos se cambian en `assets/agencia.js`, en `grabacion`.
