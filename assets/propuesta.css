@@ -604,6 +604,7 @@ section { padding: clamp(64px, 10vw, 120px) 0 0; }
 }
 .amount { font-family: var(--display); font-weight: 800; letter-spacing: -.06em; line-height: .85; font-size: clamp(96px, 16vw, 176px); font-variant-numeric: tabular-nums; }
 .amount sup { font-size: .38em; letter-spacing: -.02em; vertical-align: top; position: relative; top: .18em; margin-right: .04em; }
+.amount sup.cents { margin-right: 0; margin-left: .04em; }
 .amount-for { margin-top: 12px; font-family: var(--display); font-size: clamp(22px, 2.6vw, 28px); font-weight: 700; letter-spacing: -.02em; }
 .amount-note { margin-top: 8px; color: var(--ink-2); }
 .anchor { margin-top: 18px; font-size: 14px; color: var(--ink-3); max-width: 38ch; }

@@ -241,6 +241,13 @@
     return h + '</ol></section>';
   }
 
+  // 99.99 → 99 con los centavos pequeños arriba
+  function precioHtml(v) {
+    var partes = String(v).split(".");
+    var cents = partes[1] ? (partes[1] + "0").slice(0, 2) : "";
+    return esc(partes[0]) + (cents ? '<sup class="cents">' + esc(cents) + '</sup>' : "");
+  }
+
   function inversion() {
     var inc = (A.incluye || []).map(function (x) { return '<li>' + esc(fill(x)) + '</li>'; }).join("");
     var b = A.bono;
@@ -248,7 +255,7 @@
       head("Tu inversión", "", "inversion") +
       '<div class="price glass">' +
       '<div>' +
-      '<div class="amount"><sup>$</sup>' + esc(P.precio) + '</div>' +
+      '<div class="amount"><sup>$</sup>' + precioHtml(P.precio) + '</div>' +
       '<p class="amount-for">por los ' + esc(P.cantidad) + ' videos</p>' +
       '<p class="amount-note">Pago único, sin mensualidades.</p>' +
       (A.referencia_mercado ? '<p class="anchor">' + esc(A.referencia_mercado) + '</p>' : "") +

@@ -16,7 +16,7 @@ window.PROPUESTA = {
   valida_hasta: "5 de noviembre de 2026",
 
   cantidad: 5,
-  precio: 99,
+  precio: 99.99,
 
   intro: "Revisamos los videos de fisioterapia que más se están viendo ahora mismo en Instagram y elegimos cinco formatos que podemos grabar en tu consultorio. La idea es simple: que tu trabajo se vea igual de profesional en video que en persona.",
 
