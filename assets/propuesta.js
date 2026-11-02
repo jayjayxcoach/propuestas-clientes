@@ -367,7 +367,11 @@
       if (v.dataset.loaded) return;
       v.dataset.loaded = "1";
       var frame = v.closest(".frame");
-      v.addEventListener("loadeddata", function () { frame.classList.remove("is-empty"); });
+      // iPhone no dispara loadeddata hasta reproducir: basta con la metadata para mostrar el cuadro
+      function ready() { frame.classList.remove("is-empty"); }
+      v.addEventListener("loadeddata", ready);
+      v.addEventListener("loadedmetadata", ready);
+      v.addEventListener("playing", ready);
       v.addEventListener("error", function () {
         v.remove();
         var g = v.dataset.group;
@@ -380,9 +384,23 @@
       });
       v.addEventListener("play", function () { if (playing.indexOf(v) === -1) playing.push(v); startTick(); });
       v.addEventListener("pause", function () { playing = playing.filter(function (x) { return x !== v; }); });
+      if (!v.dataset.player) { v.muted = true; v.defaultMuted = true; }
+      v.playsInline = true;
+      v.setAttribute("webkit-playsinline", "");
       v.preload = "metadata";
-      v.src = v.dataset.src;
+      // #t=0.001 hace que iPhone muestre el primer cuadro aunque no reproduzca solo
+      v.src = v.dataset.src + (v.dataset.src.indexOf("#") === -1 ? "#t=0.001" : "");
     }
+
+    // Modo bajo consumo del iPhone bloquea el autoplay: al primer toque se reproducen los visibles
+    function playVisible() {
+      vids.forEach(function (v) {
+        if (v.dataset.player || !v.dataset.loaded || !v.paused) return;
+        var r = v.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < window.innerHeight) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+      });
+    }
+    ["touchend", "click"].forEach(function (ev) { document.addEventListener(ev, playVisible, { passive: true }); });
 
     // Con poster, el video queda "listo" visualmente aunque no haya cargado
     root.querySelectorAll(".frame.has-poster").forEach(function (f) { f.classList.remove("is-empty"); });
@@ -398,7 +416,8 @@
         entries.forEach(function (en) {
           var v = en.target;
           if (v.dataset.player) { if (!en.isIntersecting && !v.paused) v.pause(); return; }
-          if (en.isIntersecting && !QUIET) { attach(v); var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+          // Los videos son el contenido: se reproducen aunque el iPhone tenga "Reducir movimiento"
+          if (en.isIntersecting) { attach(v); var p = v.play(); if (p && p.catch) p.catch(function () {}); }
           else if (!v.paused) v.pause();
         });
       }, { threshold: 0.35 });
