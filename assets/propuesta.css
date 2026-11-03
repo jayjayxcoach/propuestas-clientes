@@ -783,6 +783,10 @@ section { padding: clamp(64px, 10vw, 120px) 0 0; }
 }
 .playbtn svg { width: 28px; height: 28px; }
 .playbtn:active { transform: scale(.94); }
+@media (max-width: 720px) {
+  .morph .playbtn, .best .playbtn { width: 52px; height: 52px; margin: -26px 0 0 -26px; }
+  .morph .playbtn svg, .best .playbtn svg { width: 22px; height: 22px; }
+}
 .frame.is-playing .playbtn,
 .frame.is-playing .island,
 .frame.is-playing .screen::after { display: none; }

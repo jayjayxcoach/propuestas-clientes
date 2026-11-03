@@ -55,6 +55,8 @@
   };
 
   /* ---------- piezas ---------- */
+  // Portada del video: mismo nombre en .jpg (video-1.mp4 → video-1.jpg)
+  function posterDe(src) { return src.replace(/\.mp4$/i, ".jpg"); }
   // Todos los videos se cargan solo cuando se acercan a la pantalla (data-src)
   function videoTag(src, group, poster, player) {
     return '<video ' + (player ? 'data-player="1"' : 'muted loop') + ' playsinline preload="none" data-src="' + esc(src) + '" data-file="' + esc(src) + '"' +
@@ -122,7 +124,7 @@
         '<div class="morph">' +
         '<figure>' + frameVF(c.backstage, "Detrás de cámara", "", "portafolio") + '<figcaption>Detrás de cámara</figcaption></figure>' +
         '<div class="bridge" aria-hidden="true"><span class="lens">' + I.arrow + '</span></div>' +
-        '<figure>' + framePhone(c.final ? fromRoot(c.final) : "", "Video final", { sound: true, group: "portafolio" }) + '<figcaption>Video final</figcaption></figure>' +
+        '<figure>' + framePhone(c.final ? fromRoot(c.final) : "", "Video final", { player: true, poster: c.final ? fromRoot(posterDe(c.final)) : "", group: "portafolio" }) + '<figcaption>Video final</figcaption></figure>' +
         '</div></article>';
     });
     return h + '</div></section>';
@@ -134,7 +136,7 @@
     var h = '<section class="wrap" id="mejores" aria-labelledby="mejores-t">' +
       head(m.titulo, m.texto, "mejores") + '<div class="best">';
     m.videos.forEach(function (v, i) {
-      h += '<figure class="best-item">' + framePhone(v.video ? fromRoot(v.video) : "", "Video " + (i + 1), { group: "mejores" }) +
+      h += '<figure class="best-item">' + framePhone(v.video ? fromRoot(v.video) : "", "Video " + (i + 1), { player: true, poster: v.video ? fromRoot(posterDe(v.video)) : "", group: "mejores" }) +
         (v.cliente ? '<figcaption>' + esc(v.cliente) + '</figcaption>' : "") + '</figure>';
     });
     return h + '</div></section>';
@@ -411,7 +413,7 @@
     if ("IntersectionObserver" in window) {
       var near = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) { if (en.isIntersecting) { attach(en.target); near.unobserve(en.target); } });
-      }, { rootMargin: "600px 0px" });
+      }, { rootMargin: "300px 0px" });
       var seen = new IntersectionObserver(function (entries) {
         entries.forEach(function (en) {
           var v = en.target;
@@ -421,7 +423,8 @@
           else if (!v.paused) v.pause();
         });
       }, { threshold: 0.35 });
-      vids.forEach(function (v) { near.observe(v); seen.observe(v); });
+      // Los de "play" con portada no descargan nada hasta que la persona los toca: así el scroll no se traba
+      vids.forEach(function (v) { if (!(v.dataset.player && v.getAttribute("poster"))) near.observe(v); seen.observe(v); });
     }
 
     // Reproductor de referencias: play desde el inicio, con audio y con controles

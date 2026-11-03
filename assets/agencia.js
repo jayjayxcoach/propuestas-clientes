@@ -46,7 +46,7 @@ window.AGENCIA = {
     }
   ],
 
-  // ---------- Lo mejor que hemos grabado (6 videos en silencio y en loop) ----------
+  // ---------- Lo mejor que hemos grabado (6 videos con botón de play y portada .jpg) ----------
   // Sube los videos a assets/mejores/ con estos nombres. "cliente" es opcional.
   mejores: {
     titulo: "Lo mejor que hemos grabado",

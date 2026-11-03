@@ -1,7 +1,8 @@
 # Lo mejor que hemos grabado
 
-Seis videos verticales que se reproducen solos, en silencio y en loop. Súbelos aquí con estos nombres:
+Seis videos verticales con botón de play: no se reproducen solos, la persona los toca para verlos con sonido.
 
 - `video-1.mp4` … `video-6.mp4`
+- Portada de cada uno con el mismo nombre en .jpg (`video-1.jpg` …). Claude la saca del video.
 
-Recomendado: menos de 4 MB cada uno (Claude los puede comprimir). El nombre del cliente de cada uno se pone en `assets/agencia.js`, en `mejores`.
+El nombre del cliente de cada uno se pone en `assets/agencia.js`, en `mejores`.
