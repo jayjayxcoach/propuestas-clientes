@@ -1,0 +1,126 @@
+/* =========================================================
+   Nebraska Media · Tema "Noche del Pacífico"
+   La propuesta original de noche: vidrio oscuro y manchas de
+   azul, laguna y sol sobre negro azulado.
+   Se carga DESPUÉS de propuesta.css y lo sobreescribe.
+   Uso: <link rel="stylesheet" href="../assets/tema-pacifico-noche.css">
+   ========================================================= */
+
+:root {
+  color-scheme: dark;
+
+  --ink: #F3F6FB;
+  --ink-2: #A9B4C6;
+  --ink-3: #6F7B90;
+  --mist: #05070C;
+  --night: #05070C;
+  --accent: #7FA3FF;
+  --line: rgba(255,255,255,.09);
+
+  --glass: linear-gradient(180deg, rgba(255,255,255,.085) 0%, rgba(255,255,255,.035) 100%);
+  --glass-flat: rgba(255,255,255,.06);
+  --edge: rgba(255,255,255,.12);
+  --lift: 0 24px 50px -30px rgba(0,0,0,.9);
+  --shine: inset 0 1px 0 rgba(255,255,255,.14);
+
+  --btn: linear-gradient(180deg, #3D74FF 0%, #1F5BFF 100%);
+  --btn-glow: 0 14px 32px -12px rgba(31,91,255,.85), inset 0 1px 0 rgba(255,255,255,.3);
+}
+
+body { background: var(--mist); color: var(--ink); }
+::selection { background: #1F5BFF; color: #fff; }
+:focus-visible { outline-color: rgba(127,163,255,.7); }
+
+/* ---------- Fondo ---------- */
+.wallpaper {
+  background:
+    radial-gradient(42vmax 42vmax at 8% 4%, rgba(31,91,255,.38), transparent 62%),
+    radial-gradient(36vmax 36vmax at 96% 22%, rgba(46,197,211,.22), transparent 62%),
+    radial-gradient(40vmax 40vmax at 76% 98%, rgba(255,214,107,.13), transparent 62%),
+    radial-gradient(34vmax 34vmax at 2% 84%, rgba(98,132,255,.20), transparent 62%),
+    var(--mist);
+}
+
+/* ---------- Vidrio oscuro ---------- */
+.glass { background: var(--glass); border: 1px solid var(--edge); box-shadow: var(--shine), var(--lift); }
+@media (hover: hover) and (pointer: fine) {
+  .notif, .vcard, .case, .tcard, .price, .team, .steps, .shoot-top {
+    -webkit-backdrop-filter: blur(22px) saturate(140%);
+    backdrop-filter: blur(22px) saturate(140%);
+  }
+}
+
+/* ---------- Barra superior ---------- */
+.topbar { background: rgba(8,11,20,.92); border-color: rgba(255,255,255,.10); }
+@media (hover: hover) and (pointer: fine) {
+  .topbar { background: rgba(8,11,20,.62); }
+}
+.brand-mark {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,.35), rgba(255,255,255,0) 50%),
+    linear-gradient(160deg, #1F5BFF 0%, #2EC5D3 100%);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.18), 0 6px 16px -6px rgba(31,91,255,.8);
+}
+.topbar-cta { background: var(--btn); color: #fff; box-shadow: var(--btn-glow); }
+
+/* ---------- Saludo ---------- */
+.hero h1 { background: linear-gradient(180deg, #FFFFFF 32%, #7FA3FF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* ---------- Portafolio ---------- */
+.bridge::before { background: linear-gradient(90deg, rgba(31,91,255,0), rgba(31,91,255,.6), rgba(46,197,211,.6), rgba(46,197,211,0)); }
+.lens { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.16); color: #fff; box-shadow: 0 6px 18px -8px rgba(31,91,255,.8); }
+.morph figcaption, .best-item figcaption { color: var(--ink-3); }
+
+/* Marcos de video */
+.vf { background: radial-gradient(120% 80% at 50% 0%, #142240 0%, #04060B 70%); box-shadow: 0 24px 50px -30px rgba(0,0,0,.95); border: 1px solid rgba(255,255,255,.08); }
+.phone {
+  background: linear-gradient(160deg, rgba(255,255,255,.20), rgba(255,255,255,.05));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 28px 60px -30px rgba(0,0,0,.95), 0 0 0 1px rgba(255,255,255,.08);
+}
+.screen::after { background: linear-gradient(125deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,0) 38%); }
+.playbtn { background: rgba(5,7,12,.55); border-color: rgba(255,255,255,.4); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+
+/* ---------- Quiénes somos ---------- */
+.team-photo { background: linear-gradient(140deg, rgba(31,91,255,.7), rgba(46,197,211,.6)); }
+.people li { border-top-color: var(--line); }
+.chip { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.12); color: var(--ink-2); }
+
+/* ---------- Día de grabación ---------- */
+.thread::before { background: rgba(255,255,255,.10); }
+.thread-fill { background: linear-gradient(180deg, #1F5BFF, #2EC5D3); }
+.thread-fill::after { background: #05070C; border-color: #2EC5D3; box-shadow: 0 0 12px rgba(46,197,211,.8); }
+.node { background: rgba(14,18,30,.92); border-color: rgba(255,255,255,.12); color: var(--ink-3); box-shadow: none; }
+.node.on { background: linear-gradient(160deg, #1F5BFF, #2EC5D3); border-color: transparent; color: #fff; box-shadow: 0 0 0 5px rgba(31,91,255,.18); }
+.ticon { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.12); color: #7FA3FF; }
+
+/* ---------- Videos propuestos ---------- */
+.vnum, .case-place { color: var(--accent); }
+.hook { background: rgba(31,91,255,.12); border-color: rgba(127,163,255,.25); color: var(--ink); }
+.hook small { color: #7FA3FF; }
+.stats { background: rgba(255,255,255,.04); border-color: var(--line); }
+.stats li + li { border-left-color: var(--line); }
+.stats svg { color: #7FA3FF; }
+.credit a { color: var(--ink); }
+.btn-ref { background: rgba(255,255,255,.06); color: var(--ink); }
+
+/* ---------- Inversión ---------- */
+.amount { background: linear-gradient(180deg, #FFFFFF 40%, #9DB7FF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.includes li::before { background-color: #1F5BFF; box-shadow: 0 4px 12px -4px rgba(31,91,255,.9); }
+.bonus { background: linear-gradient(150deg, rgba(31,91,255,.30), rgba(46,197,211,.16)); border: 1px solid rgba(127,163,255,.28); }
+.bonus > svg { background: rgba(255,255,255,.12); }
+.pay { border-top-color: var(--line); }
+
+/* Botones */
+.btn { background: var(--btn); box-shadow: var(--btn-glow); }
+
+/* ---------- Cómo empezamos ---------- */
+.steps li::before { background: linear-gradient(160deg, #1F5BFF, #2EC5D3); color: #fff; }
+.steps li::after { background: linear-gradient(180deg, rgba(127,163,255,.35), rgba(127,163,255,.05)); }
+
+/* ---------- Cierre ---------- */
+.foot strong { color: var(--ink); }
+
+/* ---------- Panel de revisión ---------- */
+.check { background: rgba(14,18,30,.96); }
+.check h4 button { background: rgba(255,255,255,.1); }
+.check code { background: rgba(255,255,255,.08); }
