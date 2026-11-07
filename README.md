@@ -8,7 +8,8 @@ Cada cliente tiene su propia carpeta con su página. El diseño y los datos de l
 ```
 assets/
   agencia.js        Datos de la agencia: WhatsApp, portafolio, reseñas, equipo, proceso
-  propuesta.css     Diseño
+  propuesta.css     Diseño base
+  tema-pacifico-noche.css  Tema oficial (Noche del Pacífico). La plantilla ya lo carga
   propuesta.js      Arma la página (no hace falta tocarlo)
   fonts/            Tipografías
   portafolio/       Videos de detrás de cámara y videos finales

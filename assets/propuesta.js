@@ -24,7 +24,7 @@
   }
   function fromRoot(p) { return !p ? "" : /^(https?:|data:|\/)/.test(p) ? p : ROOT + p; }
   function fill(s) {
-    return String(s || "").replace(/\{negocio\}/g, P.negocio || "tu negocio").replace(/\{reserva\}/g, A.reserva || 25);
+    return String(s || "").replace(/\{negocio\}/g, P.negocio || "tu negocio");
   }
   function pend(msg, key) { pendientes[key || msg] = msg; renderCheck(); }
   function wa(msg) {
@@ -271,15 +271,6 @@
       '</div></section>';
   }
 
-  function proceso() {
-    var steps = (A.proceso || []).map(function (s) {
-      return '<li><div><h3>' + esc(fill(s.paso)) + '</h3><p>' + esc(fill(s.detalle)) + '</p></div></li>';
-    }).join("");
-    return '<section class="wrap" id="proceso" aria-labelledby="proceso-t">' +
-      head("Cómo empezamos", "De tu primer mensaje a tus videos listos para publicar.", "proceso") +
-      '<ol class="steps glass">' + steps + '</ol></section>';
-  }
-
   function cierre() {
     return '<section class="wrap closing" id="cierre" aria-labelledby="cierre-t">' +
       '<header class="sec-head" id="cierre-t"><h2>¿Grabamos, ' + esc(P.nombre) + '?</h2>' +
@@ -322,7 +313,7 @@
 
     var app = document.getElementById("app");
     app.innerHTML = '<div class="wallpaper" aria-hidden="true"></div>' + topbar() +
-      '<main>' + hero() + portafolio() + mejores() + resenas() + equipo() + videos() + grabacion() + inversion() + proceso() + cierre() + '</main>';
+      '<main>' + hero() + portafolio() + mejores() + resenas() + equipo() + videos() + grabacion() + inversion() + cierre() + '</main>';
 
     wireMedia(app);
     wireButtons(app);

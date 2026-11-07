@@ -12,8 +12,8 @@ window.PROPUESTA = {
   lugar: "La Libertad",
   rubro: "fisioterapia",
 
-  fecha: "29 de octubre de 2026",
-  valida_hasta: "5 de noviembre de 2026",
+  fecha: "6 de noviembre de 2026",
+  valida_hasta: "13 de noviembre de 2026",
 
   cantidad: 5,
   precio: 99.99,

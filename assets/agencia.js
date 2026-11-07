@@ -5,7 +5,6 @@
    Las rutas de archivos son desde la raíz del repo,
    por ejemplo: "assets/portafolio/electroluz-final.mp4"
    En los textos, {negocio} se cambia por el negocio del cliente
-   y {reserva} por el valor de la reserva.
    ========================================================= */
 window.AGENCIA = {
   nombre: "Nebraska Media",
@@ -14,9 +13,6 @@ window.AGENCIA = {
 
   // Número de WhatsApp de la agencia, con código de país y sin "+" ni espacios.
   whatsapp: "593968637813",
-
-  // Valor con el que se separa la fecha de grabación (en dólares).
-  reserva: 25,
 
   descripcion: "Hacemos foto y video para empresas y negocios aquí en Santa Elena",
 
@@ -96,7 +92,7 @@ window.AGENCIA = {
     titulo: "Guía para promocionar tus videos en Meta",
     texto: "Te enseñamos paso a paso a invertir en publicidad en Facebook e Instagram, para que tus videos lleguen a más personas de la península."
   },
-  pago: "Separas tu fecha con ${reserva}, completas el primer 50% el día de la grabación y pagas el otro 50% cuando apruebas tus videos.",
+  pago: "Separas tu fecha de grabación con el 50% y pagas el otro 50% cuando apruebas tus videos. Ahí te los enviamos listos para publicar.",
   referencia_mercado: "Como referencia: en Guayaquil y Quito, una productora cobra desde $150 por un solo reel.",
 
   // ---------- La experiencia de grabar con nosotros (cuadro superior + pasos con hilo) ----------
@@ -107,25 +103,15 @@ window.AGENCIA = {
     texto: "Unas 4 horas en {negocio}. Llevamos todo el equipo y te acompañamos en cada paso.",
     datos: ["Unas 4 horas", "En tu local", "Equipo de cine"],
     pasos: [
-      { titulo: "Agendamos tu fecha", detalle: "Separas tu día de grabación con ${reserva} por WhatsApp. Así los dos quedamos comprometidos con esa fecha.", clip: "", icono: "calendar" },
+      { titulo: "Agendamos tu fecha", detalle: "Separas tu día de grabación con el 50% por WhatsApp. Así los dos quedamos comprometidos con esa fecha.", clip: "", icono: "calendar" },
       { titulo: "Llegamos y montamos el set", detalle: "Llegamos a {negocio} con todo el equipo: luces, cámara y sonido. Buscamos los rincones que mejor se ven en cámara.", clip: "assets/proceso/montaje.mp4" },
       { titulo: "Te contamos el plan", detalle: "Te explicamos qué videos vamos a grabar y en qué orden, para que sepas qué viene en cada momento.", clip: "assets/proceso/plan.mp4" },
       { titulo: "Calentamiento vocal", detalle: "Hacemos contigo unos ejercicios de voz y respiración para que te expreses de forma fluida y natural frente a la cámara.", clip: "assets/proceso/calentamiento-vocal.mp4" },
       { titulo: "Dirección frente a cámara", detalle: "Te guiamos en tu forma de hablar, tu postura y tus gestos, para que fluyas con naturalidad y transmitas confianza.", clip: "assets/proceso/direccion.mp4" },
       { titulo: "Grabamos toma por toma", detalle: "Grabamos cada video las veces que haga falta, hasta que quede como debe.", clip: "assets/proceso/grabacion.mp4" },
-      { titulo: "Completas el primer 50%", detalle: "Al terminar la sesión pagas lo que falta para completar la primera mitad.", clip: "", icono: "card" },
       { titulo: "Color y edición", detalle: "En el estudio corregimos el color para que tus videos se vean muy bonitos y pasamos a la edición: cortes, textos, subtítulos y música.", clip: "assets/proceso/edicion.mp4" },
       { titulo: "Revisas tus videos", detalle: "Recibirás tus videos editados profesionalmente, con marca de agua, para que los revises con calma.", clip: "", icono: "review" },
       { titulo: "Te entregamos todo", detalle: "Cuando te gusten y no tengas correcciones, pagas el otro 50% y te entregamos todo en una carpeta de Google Drive, listo para publicar o programar. Incluye tu guía para promocionarlos en Meta.", clip: "", icono: "folder" }
     ]
-  },
-
-  // ---------- Cómo empezamos ----------
-  proceso: [
-    { paso: "Reservas tu fecha", detalle: "Nos escribes por WhatsApp y separas tu día de grabación con ${reserva}." },
-    { paso: "Apruebas los guiones", detalle: "Te mandamos los guiones adaptados a tu forma de hablar. Si algo no te suena a ti, lo cambiamos." },
-    { paso: "Grabamos en {negocio}", detalle: "Reservamos unas 4 horas de tu tiempo para la sesión." },
-    { paso: "Revisas tus videos", detalle: "Te mostramos los videos con marca de agua para que los veas con calma." },
-    { paso: "Te llegan listos", detalle: "Pagas el otro 50% y te mandamos los videos limpios, listos para publicar, junto con tu guía para promocionarlos en Meta." }
-  ]
+  }
 };
