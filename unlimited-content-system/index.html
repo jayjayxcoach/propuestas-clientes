@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Unlimited Content System</title>
+<meta name="description" content="HOT new Notion template to create unlimited quality content for your social media.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
+<script>
+  // ÚNICO lugar para cambiar el link de pago (Hotmart). Todos los botones lo usan.
+  const CHECKOUT_URL = '#checkout';
+</script>
+<style>
+  :root{
+    --red:#E8380D;
+    --red-dark:#C42E08;
+    --ink:#111111;
+    --cream:#FFF4F1;
+    --gray:#8A8A8A;
+    --paper:#FFFFFF;
+    --hl:#FFD9CC;
+    --display:'Anton', 'Impact', 'Arial Narrow', sans-serif;
+    --body:'Inter', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:var(--body);color:var(--ink);background:var(--cream);overflow-x:hidden}
+  a{color:inherit}
+
+  /* ---------- top strip ---------- */
+  .strip{background:var(--ink);color:#fff;font-family:var(--display);font-style:italic;font-weight:400;
+    letter-spacing:.06em;text-transform:uppercase;font-size:15px;text-align:center;padding:9px 16px}
+  .strip b{color:var(--red)}
+
+  /* ---------- hero ---------- */
+  .hero{background:var(--red);color:#fff;position:relative;overflow:hidden;padding:34px 16px 0}
+  .hero::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(ellipse 60% 50% at 50% 70%, rgba(255,255,255,.14), transparent 70%);pointer-events:none}
+  .wrap{max-width:1180px;margin:0 auto;position:relative}
+
+  .brand{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:22px}
+  .brand .mark{width:34px;height:34px;background:var(--ink);border-radius:6px;display:grid;place-items:center;transform:skew(-8deg)}
+  .brand .mark svg{width:22px;height:22px}
+  .brand span{font-family:var(--display);font-style:italic;font-weight:400;font-size:20px;letter-spacing:.04em;text-transform:uppercase}
+
+  .eyebrow{text-align:center;margin:0 auto 14px;font-family:var(--body);font-style:italic;font-weight:800;font-size:clamp(12px,1.35vw,16px);
+    letter-spacing:.01em;text-transform:uppercase;opacity:.92}
+
+  h1{font-family:var(--display);font-style:normal;font-weight:400;text-transform:uppercase;text-align:center;line-height:.98;letter-spacing:0;
+    font-size:clamp(46px,8.2vw,112px)}
+  h1 .ln{display:block;white-space:nowrap}
+  .q{display:inline-block;font-size:.95em;line-height:0;vertical-align:-.02em;margin:0 .04em;transform:translateY(-.08em)}
+
+  .tape{position:relative;display:inline-block;padding:.06em .2em .02em;margin:.06em .06em .06em 0;color:#fff;z-index:1;transform:rotate(-1.5deg)}
+  .tape::before{content:"";position:absolute;inset:-.03em -.12em -.09em;z-index:-1;
+    background:repeating-linear-gradient(176deg,rgba(255,255,255,.05) 0 2px,transparent 2px 7px),linear-gradient(180deg,#2b2b2d,#161617 45%,#232325);
+    box-shadow:0 .05em .12em rgba(0,0,0,.35);
+    clip-path:polygon(0 4%,2% 0,4% 6%,6% 1%,100% 0,98% 7%,100% 14%,97.5% 22%,100% 31%,98% 40%,100% 50%,97.5% 60%,100% 70%,98% 80%,100% 90%,98% 100%,4% 100%,2% 93%,0 86%,2% 76%,0 66%,2.5% 56%,0 46%,2% 36%,0 26%,2.5% 16%)}
+  .circle{position:absolute;left:-3%;top:2%;width:106%;height:100%;z-index:2;pointer-events:none;overflow:visible}
+  .circle path{fill:none;stroke:var(--red);stroke-width:3.2;stroke-linecap:round;stroke-dasharray:1200;stroke-dashoffset:1200;animation:draw 1.1s .5s ease-out forwards}
+  @keyframes draw{to{stroke-dashoffset:0}}
+
+  .sub{max-width:780px;margin:20px auto 0;text-align:center;font-size:clamp(17px,1.9vw,21px);line-height:1.45;font-weight:500}
+  .sub u{text-decoration:none;background:linear-gradient(transparent 62%, rgba(0,0,0,.25) 62%);font-weight:700}
+
+  /* ---------- stage / mockups ---------- */
+  .stage{position:relative;height:clamp(330px,47vw,560px);margin:34px auto 0;max-width:1180px}
+  .laptop{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);width:min(62%,700px);z-index:5}
+  .screen{background:#1c1c20;border-radius:16px 16px 0 0;padding:12px 12px 14px;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+  .display{aspect-ratio:16/10;background:#fff;border-radius:4px;overflow:hidden;position:relative;color:var(--ink)}
+  .base{height:16px;background:linear-gradient(#d9d9de,#9d9da3);border-radius:0 0 18px 18px;width:114%;margin-left:-7%;position:relative}
+  .base::after{content:"";position:absolute;left:50%;top:0;transform:translateX(-50%);width:16%;height:6px;background:#8a8a90;border-radius:0 0 8px 8px}
+
+  /* notion-like dashboard inside laptop */
+  .n-cover{height:24%;background:#141416;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:2.2%}
+  .n-cover::before{content:"";position:absolute;inset:0;background:
+     radial-gradient(circle at 15% 30%,rgba(232,56,13,.55),transparent 30%),
+     radial-gradient(circle at 85% 70%,rgba(232,56,13,.4),transparent 30%)}
+  .n-cover .t{position:relative;font-family:var(--display);font-style:italic;font-weight:400;color:#fff;text-transform:uppercase;
+    font-size:clamp(11px,2.3vw,27px);letter-spacing:.03em}
+  .n-cover .t em{font-style:inherit;color:var(--red);background:#fff;padding:0 .2em;transform:skew(-8deg);display:inline-block}
+  .n-body{padding:3% 4.5%;font-size:clamp(5px,.85vw,10px)}
+  .n-title{font-weight:800;font-size:2.1em;margin-bottom:.7em;display:flex;align-items:center;gap:.4em}
+  .n-grid{display:grid;grid-template-columns:1fr 2.4fr;gap:4%}
+  .n-nav div{padding:.45em .5em;border-radius:3px;color:#37352f;display:flex;gap:.5em;align-items:center}
+  .n-nav div:first-child{background:#f1f1ef;font-weight:700}
+  .n-nav div::before{content:"";width:.85em;height:.85em;border-radius:2px;background:var(--c,#ddd);flex:none}
+  .n-table{border-top:1px solid #e9e9e7}
+  .n-row{display:grid;grid-template-columns:2.4fr 1.3fr 1fr;gap:3%;padding:.55em 0;border-bottom:1px solid #efefed;align-items:center;color:#37352f}
+  .n-row.h{color:#9b9a97;font-weight:600}
+  .pill{display:inline-block;padding:.15em .6em;border-radius:3px;font-weight:600;white-space:nowrap}
+  .p-idea{background:#e3e2e0}.p-scr{background:#fdecc8}.p-ready{background:#ffe0d6;color:#9a2b0c}.p-post{background:#dbeddb;color:#1c3829}
+
+  .play{position:absolute;left:50%;top:55%;transform:translate(-50%,-50%);width:15%;aspect-ratio:1.45;background:rgba(17,17,17,.92);
+    border-radius:12px;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.35);cursor:pointer;transition:transform .2s}
+  .play:hover{transform:translate(-50%,-50%) scale(1.07)}
+  .play::after{content:"";border-left:clamp(10px,1.9vw,22px) solid #fff;border-top:clamp(6px,1.15vw,13px) solid transparent;border-bottom:clamp(6px,1.15vw,13px) solid transparent;margin-left:8%}
+  .vtag{position:absolute;left:50%;transform:translateX(-50%);white-space:nowrap;bottom:4%;background:var(--red);color:#fff;font-family:var(--display);font-style:italic;font-weight:400;
+    text-transform:uppercase;font-size:clamp(7px,1.05vw,13px);padding:.3em .7em;border-radius:3px;letter-spacing:.04em}
+
+  /* floating paper pieces */
+  .paper{position:absolute;background:var(--paper);color:var(--ink);border-radius:6px;box-shadow:0 18px 40px rgba(0,0,0,.28);
+    padding:16px 16px 18px;font-size:10px;line-height:1.45}
+  .paper h4{font-family:var(--body);font-weight:800;font-size:17px;line-height:1.1;margin-bottom:8px}
+  .paper h4 mark{background:none;color:var(--red)}
+  .bar{height:6px;background:#e7e5e2;border-radius:3px;margin:5px 0}
+  .flow{display:flex;flex-wrap:wrap;gap:4px;margin:9px 0}
+  .flow span{background:var(--hl);color:#8a2408;font-weight:700;padding:2px 6px;border-radius:3px;font-size:9px}
+  .flow span:nth-child(even){background:#eee;color:#555}
+
+  .doc1{left:0;top:30px;width:250px;transform:rotate(-8deg);z-index:2}
+  .doc2{right:2%;top:6px;width:240px;transform:rotate(7deg);z-index:2}
+  .hooks{left:0;bottom:22px;width:275px;transform:rotate(-3deg);z-index:6;padding:12px 14px}
+  .hooks h5,.track h5{font-size:12px;font-weight:800;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+  .hooks h5 small,.track h5 small{font-weight:600;color:var(--gray);font-size:9px}
+  .hk{display:flex;justify-content:space-between;gap:8px;padding:5px 0;border-top:1px solid #eee;font-size:10px}
+  .hk b{font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .hk .tag{flex:none}
+  .tag{font-size:8.5px;font-weight:700;padding:1px 6px;border-radius:3px;background:#f1f1ef;color:#555;white-space:nowrap}
+  .tag.r{background:var(--hl);color:#8a2408}
+
+  .book{position:absolute;right:5%;bottom:30px;width:178px;z-index:7;transform:rotate(4deg);filter:drop-shadow(0 22px 30px rgba(0,0,0,.35))}
+  .book .cv{aspect-ratio:.72;background:var(--ink);border-radius:3px 8px 8px 3px;padding:16px 14px;color:#fff;position:relative;overflow:hidden;
+    border-left:10px solid #2a2a2e}
+  .book .cv::after{content:"";position:absolute;right:-30px;bottom:-30px;width:130px;height:130px;border-radius:50%;background:var(--red)}
+  .book .n{font-family:var(--display);font-style:italic;font-weight:400;font-size:82px;line-height:.8;color:var(--red);position:relative;z-index:1}
+  .book .w{font-family:var(--display);font-style:italic;font-weight:400;font-size:27px;line-height:.92;text-transform:uppercase;margin-top:6px;position:relative;z-index:1}
+  .book .w em{font-style:inherit;background:#fff;color:var(--ink);padding:0 4px;display:inline-block;transform:skew(-6deg);margin:2px 0}
+  .book .s{position:absolute;left:14px;bottom:14px;right:50px;font-size:8.5px;line-height:1.35;color:#cfcfcf;z-index:1}
+  .book .hook{position:absolute;right:12px;bottom:14px;z-index:1;width:46px;height:60px}
+
+  .phone{position:absolute;left:24%;bottom:14px;width:128px;z-index:8;background:#111;border-radius:22px;padding:7px;box-shadow:0 22px 40px rgba(0,0,0,.4);transform:rotate(-4deg)}
+  .phone .ps{background:#fff;border-radius:16px;aspect-ratio:.5;overflow:hidden;padding:18px 10px 10px;font-size:7.5px;line-height:1.4;color:#37352f;position:relative}
+  .phone .ps::before{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:34px;height:7px;background:#111;border-radius:6px}
+  .phone h6{font-size:10px;font-weight:800;color:var(--ink);line-height:1.15;margin:4px 0 6px}
+  .phone .sec{font-weight:800;color:var(--red);margin-top:6px;text-transform:uppercase;letter-spacing:.04em;font-size:7px}
+
+  .track{position:absolute;right:20%;top:-6px;width:190px;transform:rotate(-4deg);z-index:3;padding:12px 14px}
+  .bars{display:flex;align-items:flex-end;gap:5px;height:46px;margin-top:6px}
+  .bars i{flex:1;background:#eee;border-radius:2px 2px 0 0}
+  .bars i.on{background:var(--red)}
+
+  /* ---------- CTA block ---------- */
+  .cta-zone{background:var(--cream);padding:34px 16px 56px;text-align:center}
+  .proof{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:22px;flex-wrap:wrap}
+  .avatars{display:flex}
+  .avatars img{width:38px;height:38px;border-radius:50%;object-fit:cover;border:3px solid var(--cream);margin-left:-10px;background:#ddd}
+  .avatars img:first-child{margin-left:0}
+  .proof p{font-size:15px;font-weight:500}
+  .proof b{font-weight:800}
+
+  .btn{display:block;width:100%;max-width:770px;margin:0 auto;background:var(--red);color:#fff;text-decoration:none;border-radius:8px;
+    font-family:var(--display);font-style:italic;font-weight:400;text-transform:uppercase;font-size:clamp(34px,5.4vw,58px);
+    line-height:1;padding:.32em .5em .3em;box-shadow:0 6px 0 var(--red-dark);transition:transform .12s, box-shadow .12s, background .2s}
+  .btn:hover{background:#f04416}
+  .btn:active{transform:translateY(4px);box-shadow:0 2px 0 var(--red-dark)}
+  .btn small{display:block;font-family:var(--body);font-style:normal;font-weight:600;text-transform:none;font-size:15px;margin-top:.5em;opacity:.95}
+
+  .fine{margin-top:18px;font-size:14px;font-weight:500;letter-spacing:.05em;text-transform:uppercase}
+  .fine .dot{color:var(--red);margin:0 8px}
+  .price-line{margin-top:10px;font-size:14px;color:#444}
+  .price-line s{color:var(--gray)}
+  .price-line b{color:var(--red);font-weight:800}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    .doc2,.track{display:none}
+    .doc1{width:200px;left:-30px}
+    .book{width:140px;right:0}
+    .book .n{font-size:64px}.book .w{font-size:21px}
+    .hooks{width:220px;left:0}
+    .phone{left:auto;right:21%;width:104px}
+    .laptop{width:72%}
+  }
+  @media (max-width:640px){
+    .hero{padding-top:24px}
+    h1{font-size:clamp(34px,11vw,46px)}
+    h1 .ln{white-space:normal}
+    .stage{height:300px;margin-top:22px}
+    .laptop{width:94%;bottom:64px}
+    .doc1,.hooks{display:none}
+    .book{width:104px;right:-4px;bottom:6px}
+    .book .cv{padding:10px 9px;border-left-width:6px}
+    .book .n{font-size:48px}.book .w{font-size:15px}.book .s,.book .hook{display:none}
+    .phone{left:-2px;right:auto;bottom:4px;width:82px;border-radius:16px;padding:5px}
+    .phone .ps{border-radius:12px;padding:14px 7px 7px;font-size:5.5px}
+    .phone h6{font-size:7.5px}
+    .strip{font-size:12px}
+    .eyebrow{font-size:11px}
+    .btn small{font-size:13px}
+    .fine{font-size:12px;letter-spacing:.03em}
+  }
+</style>
+</head>
+<body>
+
+<div class="strip">Exclusive launch offer <b>·</b> Instant digital access <b>·</b> Works with free Notion</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">
+      <div class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#E8380D" stroke-width="2.6" stroke-linecap="round"><path d="M6.5 8.5c-2 0-3.5 1.6-3.5 3.5s1.5 3.5 3.5 3.5c3.5 0 7.5-7 11-7 2 0 3.5 1.6 3.5 3.5s-1.5 3.5-3.5 3.5c-3.5 0-7.5-7-11-7z"/></svg>
+      </div>
+      <span>The Unlimited Content System</span>
+    </div>
+
+    <p class="eyebrow">HOT new Notion template to create…</p>
+
+    <h1>
+      <span class="ln"><span class="q">“</span><span class="tape">Unlimited<svg class="circle" viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true"><path d="M150 10 C 236 6, 294 30, 291 60 C 288 94, 214 112, 144 110 C 66 108, 8 92, 9 60 C 10 30, 72 12, 166 13 C 198 14, 228 19, 250 27"/></svg></span> quality</span>
+      <span class="ln">content for your</span>
+      <span class="ln">social media<span class="q">”</span></span>
+    </h1>
+
+    <p class="sub">This system will save you <u>a ton of hours</u> creating content for your brand.</p>
+  </div>
+
+  <div class="stage" aria-label="The Unlimited Content System inside Notion">
+    <!-- floating pages -->
+    <div class="paper doc1">
+      <h4>Borrowed <mark>Interest</mark> Template</h4>
+      <div class="bar" style="width:95%"></div><div class="bar" style="width:88%"></div><div class="bar" style="width:70%"></div>
+      <div class="flow"><span>Borrowed interest</span><span>→</span><span>Framework</span><span>→</span><span>Your take</span><span>→</span><span>Soft CTA</span></div>
+      <div class="bar" style="width:92%"></div><div class="bar" style="width:80%"></div><div class="bar" style="width:86%"></div><div class="bar" style="width:60%"></div>
+    </div>
+
+    <div class="paper doc2">
+      <h4>Viral <mark>Video</mark> Template</h4>
+      <div class="bar" style="width:90%"></div><div class="bar" style="width:76%"></div>
+      <div class="flow"><span>Negative hook</span><span>→</span><span>Options</span><span>→</span><span>Promise</span><span>→</span><span>Solution</span></div>
+      <div class="bar" style="width:94%"></div><div class="bar" style="width:84%"></div><div class="bar" style="width:66%"></div>
+    </div>
+
+    <div class="paper track">
+      <h5>Results Tracker <small>this month</small></h5>
+      <div class="bars"><i style="height:30%"></i><i style="height:45%"></i><i style="height:38%"></i><i class="on" style="height:62%"></i><i class="on" style="height:78%"></i><i class="on" style="height:100%"></i></div>
+    </div>
+
+    <div class="laptop">
+      <div class="screen">
+        <div class="display">
+          <div class="n-cover"><div class="t">The <em>Unlimited</em> Content System</div></div>
+          <div class="n-body">
+            <div class="n-title">Content HQ</div>
+            <div class="n-grid">
+              <div class="n-nav">
+                <div style="--c:#E8380D">Reference Bank 10×10</div>
+                <div style="--c:#f5c26b">Script Templates</div>
+                <div style="--c:#9ec5e8">Hooks Library</div>
+                <div style="--c:#b7dbb7">Content Calendar</div>
+                <div style="--c:#d6c6ef">Results Tracker</div>
+              </div>
+              <div class="n-table">
+                <div class="n-row h"><span>Video idea</span><span>Template</span><span>Status</span></div>
+                <div class="n-row"><span>3 mistakes killing your reach</span><span>Viral Video</span><span><i class="pill p-post">Posted</i></span></div>
+                <div class="n-row"><span>Nobody tells you this about pricing</span><span>Contrarian</span><span><i class="pill p-ready">Ready to film</i></span></div>
+                <div class="n-row"><span>I tried posting daily for 30 days</span><span>Story</span><span><i class="pill p-scr">Scripting</i></span></div>
+                <div class="n-row"><span>The 10-minute content routine</span><span>Authority</span><span><i class="pill p-idea">Idea</i></span></div>
+                <div class="n-row"><span>Why your hooks aren't working</span><span>Info Gap</span><span><i class="pill p-idea">Idea</i></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="play" role="button" aria-label="Play video"></div>
+          <div class="vtag">▶ Watch: how the system works</div>
+        </div>
+      </div>
+      <div class="base"></div>
+    </div>
+
+    <div class="paper hooks">
+      <h5>Hooks Library <small>50 hooks</small></h5>
+      <div class="hk"><b>"The 3 mistakes killing your…"</b><span class="tag r">Curiosity</span></div>
+      <div class="hk"><b>"Nobody tells you this about…"</b><span class="tag">Contrarian</span></div>
+      <div class="hk"><b>"I tried ___ for 30 days…"</b><span class="tag r">Story</span></div>
+      <div class="hk"><b>"Stop doing this if you want…"</b><span class="tag">Warning</span></div>
+    </div>
+
+    <div class="phone" aria-hidden="true">
+      <div class="ps">
+        <div style="color:#9b9a97">Script Templates /</div>
+        <h6>Script: Information Gap Template</h6>
+        <div class="sec">1 · Hook</div>
+        <div>Here's how to create viral content — and it has nothing to do with the algorithm…</div>
+        <div class="sec">2 · Curiosity peak</div>
+        <div>It's a script formula the biggest creators use every single day…</div>
+        <div class="sec">3 · Value</div>
+        <div class="bar"></div><div class="bar" style="width:70%"></div>
+        <div class="sec">4 · CTA</div>
+        <div class="bar" style="width:80%"></div>
+      </div>
+    </div>
+
+    <div class="book" aria-hidden="true">
+      <div class="cv">
+        <div class="n">50</div>
+        <div class="w"><em>Scroll-</em><br><em>Stopping</em><br>Hooks</div>
+        <div class="s">Copy, adapt &amp; post. Your next video's first line is already written.</div>
+        <svg class="hook" viewBox="0 0 40 56" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round"><path d="M22 2v32c0 9-6 14-12 14S2 43 2 38"/><path d="M2 38l6-5"/></svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="cta-zone">
+  <div class="proof">
+    <div class="avatars">
+      <img src="img/Clara.jpg" alt="">
+      <img src="img/Seul.jpg" alt="">
+      <img src="img/Erika.jpg" alt="">
+      <img src="img/Rosa.jpg" alt="">
+      <img src="img/Anita.jpg" alt="">
+    </div>
+    <p><b>1,250+ creators</b> already use this system</p>
+  </div>
+
+  <a class="btn js-checkout" href="#checkout">Get instant access<small>Start creating your next 30 days of content today</small></a>
+
+  <p class="fine">Instant access<span class="dot">●</span>Works with free Notion<span class="dot">●</span>One-time payment</p>
+  <p class="price-line">Total value <s>$358</s> · Launch price <b>$27</b>. No subscription.</p>
+</section>
+
+<script>
+  document.querySelectorAll('.js-checkout').forEach(a => a.href = CHECKOUT_URL);
+</script>
+</body>
+</html>
