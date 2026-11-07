@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#000000">
+<title>Branding negro · 3 opciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,600&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: #111; color: #eee; font-family: "Inter", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  .top { max-width: 1100px; margin: 0 auto; padding: 48px 20px 8px; }
+  .top h1 { margin: 0; font-family: "Inter Tight"; font-weight: 800; font-size: clamp(30px, 5vw, 48px); letter-spacing: -.03em; }
+  .top p { margin: 10px 0 0; color: #999; max-width: 60ch; line-height: 1.5; }
+  .op { max-width: 1100px; margin: 28px auto; padding: 0 20px; }
+  .tag { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: #888; margin: 0 0 10px; }
+
+  .card { border-radius: 22px; overflow: hidden; position: relative; isolation: isolate; }
+  .grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+  .demo { padding: clamp(28px, 5vw, 56px); position: relative; }
+  .spec { padding: clamp(24px, 4vw, 40px); border-left: 1px solid var(--line); }
+  .spec h3 { margin: 0 0 4px; font-size: 13px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--mute); font-family: "Inter"; }
+  .spec .block + .block { margin-top: 26px; }
+  .sw { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 10px; }
+  .sw div { aspect-ratio: 1; border-radius: 12px; border: 1px solid var(--line); position: relative; }
+  .sw small { display: block; margin-top: 6px; font-size: 11px; color: var(--mute); font-family: "JetBrains Mono", monospace; }
+  .font-row { margin-top: 12px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+  .font-row:last-child { border-bottom: 0; }
+  .font-row .big { font-size: 34px; line-height: 1; color: var(--ink); }
+  .font-row .meta { font-size: 12px; color: var(--mute); text-align: right; }
+  .idea { font-size: 15px; line-height: 1.55; color: var(--ink-2); margin: 10px 0 0; }
+
+  .hola { margin: 0; color: var(--ink); }
+  .welcome { margin: 10px 0 0; color: var(--ink-2); }
+  .intro { margin: 16px 0 0; color: var(--ink-2); max-width: 38ch; line-height: 1.55; font-size: 16px; }
+  .notif { margin-top: 26px; max-width: 380px; display: grid; grid-template-columns: 38px 1fr; gap: 2px 12px; padding: 14px 16px; }
+  .mark { grid-row: span 3; width: 38px; height: 38px; display: grid; place-items: center; font-weight: 800; }
+  .notif .t1 { font-size: 12px; color: var(--mute); display: flex; justify-content: space-between; }
+  .notif .t2 { font-weight: 600; color: var(--ink); font-size: 15px; }
+  .notif .t3 { font-size: 14px; color: var(--ink-2); line-height: 1.4; }
+  .row { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; min-height: 50px; padding: 0 24px; text-decoration: none; font-weight: 600; font-size: 16px; }
+  .price { color: var(--ink); line-height: .9; }
+  .price sup { font-size: .4em; vertical-align: top; position: relative; top: .2em; }
+  .chips { margin-top: 18px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { padding: 6px 12px; font-size: 13px; color: var(--ink-2); }
+  .pick { margin: 14px 0 0; font-size: 14px; color: #888; }
+
+  /* ========== 1. NOCHE DEL PACÍFICO ========== */
+  .v1 {
+    --ink: #F3F6FB; --ink-2: #A9B4C6; --mute: #6F7B90; --line: rgba(255,255,255,.09);
+    background: #05070C;
+    font-family: "Inter";
+  }
+  .v1::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background:
+      radial-gradient(420px 420px at 6% 0%, rgba(31,91,255,.40), transparent 65%),
+      radial-gradient(380px 380px at 62% 18%, rgba(46,197,211,.26), transparent 65%),
+      radial-gradient(420px 420px at 40% 110%, rgba(255,214,107,.18), transparent 65%);
+  }
+  .v1 .glass { background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04)); border: 1px solid rgba(255,255,255,.14); box-shadow: inset 0 1px 0 rgba(255,255,255,.18); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+  .v1 .spec { background: rgba(0,0,0,.35); }
+  .v1 .hola { font-family: "Inter Tight"; font-weight: 800; font-size: clamp(56px, 9vw, 104px); letter-spacing: -.05em; line-height: .92;
+    background: linear-gradient(180deg, #fff 30%, #7FA3FF 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .v1 .welcome { font-family: "Inter Tight"; font-weight: 700; font-size: clamp(22px, 3vw, 32px); letter-spacing: -.03em; }
+  .v1 .notif { border-radius: 22px; }
+  .v1 .mark { border-radius: 10px; background: linear-gradient(160deg, #1F5BFF, #2EC5D3); color: #fff; }
+  .v1 .btn { border-radius: 999px; background: linear-gradient(180deg, #3D74FF, #1F5BFF); color: #fff; box-shadow: 0 12px 30px -12px rgba(31,91,255,.9), inset 0 1px 0 rgba(255,255,255,.3); }
+  .v1 .price { font-family: "Inter Tight"; font-weight: 800; font-size: 64px; letter-spacing: -.05em; }
+  .v1 .chip { border-radius: 999px; }
+  .v1 .font-row .f-a { font-family: "Inter Tight"; font-weight: 800; letter-spacing: -.04em; }
+  .v1 .font-row .f-b { font-family: "Inter"; font-weight: 400; }
+
+  /* ========== 2. SALA DE CINE ========== */
+  .v2 {
+    --ink: #F1EADF; --ink-2: #B9AE9E; --mute: #7E7466; --line: rgba(241,234,223,.10);
+    --amber: #E3A34B;
+    background: #0C0A08;
+    font-family: "Inter";
+  }
+  .v2::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: radial-gradient(600px 300px at 30% -10%, rgba(227,163,75,.16), transparent 70%);
+  }
+  .v2 .glass { background: #15120E; border: 1px solid rgba(241,234,223,.10); }
+  .v2 .spec { background: #0F0D0A; }
+  .v2 .hola { font-family: "Fraunces"; font-weight: 400; font-size: clamp(56px, 9vw, 108px); letter-spacing: -.035em; line-height: .95; }
+  .v2 .hola em { font-style: italic; color: var(--amber); }
+  .v2 .welcome { font-family: "Fraunces"; font-style: italic; font-weight: 400; font-size: clamp(22px, 3vw, 32px); }
+  .v2 .notif { border-radius: 4px; }
+  .v2 .mark { border-radius: 50%; background: var(--amber); color: #0C0A08; font-family: "Fraunces"; font-weight: 600; font-size: 19px; }
+  .v2 .btn { border-radius: 4px; background: var(--amber); color: #0C0A08; }
+  .v2 .price { font-family: "Fraunces"; font-weight: 400; font-size: 66px; letter-spacing: -.03em; }
+  .v2 .chip { border-radius: 4px; border: 1px solid rgba(241,234,223,.14); }
+  .v2 .rule { width: 56px; height: 1px; background: var(--amber); margin-bottom: 26px; }
+  .v2 .font-row .f-a { font-family: "Fraunces"; font-weight: 400; }
+  .v2 .font-row .f-a em { color: var(--amber); }
+  .v2 .font-row .f-b { font-family: "Inter"; font-weight: 400; }
+
+  /* ========== 3. VISOR DE CÁMARA ========== */
+  .v3 {
+    --ink: #EAF7F8; --ink-2: #9DB3B6; --mute: #5F7477; --line: rgba(46,197,211,.14);
+    --lagoon: #2EC5D3; --rec: #FF453A;
+    background: #030607;
+    font-family: "Space Grotesk";
+  }
+  .v3::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background-image: linear-gradient(rgba(46,197,211,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(46,197,211,.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+  .v3 .glass { background: rgba(8,16,18,.9); border: 1px solid rgba(46,197,211,.22); }
+  .v3 .spec { background: rgba(0,0,0,.5); }
+  .v3 .corner { position: absolute; width: 18px; height: 18px; border: 2px solid var(--lagoon); }
+  .v3 .c1 { top: 18px; left: 18px; border-right: 0; border-bottom: 0; }
+  .v3 .c2 { top: 18px; right: 18px; border-left: 0; border-bottom: 0; }
+  .v3 .c3 { bottom: 18px; left: 18px; border-right: 0; border-top: 0; }
+  .v3 .c4 { bottom: 18px; right: 18px; border-left: 0; border-top: 0; }
+  .v3 .rec { font-family: "JetBrains Mono"; font-size: 12px; color: var(--ink-2); display: flex; gap: 8px; align-items: center; letter-spacing: .08em; margin-bottom: 22px; }
+  .v3 .rec b { width: 8px; height: 8px; border-radius: 50%; background: var(--rec); box-shadow: 0 0 10px var(--rec); }
+  .v3 .hola { font-family: "Space Grotesk"; font-weight: 700; font-size: clamp(54px, 8.6vw, 100px); letter-spacing: -.045em; line-height: .92; }
+  .v3 .hola span { color: var(--lagoon); }
+  .v3 .welcome { font-family: "Space Grotesk"; font-weight: 500; font-size: clamp(21px, 2.8vw, 30px); letter-spacing: -.02em; }
+  .v3 .notif { border-radius: 10px; }
+  .v3 .mark { border-radius: 8px; background: var(--lagoon); color: #031013; font-family: "Space Grotesk"; }
+  .v3 .notif .t1 { font-family: "JetBrains Mono"; font-size: 11px; }
+  .v3 .btn { border-radius: 10px; background: var(--lagoon); color: #031013; font-family: "Space Grotesk"; font-weight: 700; }
+  .v3 .price { font-family: "Space Grotesk"; font-weight: 700; font-size: 64px; letter-spacing: -.05em; }
+  .v3 .chip { border-radius: 6px; border: 1px solid rgba(46,197,211,.3); font-family: "JetBrains Mono"; font-size: 11.5px; letter-spacing: .04em; }
+  .v3 .font-row .f-a { font-family: "Space Grotesk"; font-weight: 700; letter-spacing: -.04em; }
+  .v3 .font-row .f-b { font-family: "JetBrains Mono"; font-weight: 500; font-size: 24px; }
+
+  .foot { max-width: 1100px; margin: 0 auto; padding: 20px 20px 60px; color: #888; font-size: 14px; line-height: 1.6; }
+
+  @media (max-width: 820px) {
+    .grid { grid-template-columns: 1fr; }
+    .spec { border-left: 0; border-top: 1px solid var(--line); }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1>Branding negro: 3 opciones</h1>
+  <p>Cada opción muestra el color, las letras y cómo se vería el saludo, la notificación, el botón y el precio. Las tres parten de la propuesta original: el vidrio, el azul del Pacífico, la laguna y el visor de cámara. Elige una y con esa armamos la página completa.</p>
+</header>
+
+<!-- ============ OPCIÓN 1 ============ -->
+<section class="op">
+  <p class="tag">Opción 1 · Noche del Pacífico</p>
+  <div class="card v1 grid">
+    <div class="demo">
+      <h2 class="hola">Hola, Enrique.</h2>
+      <p class="welcome">Bienvenido a tu propuesta.</p>
+      <p class="intro">Somos Nebraska Media. Hacemos foto y video para negocios aquí en Santa Elena, y armamos esta página solo para ti.</p>
+      <div class="notif glass">
+        <span class="mark">N</span>
+        <div class="t1"><span>Nebraska Media</span><span>ahora</span></div>
+        <div class="t2">Tu propuesta está lista</div>
+        <div class="t3">5 videos pensados para Fismedica, grabados en tu consultorio.</div>
+      </div>
+      <div class="row">
+        <span class="price"><sup>$</sup>99<sup>99</sup></span>
+        <a class="btn" href="#">Quiero mis 5 videos</a>
+      </div>
+      <div class="chips"><span class="chip glass">Cámara de cine</span><span class="chip glass">En tu local</span></div>
+    </div>
+    <div class="spec">
+      <div class="block">
+        <h3>La idea</h3>
+        <p class="idea">Es la propuesta original de noche. El mismo vidrio de iPhone y las mismas manchas de color azul, laguna y sol, ahora sobre negro azulado. Es la más fiel a lo que ya tenemos y la que se siente más premium y tecnológica.</p>
+      </div>
+      <div class="block">
+        <h3>Colores</h3>
+        <div class="sw">
+          <div style="background:#05070C"></div><div style="background:#1F5BFF"></div><div style="background:#2EC5D3"></div><div style="background:#FFD66B"></div><div style="background:#F3F6FB"></div>
+        </div>
+        <div class="sw"><small>#05070C</small><small>#1F5BFF</small><small>#2EC5D3</small><small>#FFD66B</small><small>#F3F6FB</small></div>
+      </div>
+      <div class="block">
+        <h3>Letras</h3>
+        <div class="font-row"><span class="big f-a">Aa Hola</span><span class="meta">Inter Tight<br>Títulos, extra gruesa</span></div>
+        <div class="font-row"><span class="big f-b">Aa Hola</span><span class="meta">Inter<br>Textos</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPCIÓN 2 ============ -->
+<section class="op">
+  <p class="tag">Opción 2 · Sala de cine</p>
+  <div class="card v2 grid">
+    <div class="demo">
+      <div class="rule"></div>
+      <h2 class="hola">Hola, <em>Enrique.</em></h2>
+      <p class="welcome">Bienvenido a tu propuesta.</p>
+      <p class="intro">Somos Nebraska Media. Hacemos foto y video para negocios aquí en Santa Elena, y armamos esta página solo para ti.</p>
+      <div class="notif glass">
+        <span class="mark">N</span>
+        <div class="t1"><span>Nebraska Media</span><span>ahora</span></div>
+        <div class="t2">Tu propuesta está lista</div>
+        <div class="t3">5 videos pensados para Fismedica, grabados en tu consultorio.</div>
+      </div>
+      <div class="row">
+        <span class="price"><sup>$</sup>99<sup>99</sup></span>
+        <a class="btn" href="#">Quiero mis 5 videos</a>
+      </div>
+      <div class="chips"><span class="chip">Cámara de cine</span><span class="chip">En tu local</span></div>
+    </div>
+    <div class="spec">
+      <div class="block">
+        <h3>La idea</h3>
+        <p class="idea">Negro cálido de sala de cine, texto color crema y un dorado ámbar como la luz de los focos. La letra con serifa le da un aire de productora de cine y de revista. Es la más elegante y la que mejor transmite "calidad de cine".</p>
+      </div>
+      <div class="block">
+        <h3>Colores</h3>
+        <div class="sw">
+          <div style="background:#0C0A08"></div><div style="background:#15120E"></div><div style="background:#E3A34B"></div><div style="background:#B9AE9E"></div><div style="background:#F1EADF"></div>
+        </div>
+        <div class="sw"><small>#0C0A08</small><small>#15120E</small><small>#E3A34B</small><small>#B9AE9E</small><small>#F1EADF</small></div>
+      </div>
+      <div class="block">
+        <h3>Letras</h3>
+        <div class="font-row"><span class="big f-a">Aa <em>Hola</em></span><span class="meta">Fraunces<br>Títulos, con cursiva de acento</span></div>
+        <div class="font-row"><span class="big f-b">Aa Hola</span><span class="meta">Inter<br>Textos</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPCIÓN 3 ============ -->
+<section class="op">
+  <p class="tag">Opción 3 · Visor de cámara</p>
+  <div class="card v3 grid">
+    <div class="demo">
+      <i class="corner c1"></i><i class="corner c2"></i><i class="corner c3"></i><i class="corner c4"></i>
+      <div class="rec"><b></b>REC · 00:00:05:12</div>
+      <h2 class="hola">Hola, <span>Enrique.</span></h2>
+      <p class="welcome">Bienvenido a tu propuesta.</p>
+      <p class="intro">Somos Nebraska Media. Hacemos foto y video para negocios aquí en Santa Elena, y armamos esta página solo para ti.</p>
+      <div class="notif glass">
+        <span class="mark">N</span>
+        <div class="t1"><span>NEBRASKA MEDIA</span><span>AHORA</span></div>
+        <div class="t2">Tu propuesta está lista</div>
+        <div class="t3">5 videos pensados para Fismedica, grabados en tu consultorio.</div>
+      </div>
+      <div class="row">
+        <span class="price"><sup>$</sup>99<sup>99</sup></span>
+        <a class="btn" href="#">Quiero mis 5 videos</a>
+      </div>
+      <div class="chips"><span class="chip">CÁMARA DE CINE</span><span class="chip">EN TU LOCAL</span></div>
+    </div>
+    <div class="spec">
+      <div class="block">
+        <h3>La idea</h3>
+        <p class="idea">Toma el visor de cámara de la propuesta original (esquinas, REC y código de tiempo) y lo vuelve la marca entera. Negro con una cuadrícula muy suave y el color laguna como acento. Es la más "de productora" y la que más dice "aquí se graba".</p>
+      </div>
+      <div class="block">
+        <h3>Colores</h3>
+        <div class="sw">
+          <div style="background:#030607"></div><div style="background:#081012"></div><div style="background:#2EC5D3"></div><div style="background:#FF453A"></div><div style="background:#EAF7F8"></div>
+        </div>
+        <div class="sw"><small>#030607</small><small>#081012</small><small>#2EC5D3</small><small>#FF453A</small><small>#EAF7F8</small></div>
+      </div>
+      <div class="block">
+        <h3>Letras</h3>
+        <div class="font-row"><span class="big f-a">Aa Hola</span><span class="meta">Space Grotesk<br>Títulos y textos</span></div>
+        <div class="font-row"><span class="big f-b">00:05:12</span><span class="meta">JetBrains Mono<br>Etiquetas y datos</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<p class="foot">Dime cuál te gusta (o si quieres mezclar, por ejemplo los colores de una con las letras de otra) y con esa desarrollamos la propuesta completa de Enrique.</p>
+
+</body>
+</html>
