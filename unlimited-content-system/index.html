@@ -13,7 +13,9 @@
   const CHECKOUT_URL = '#checkout';
 </script>
 <style>
+  @font-face{font-family:'Sabri Suby Font';src:url('fonts/sabri-suby-font.ttf') format('truetype'),url('fonts/sabri-suby-font.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
   :root{
+    --headline:'Sabri Suby Font', 'Anton', 'Impact', sans-serif;
     --red:#E8380D;
     --red-dark:#C42E08;
     --ink:#111111;
@@ -48,7 +50,7 @@
   .eyebrow{text-align:center;margin:0 auto 14px;font-family:var(--body);font-style:italic;font-weight:800;font-size:clamp(12px,1.35vw,16px);
     letter-spacing:.01em;text-transform:uppercase;opacity:.92}
 
-  h1{font-family:var(--display);font-style:normal;font-weight:400;text-transform:uppercase;text-align:center;line-height:.98;letter-spacing:0;
+  h1{font-family:var(--headline);font-style:normal;font-weight:400;text-transform:uppercase;text-align:center;line-height:.98;letter-spacing:0;
     font-size:clamp(46px,8.2vw,112px)}
   h1 .ln{display:block;white-space:nowrap}
   .q{display:inline-block;font-size:.95em;line-height:0;vertical-align:-.02em;margin:0 .04em;transform:translateY(-.08em)}
