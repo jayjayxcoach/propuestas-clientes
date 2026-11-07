@@ -1,0 +1,287 @@
+/* =========================================================
+   Nebraska Media · Tema NEGRO (estilo deportivo, alto contraste)
+   Se carga DESPUÉS de propuesta.css y lo sobreescribe.
+   Uso: <link rel="stylesheet" href="../assets/tema-negro.css">
+   Negro puro, blanco puro, tipografía grande en mayúsculas,
+   sin vidrio ni degradados.
+   ========================================================= */
+
+:root {
+  color-scheme: dark;
+
+  --ink: #FFFFFF;
+  --ink-2: #B5B5B5;
+  --ink-3: #7A7A7A;
+  --line: #262626;
+  --line-2: #3A3A3A;
+  --panel: #0E0E0E;
+  --panel-2: #161616;
+  --accent: #FFFFFF;
+  --mist: #000;
+
+  --glass: var(--panel);
+  --glass-flat: transparent;
+  --edge: var(--line);
+  --lift: none;
+  --shine: none;
+
+  --r-sheet: 6px;
+  --r-media: 6px;
+  --r-card: 6px;
+}
+
+body { background: #000; color: var(--ink); }
+::selection { background: #fff; color: #000; }
+:focus-visible { outline: 2px solid #fff; outline-offset: 3px; border-radius: 2px; }
+
+.wallpaper { background: #000; }
+.glass { background: var(--panel); border: 1px solid var(--line); box-shadow: none; }
+
+/* ---------- Tipografía: mayúsculas, compacta, pesada ---------- */
+h1, h2, h3, h4 { color: var(--ink); }
+h2 {
+  text-transform: uppercase;
+  font-weight: 800;
+  font-size: clamp(40px, 7.4vw, 92px);
+  line-height: .9;
+  letter-spacing: -.045em;
+  max-width: 14ch;
+}
+.lede { color: var(--ink-2); }
+.sec-head { border-top: 1px solid var(--line); padding-top: 22px; }
+.sec-head::before {
+  content: "";
+  display: block;
+  width: 44px; height: 4px;
+  margin-bottom: 22px;
+  background: #fff;
+}
+.vnum, .case-place, .bonus-tag, .hook small {
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+
+/* ---------- Barra superior ---------- */
+.topbar {
+  top: 0;
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  border-radius: 0;
+  padding: 12px var(--gutter);
+  background: rgba(0,0,0,.92);
+  border: 0;
+  border-bottom: 1px solid var(--line);
+}
+@media (hover: hover) and (pointer: fine) {
+  .topbar { background: rgba(0,0,0,.72); }
+}
+.brand-mark {
+  background: #fff;
+  color: #000;
+  border-radius: 0;
+  box-shadow: none;
+}
+.brand-name { text-transform: uppercase; letter-spacing: .02em; font-weight: 800; }
+.topbar-for { color: var(--ink-3); text-transform: uppercase; letter-spacing: .1em; font-size: 12px; font-weight: 600; }
+.topbar-cta { background: #fff; color: #000; text-transform: uppercase; letter-spacing: .04em; font-size: 13px; font-weight: 700; }
+
+/* ---------- Saludo ---------- */
+.hero { text-align: left; padding-top: clamp(48px, 9vw, 110px); }
+.hero h1 {
+  background: none;
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+  text-transform: uppercase;
+  font-size: clamp(72px, 17vw, 230px);
+  line-height: .82;
+  letter-spacing: -.06em;
+}
+.hero .welcome {
+  margin-top: 22px;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: clamp(22px, 3.4vw, 38px);
+  letter-spacing: -.02em;
+}
+.hero .intro { margin: 18px 0 0; max-width: 40ch; color: var(--ink-2); }
+.notif {
+  margin: clamp(32px, 5vw, 52px) 0 0;
+  border-radius: 6px;
+  background: var(--panel-2);
+  border: 1px solid var(--line-2);
+}
+.notif .brand-mark { border-radius: 0; }
+.notif-title { text-transform: uppercase; font-weight: 700; letter-spacing: .01em; }
+.notif-body { color: var(--ink-2); }
+
+/* Cinta que corre debajo del saludo */
+.cinta {
+  margin-top: clamp(40px, 6vw, 72px);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  white-space: nowrap;
+  background: #fff;
+  color: #000;
+}
+.cinta span {
+  display: inline-block;
+  padding: 14px 0;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(18px, 2.4vw, 26px);
+  text-transform: uppercase;
+  letter-spacing: -.01em;
+  animation: cinta 28s linear infinite;
+}
+@keyframes cinta { to { transform: translateX(-50%); } }
+
+/* ---------- Portafolio ---------- */
+.cases { gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.case { border: 0; border-radius: 0; background: #000; }
+.case-info h3 { text-transform: uppercase; font-size: clamp(30px, 4vw, 48px); letter-spacing: -.04em; line-height: .92; }
+.case-what { color: var(--ink-2); }
+.morph figcaption, .best-item figcaption { color: var(--ink-3); text-transform: uppercase; letter-spacing: .12em; font-size: 11.5px; }
+.bridge::before { background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.35), rgba(255,255,255,0)); }
+.bridge::after { background: #fff; box-shadow: 0 0 10px 2px rgba(255,255,255,.6); }
+.lens { background: #fff; color: #000; border: 0; box-shadow: none; }
+
+/* Marcos de video: planos, sin brillo */
+.vf { border-radius: 4px; background: #111; box-shadow: none; border: 1px solid var(--line); }
+.phone { border-radius: 6px; padding: 0; background: #111; box-shadow: none; border: 1px solid var(--line-2); }
+.screen { border-radius: 5px; background: #111; }
+.screen::after { display: none; }
+.island { display: none; }
+.playbtn { background: #fff; color: #000; border: 0; box-shadow: 0 10px 30px -10px rgba(0,0,0,.9); }
+.sound { background: rgba(0,0,0,.7); }
+
+/* ---------- Lo mejor que hemos grabado ---------- */
+.best { gap: clamp(8px, 1.4vw, 14px); }
+
+/* ---------- Quiénes somos ---------- */
+.team { border-radius: 6px; }
+.team-text p { color: var(--ink-2); }
+.people li { border-top-color: var(--line); }
+.people li span:first-child { text-transform: uppercase; letter-spacing: .02em; font-weight: 700; }
+.chip {
+  background: transparent;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+/* ---------- Videos propuestos ---------- */
+.videos { gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.vcard { border: 0; border-radius: 0; background: #000; position: relative; }
+.vcard h3 { text-transform: uppercase; font-size: clamp(32px, 4.4vw, 56px); line-height: .9; letter-spacing: -.045em; max-width: 16ch; }
+.videos { counter-reset: vid; }
+.vcard { counter-increment: vid; }
+.vcard .vnum { font-size: 0; line-height: 0; margin-bottom: 18px; }
+.vcard .vnum::before {
+  content: counter(vid, decimal-leading-zero);
+  display: block;
+  font-family: var(--display);
+  font-size: clamp(56px, 7vw, 96px);
+  font-weight: 800;
+  letter-spacing: -.06em;
+  line-height: .8;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #fff;
+}
+.hook {
+  background: #fff;
+  color: #000;
+  border: 0;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.hook small { color: #555; }
+.why { border-top: 1px solid var(--line); padding-top: 20px; }
+.why h4 { text-transform: uppercase; letter-spacing: .1em; font-size: 12.5px; font-weight: 700; }
+.why p { color: var(--ink-2); }
+.stats { background: transparent; border: 1px solid var(--line); border-radius: 4px; }
+.stats li + li { border-left-color: var(--line); }
+.stats svg { color: #fff; }
+.stats span { color: var(--ink-3); }
+.credit, .note { color: var(--ink-3); }
+.credit a { color: var(--ink); }
+
+/* ---------- Día de grabación ---------- */
+.shoot-top { border-radius: 6px; background: #fff; border: 0; }
+.shoot-top h2, .shoot-top .lede { color: #000; }
+.shoot-top .chip { color: #000; border-color: #000; }
+.thread::before { background: var(--line-2); }
+.thread-fill { background: #fff; }
+.thread-fill::after { background: #000; border-color: #fff; }
+.node { background: #000; border: 1px solid var(--line-2); color: var(--ink-3); box-shadow: none; border-radius: 0; }
+.node.on { background: #fff; color: #000; border-color: #fff; box-shadow: none; }
+.tcard { border-radius: 6px; }
+.tbody h3 { text-transform: uppercase; letter-spacing: -.035em; line-height: .98; }
+.tbody > p:last-child { color: var(--ink-2); }
+.ticon { background: #fff; color: #000; border: 0; border-radius: 4px; }
+.frame.clip { border-radius: 4px; }
+
+/* ---------- Inversión ---------- */
+.price { background: #fff; color: #000; border: 0; border-radius: 6px; }
+.price .amount, .price .amount-for, .price h3 { color: #000; }
+.amount { font-size: clamp(110px, 19vw, 230px); letter-spacing: -.07em; }
+.amount-for { text-transform: uppercase; letter-spacing: -.02em; font-weight: 800; }
+.price .amount-note { color: #333; }
+.price .anchor, .price .valid { color: #666; }
+.price .includes li { color: #111; }
+.includes li::before { border-radius: 0; }
+.price .pay { color: #333; border-top-color: #E2E2E2; }
+.bonus { border-radius: 4px; }
+.bonus h3 { text-transform: uppercase; letter-spacing: -.02em; color: #fff !important; }
+.bonus > svg { border-radius: 2px; }
+.price .btn { background: #000; color: #fff; }
+
+/* Botones: píldora blanca, texto negro en mayúsculas */
+.btn {
+  background: #fff;
+  color: #000;
+  box-shadow: none;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  font-weight: 700;
+  font-size: 15px;
+  transition: transform .15s ease, opacity .15s ease;
+}
+@media (hover: hover) { .btn:hover { opacity: .86; } }
+
+/* ---------- Cómo empezamos ---------- */
+.steps { border-radius: 6px; }
+.steps li::before { background: #fff; color: #000; border-radius: 0; }
+.steps li::after { background: var(--line-2); }
+.steps h3 { text-transform: uppercase; letter-spacing: -.02em; }
+.steps p { color: var(--ink-2); }
+
+/* ---------- Cierre ---------- */
+.closing { text-align: left; }
+.closing h2 { margin: 0; max-width: 12ch; font-size: clamp(56px, 12vw, 170px); }
+.closing .lede { margin-left: 0; }
+.closing .actions { justify-content: flex-start; }
+.foot { text-align: left; border-top: 1px solid var(--line); margin-top: 40px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .08em; font-size: 12px; }
+.foot strong { color: #fff; font-size: 15px; letter-spacing: .02em; }
+
+/* ---------- Panel de revisión ---------- */
+.check { background: #111; border: 1px solid var(--line-2); color: #fff; }
+.check h4 button { background: #222; color: #fff; }
+.check code { background: #222; }
+
+@media (max-width: 720px) {
+  .phone, .screen { border-radius: 4px; }
+  .hero h1 { font-size: clamp(64px, 21vw, 120px); }
+  .tcard { border-radius: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cinta span { animation: none; }
+}

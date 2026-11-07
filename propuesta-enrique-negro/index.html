@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#000000">
+  <title>Hola Enrique, tu propuesta de Nebraska Media</title>
+
+  <!-- Vista previa al pegar el enlace en WhatsApp -->
+  <meta property="og:title" content="Hola Enrique, tu propuesta está lista">
+  <meta property="og:description" content="5 videos pensados para Fismedica, de Nebraska Media.">
+  <meta property="og:image" content="https://jaypersonalbrand.com/propuesta-enrique-negro/og.jpg">
+  <meta property="og:url" content="https://jaypersonalbrand.com/propuesta-enrique-negro/">
+  <meta property="og:type" content="website">
+
+  <link rel="stylesheet" href="../assets/propuesta.css?v=9">
+  <link rel="stylesheet" href="../assets/tema-negro.css?v=1">
+</head>
+<body>
+  <div id="app"></div>
+  <noscript>Para ver esta propuesta, activa JavaScript en tu navegador.</noscript>
+  <script src="../assets/agencia.js?v=9"></script>
+  <script src="datos.js?v=1"></script>
+  <script src="../assets/propuesta.js?v=9"></script>
+  <script>
+    // Cinta que corre debajo del saludo (solo en el tema negro)
+    document.addEventListener("DOMContentLoaded", function () {
+      var hero = document.getElementById("inicio");
+      if (!hero) return;
+      var t = "Fismedica · 5 videos · Grabados en tu consultorio · Nebraska Media · ";
+      var c = document.createElement("div");
+      c.className = "cinta"; c.setAttribute("aria-hidden", "true");
+      c.innerHTML = "<span>" + new Array(9).join(t) + "</span>";
+      hero.insertAdjacentElement("afterend", c);
+    });
+  </script>
+</body>
+</html>
