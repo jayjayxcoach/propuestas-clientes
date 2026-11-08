@@ -99,7 +99,7 @@
   function hero() {
     return '<section class="hero wrap" id="inicio">' +
       '<h1>Hola, ' + esc(P.nombre) + '.</h1>' +
-      '<p class="welcome">Bienvenido a tu propuesta.</p>' +
+      '<p class="welcome">' + esc(P.bienvenida || "Bienvenido a tu propuesta.") + '</p>' +
       '<p class="intro">Somos ' + esc(A.nombre) + '. ' + esc(A.descripcion) + ', y armamos esta página solo para ti.</p>' +
       '<div class="notif glass" role="note">' +
       '<span class="brand-mark" aria-hidden="true">' + esc(A.inicial || "N") + '</span>' +

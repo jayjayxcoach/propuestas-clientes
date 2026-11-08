@@ -12,6 +12,7 @@ window.PROPUESTA = {
   negocio: "[Nombre del negocio]",
   lugar: "[Ciudad]",
   rubro: "[rubro]",
+  // bienvenida: "Bienvenida a tu propuesta.",  // opcional: para clientas (por defecto dice "Bienvenido")
 
   fecha: "[día] de [mes] de 2026",
   valida_hasta: "[día] de [mes] de 2026",

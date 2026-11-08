@@ -10,6 +10,7 @@ assets/
   agencia.js        Datos de la agencia: WhatsApp, portafolio, reseñas, equipo, proceso
   propuesta.css     Diseño base
   tema-pacifico-noche.css  Tema oficial (Noche del Pacífico). La plantilla ya lo carga
+  tema-miel-de-maple.css   Variación de color con la marca de Miel de Maple (chocolate y miel)
   propuesta.js      Arma la página (no hace falta tocarlo)
   fonts/            Tipografías
   portafolio/       Videos de detrás de cámara y videos finales
@@ -19,12 +20,14 @@ assets/
 _plantilla/         Carpeta base para crear una propuesta nueva
 _herramientas/      Script que descarga los reels de referencia (no se publica)
 propuesta-enrique/  Propuesta de Enrique (Fismedica)
+propuesta-irene/    Propuesta de Irene Jordan (Miel de Maple), con su tema de color
 ```
 
 ## Crear una propuesta nueva
 
 1. Copia `_plantilla` y llámala `propuesta-` + el nombre del cliente, en minúsculas y sin espacios (ej. `propuesta-enrique`).
-2. Llena `datos.js`: nombre, negocio, precio y los videos con sus enlaces de referencia.
+2. Llena `datos.js`: nombre, negocio, precio y los videos con sus enlaces de referencia. Para una clienta, activa `bienvenida: "Bienvenida a tu propuesta."`.
+   Para una variación de color, cambia en `index.html` el tema por otro de `assets/` (ej. `tema-miel-de-maple.css`).
 3. En `index.html`, cambia las 4 líneas de vista previa (las que salen al pegar el enlace en WhatsApp).
 4. Abre `index.html` en tu computadora. Abajo a la derecha aparece un panel con lo que falta. Ese panel solo sale en tu computadora; el cliente no lo ve.
 5. Haz commit y push. La página queda en `https://jaypersonalbrand.com/<carpeta>/`.
