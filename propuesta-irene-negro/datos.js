@@ -60,7 +60,7 @@ window.PROPUESTA = {
       porque: "Habla directo a un público que hoy casi no llega y lo hace riéndose de sí mismo, con memes y referencias que ellos reconocen. Este formato pasó los 84 mil me gusta y 2 mil comentarios. Además sirve como anuncio pagado.",
       como: "El equipo con su uniforme habla a cámara, por turnos, y metemos memes y cortes rápidos entre frase y frase. Se puede cerrar con una idea como la línea de emergencia para novios que quieren quedar bien con un crepe.",
       referencia: {
-        video: "../propuesta-irene/referencias/ref-3.mp4", poster: "../propuesta-irene/referencias/ref-3.jpg",
+        video: "../propuesta-irene/referencias/ref-3.mp4?v=3", poster: "../propuesta-irene/referencias/ref-3.jpg",
         url: "https://www.instagram.com/reel/DdZ9wqWg4cz/", cuenta: "@wishtropic",
         vistas: "", me_gusta: "84,8 mil", comentarios: "2,1 mil", compartidos: ""
       }
@@ -74,7 +74,7 @@ window.PROPUESTA = {
       porque: "Convierte el local en un plan para salir con amigas, no solo en un lugar para comer. Cada comentario es una persona interesada en el siguiente taller, y el emprendimiento invitado también lo comparte con su público.",
       como: "Ustedes organizan una tarde con un emprendimiento aliado, por ejemplo de pulseras o accesorios, y nosotros grabamos manos trabajando, crepes en la mesa y caras de la gente. Lo editamos rápido, con música y una palabra en pantalla por toma.",
       referencia: {
-        video: "../propuesta-irene/referencias/ref-4.mp4", poster: "../propuesta-irene/referencias/ref-4.jpg",
+        video: "../propuesta-irene/referencias/ref-4.mp4?v=3", poster: "../propuesta-irene/referencias/ref-4.jpg",
         url: "https://www.instagram.com/reel/DalTYmhJsgw/", cuenta: "@mustaches05",
         vistas: "", me_gusta: "224", comentarios: "27", compartidos: ""
       }
