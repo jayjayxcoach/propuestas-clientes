@@ -196,6 +196,8 @@
 </style>
 <!-- PRUEBA DE LETRAS: quitar este bloque y el selector de abajo cuando Jay elija -->
 <style>
+  @font-face{font-family:'SABRI SUBY FONT';src:url('fonts/sabri-suby-font.woff2') format('woff2'),url('fonts/sabri-suby-font.woff') format('woff'),url('fonts/sabri-suby-font.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
+  html[data-letra="4"]{--headline:'SABRI SUBY FONT','Anton',sans-serif;--h-wt:400;--h-st:100%;--h-ls:.01em;--h-size:clamp(56px,12vw,164px);--h-size-m:clamp(48px,16vw,64px)}
   html[data-letra="1"]{--headline:'Mohave','Anton',sans-serif;--h-wt:700;--h-st:100%;--h-ls:.005em;--h-size:clamp(50px,10.4vw,142px);--h-size-m:clamp(44px,14vw,58px)}
   html[data-letra="2"]{--headline:'Archivo','Anton',sans-serif;--h-wt:900;--h-st:62.5%;--h-ls:0;--h-size:clamp(50px,9.4vw,128px);--h-size-m:clamp(40px,12.6vw,52px)}
   html[data-letra="3"]{--headline:'Barlow Condensed','Anton',sans-serif;--h-wt:800;--h-st:100%;--h-ls:0;--h-size:clamp(50px,9.4vw,128px);--h-size-m:clamp(40px,12.6vw,52px)}
@@ -337,7 +339,7 @@
   document.querySelectorAll('.js-checkout').forEach(a => a.href = CHECKOUT_URL);
 </script>
 <div class="pick" role="group" aria-label="Font test">
-  <button data-l="1">Letra 1</button><button data-l="2">Letra 2</button><button data-l="3">Letra 3</button>
+  <button data-l="1">Letra 1</button><button data-l="2">Letra 2</button><button data-l="3">Letra 3</button><button data-l="4">Sabri nueva</button>
 </div>
 <script>
   (function(){
@@ -347,7 +349,7 @@
       document.querySelectorAll('.pick button').forEach(b => b.classList.toggle('on', b.dataset.l === l));
       history.replaceState(null, '', '?letra=' + l);
     };
-    set(['1','2','3'].includes(p) ? p : '1');
+    set(['1','2','3','4'].includes(p) ? p : '1');
     document.querySelectorAll('.pick button').forEach(b => b.onclick = () => set(b.dataset.l));
   })();
 </script>
