@@ -21,6 +21,7 @@ _plantilla/         Carpeta base para crear una propuesta nueva
 _herramientas/      Script que descarga los reels de referencia (no se publica)
 propuesta-enrique/  Propuesta de Enrique (Fismedica)
 propuesta-irene/    Propuesta de Irene Jordan (Miel de Maple), con su tema de color
+propuesta-irene-negro/  La misma, en la versión oscura oficial (usa los videos de propuesta-irene)
 ```
 
 ## Crear una propuesta nueva

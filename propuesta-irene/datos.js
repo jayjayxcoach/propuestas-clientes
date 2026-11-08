@@ -15,7 +15,7 @@ window.PROPUESTA = {
   valida_hasta: "14 de noviembre de 2026",
 
   cantidad: 5,
-  precio: 100,
+  precio: 99.99,
 
   intro: "Revisamos los videos de cafeterías, postres y eventos que más se están moviendo ahora mismo en Instagram y elegimos cinco formatos que podemos grabar en tu crepería. Ninguno necesita que tú salgas a cámara: los protagonistas son tus crepes, tu equipo y la gente que llega al local.",
 
