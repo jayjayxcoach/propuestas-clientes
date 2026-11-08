@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-letra="1">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,15 +7,14 @@
 <meta name="description" content="HOT new Notion template to create unlimited quality content for your social media.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Mohave:wght@700&family=Archivo:wdth,wght@62.5,900&family=Barlow+Condensed:wght@800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
 <script>
   // ÚNICO lugar para cambiar el link de pago (Hotmart). Todos los botones lo usan.
   const CHECKOUT_URL = '#checkout';
 </script>
 <style>
-  @font-face{font-family:'Sabri Suby Font';src:url('fonts/sabri-suby-font.ttf') format('truetype'),url('fonts/sabri-suby-font.otf') format('opentype');font-weight:400;font-style:normal;font-display:swap}
   :root{
-    --headline:'Sabri Suby Font', 'Anton', 'Impact', sans-serif;
+    --headline:'Mohave', 'Anton', 'Impact', sans-serif; --h-wt:700; --h-st:100%; --h-size:clamp(50px,9.6vw,130px); --h-ls:0;
     --red:#E8380D;
     --red-dark:#C42E08;
     --ink:#111111;
@@ -50,8 +49,8 @@
   .eyebrow{text-align:center;margin:0 auto 14px;font-family:var(--body);font-style:italic;font-weight:800;font-size:clamp(12px,1.35vw,16px);
     letter-spacing:.01em;text-transform:uppercase;opacity:.92}
 
-  h1{font-family:var(--headline);font-style:normal;font-weight:400;text-transform:uppercase;text-align:center;line-height:.98;letter-spacing:0;
-    font-size:clamp(50px,9.6vw,130px)}
+  h1{font-family:var(--headline);font-style:normal;font-weight:var(--h-wt);font-stretch:var(--h-st);text-transform:uppercase;text-align:center;line-height:.98;letter-spacing:var(--h-ls);
+    font-size:var(--h-size)}
   h1 .ln{display:block;white-space:nowrap}
   .q{display:inline-block;font-size:.95em;line-height:0;vertical-align:-.02em;margin:0 .04em;transform:translateY(-.08em)}
 
@@ -178,7 +177,7 @@
   }
   @media (max-width:640px){
     .hero{padding-top:24px}
-    h1{font-size:clamp(40px,13vw,54px)}
+    h1{font-size:var(--h-size-m)}
     h1 .ln{white-space:normal}
     .stage{height:300px;margin-top:22px}
     .laptop{width:94%;bottom:64px}
@@ -194,6 +193,16 @@
     .btn small{font-size:13px}
     .fine{font-size:12px;letter-spacing:.03em}
   }
+</style>
+<!-- PRUEBA DE LETRAS: quitar este bloque y el selector de abajo cuando Jay elija -->
+<style>
+  html[data-letra="1"]{--headline:'Mohave','Anton',sans-serif;--h-wt:700;--h-st:100%;--h-ls:.005em;--h-size:clamp(50px,10.4vw,142px);--h-size-m:clamp(44px,14vw,58px)}
+  html[data-letra="2"]{--headline:'Archivo','Anton',sans-serif;--h-wt:900;--h-st:62.5%;--h-ls:0;--h-size:clamp(50px,9.4vw,128px);--h-size-m:clamp(40px,12.6vw,52px)}
+  html[data-letra="3"]{--headline:'Barlow Condensed','Anton',sans-serif;--h-wt:800;--h-st:100%;--h-ls:0;--h-size:clamp(50px,9.4vw,128px);--h-size-m:clamp(40px,12.6vw,52px)}
+  .pick{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:99;display:flex;gap:6px;background:#111;padding:6px;border-radius:40px;box-shadow:0 8px 30px rgba(0,0,0,.35);font-family:var(--body)}
+  .pick button{border:0;border-radius:30px;padding:9px 16px;font:700 13px/1 var(--body);background:transparent;color:#fff;cursor:pointer;white-space:nowrap}
+  .pick button.on{background:var(--red)}
+  @media (max-width:640px){.pick button{padding:8px 11px;font-size:12px}}
 </style>
 </head>
 <body>
@@ -326,6 +335,21 @@
 
 <script>
   document.querySelectorAll('.js-checkout').forEach(a => a.href = CHECKOUT_URL);
+</script>
+<div class="pick" role="group" aria-label="Font test">
+  <button data-l="1">Letra 1</button><button data-l="2">Letra 2</button><button data-l="3">Letra 3</button>
+</div>
+<script>
+  (function(){
+    const p = new URLSearchParams(location.search).get('letra');
+    const set = l => {
+      document.documentElement.dataset.letra = l;
+      document.querySelectorAll('.pick button').forEach(b => b.classList.toggle('on', b.dataset.l === l));
+      history.replaceState(null, '', '?letra=' + l);
+    };
+    set(['1','2','3'].includes(p) ? p : '1');
+    document.querySelectorAll('.pick button').forEach(b => b.onclick = () => set(b.dataset.l));
+  })();
 </script>
 </body>
 </html>
