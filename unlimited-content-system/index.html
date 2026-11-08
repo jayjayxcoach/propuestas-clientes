@@ -7,7 +7,7 @@
 <meta name="description" content="HOT new Notion template to create unlimited quality content for your social media.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Mohave:wght@700&family=Archivo:wdth,wght@62.5,900&family=Barlow+Condensed:wght@800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Mohave:wght@700&family=Archivo:wdth,wght@62.5,900&family=Barlow+Condensed:wght@800&family=Bebas+Neue&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
 <script>
   // ÚNICO lugar para cambiar el link de pago (Hotmart). Todos los botones lo usan.
   const CHECKOUT_URL = '#checkout';
@@ -199,13 +199,15 @@
   @font-face{font-family:'SABRI SUBY FONT';src:url('fonts/sabri-suby-font.woff2') format('woff2'),url('fonts/sabri-suby-font.woff') format('woff'),url('fonts/sabri-suby-font.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
   html[data-letra="4"]{--headline:'SABRI SUBY FONT','Anton',sans-serif;--h-wt:400;--h-st:100%;--h-ls:.01em;--h-size:clamp(56px,12vw,164px);--h-size-m:clamp(48px,16vw,64px)}
   html[data-letra="4"] h1{line-height:.9}
+  html[data-letra="5"]{--headline:'Bebas Neue','Anton',sans-serif;--h-wt:400;--h-st:100%;--h-ls:.01em;--h-size:clamp(52px,11vw,150px);--h-size-m:clamp(46px,15vw,60px)}
+  html[data-letra="5"] h1{line-height:.92}
   html[data-letra="1"]{--headline:'Mohave','Anton',sans-serif;--h-wt:700;--h-st:100%;--h-ls:.005em;--h-size:clamp(50px,10.4vw,142px);--h-size-m:clamp(44px,14vw,58px)}
   html[data-letra="2"]{--headline:'Archivo','Anton',sans-serif;--h-wt:900;--h-st:62.5%;--h-ls:0;--h-size:clamp(50px,9.4vw,128px);--h-size-m:clamp(40px,12.6vw,52px)}
   html[data-letra="3"]{--headline:'Barlow Condensed','Anton',sans-serif;--h-wt:800;--h-st:100%;--h-ls:0;--h-size:clamp(50px,9.4vw,128px);--h-size-m:clamp(40px,12.6vw,52px)}
   .pick{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:99;display:flex;gap:6px;background:#111;padding:6px;border-radius:40px;box-shadow:0 8px 30px rgba(0,0,0,.35);font-family:var(--body)}
   .pick button{border:0;border-radius:30px;padding:9px 16px;font:700 13px/1 var(--body);background:transparent;color:#fff;cursor:pointer;white-space:nowrap}
   .pick button.on{background:var(--red)}
-  @media (max-width:640px){.pick button{padding:8px 11px;font-size:12px}}
+  @media (max-width:640px){.pick{max-width:calc(100vw - 16px)}.pick button{padding:8px 8px;font-size:11px}}
 </style>
 </head>
 <body>
@@ -340,7 +342,7 @@
   document.querySelectorAll('.js-checkout').forEach(a => a.href = CHECKOUT_URL);
 </script>
 <div class="pick" role="group" aria-label="Font test">
-  <button data-l="1">Letra 1</button><button data-l="2">Letra 2</button><button data-l="3">Letra 3</button><button data-l="4">Sabri nueva</button>
+  <button data-l="1">Letra 1</button><button data-l="2">Letra 2</button><button data-l="3">Letra 3</button><button data-l="4">Sabri nueva</button><button data-l="5">Bebas</button>
 </div>
 <script>
   (function(){
@@ -350,7 +352,7 @@
       document.querySelectorAll('.pick button').forEach(b => b.classList.toggle('on', b.dataset.l === l));
       history.replaceState(null, '', '?letra=' + l);
     };
-    set(['1','2','3','4'].includes(p) ? p : '1');
+    set(['1','2','3','4','5'].includes(p) ? p : '1');
     document.querySelectorAll('.pick button').forEach(b => b.onclick = () => set(b.dataset.l));
   })();
 </script>
