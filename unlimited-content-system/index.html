@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-letra="1">
+<html lang="en" data-letra="6">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +7,7 @@
 <meta name="description" content="HOT new Notion template to create unlimited quality content for your social media.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Mohave:wght@700&family=Archivo:wdth,wght@62.5,900&family=Barlow+Condensed:wght@800&family=Bebas+Neue&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Mohave:wght@700&family=Archivo:wdth,wght@62.5,900&family=Barlow+Condensed:wght@800&family=Bebas+Neue&family=Oswald:wght@700&family=Antonio:wght@700&family=League+Gothic&family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
 <script>
   // ÚNICO lugar para cambiar el link de pago (Hotmart). Todos los botones lo usan.
   const CHECKOUT_URL = '#checkout';
@@ -49,8 +49,8 @@
   .eyebrow{text-align:center;margin:0 auto 14px;font-family:var(--body);font-style:italic;font-weight:800;font-size:clamp(12px,1.35vw,16px);
     letter-spacing:.01em;text-transform:uppercase;opacity:.92}
 
-  h1{font-family:var(--headline);font-style:normal;font-weight:var(--h-wt);font-stretch:var(--h-st);text-transform:uppercase;text-align:center;line-height:.98;letter-spacing:var(--h-ls);
-    font-size:var(--h-size)}
+  h1{font-family:var(--headline);font-weight:var(--h-wt);font-stretch:var(--h-st);text-transform:uppercase;text-align:center;line-height:var(--h-lh,.98);letter-spacing:var(--h-ls);font-style:var(--h-style,normal);
+    font-size:calc(var(--h-size) * var(--h-scale,1))}
   h1 .ln{display:block;white-space:nowrap}
   .q{display:inline-block;font-size:.95em;line-height:0;vertical-align:-.02em;margin:0 .04em;transform:translateY(-.08em)}
 
@@ -177,7 +177,7 @@
   }
   @media (max-width:640px){
     .hero{padding-top:24px}
-    h1{font-size:var(--h-size-m)}
+    h1{font-size:calc(var(--h-size-m) * var(--h-scale,1))}
     h1 .ln{white-space:normal}
     .stage{height:300px;margin-top:22px}
     .laptop{width:94%;bottom:64px}
@@ -194,20 +194,34 @@
     .fine{font-size:12px;letter-spacing:.03em}
   }
 </style>
-<!-- PRUEBA DE LETRAS: quitar este bloque y el selector de abajo cuando Jay elija -->
+<!-- PRUEBA DE LETRAS: quitar este bloque y el panel de abajo cuando Jay elija -->
 <style>
   @font-face{font-family:'SABRI SUBY FONT';src:url('fonts/sabri-suby-font.woff2') format('woff2'),url('fonts/sabri-suby-font.woff') format('woff'),url('fonts/sabri-suby-font.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
-  html[data-letra="4"]{--headline:'SABRI SUBY FONT','Anton',sans-serif;--h-wt:400;--h-st:100%;--h-ls:.01em;--h-size:clamp(56px,12vw,164px);--h-size-m:clamp(48px,16vw,64px)}
-  html[data-letra="4"] h1{line-height:.9}
-  html[data-letra="5"]{--headline:'Bebas Neue','Anton',sans-serif;--h-wt:400;--h-st:100%;--h-ls:.01em;--h-size:clamp(52px,11vw,150px);--h-size-m:clamp(46px,15vw,60px)}
-  html[data-letra="5"] h1{line-height:.92}
-  html[data-letra="1"]{--headline:'Mohave','Anton',sans-serif;--h-wt:700;--h-st:100%;--h-ls:.005em;--h-size:clamp(50px,10.4vw,142px);--h-size-m:clamp(44px,14vw,58px)}
-  html[data-letra="2"]{--headline:'Archivo','Anton',sans-serif;--h-wt:900;--h-st:62.5%;--h-ls:0;--h-size:clamp(50px,9.4vw,128px);--h-size-m:clamp(40px,12.6vw,52px)}
-  html[data-letra="3"]{--headline:'Barlow Condensed','Anton',sans-serif;--h-wt:800;--h-st:100%;--h-ls:0;--h-size:clamp(50px,9.4vw,128px);--h-size-m:clamp(40px,12.6vw,52px)}
-  .pick{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:99;display:flex;gap:6px;background:#111;padding:6px;border-radius:40px;box-shadow:0 8px 30px rgba(0,0,0,.35);font-family:var(--body)}
-  .pick button{border:0;border-radius:30px;padding:9px 16px;font:700 13px/1 var(--body);background:transparent;color:#fff;cursor:pointer;white-space:nowrap}
-  .pick button.on{background:var(--red)}
-  @media (max-width:640px){.pick{max-width:calc(100vw - 16px)}.pick button{padding:8px 8px;font-size:11px}}
+  html[data-letra="1"]{--headline:'Mohave','Anton',sans-serif;--h-wt:700;--h-st:100%;--h-ls:.005em;--h-lh:.98;--h-size:clamp(50px,10.4vw,142px);--h-size-m:clamp(44px,14vw,58px)}
+  html[data-letra="2"]{--headline:'Archivo','Anton',sans-serif;--h-wt:900;--h-st:62.5%;--h-ls:0em;--h-lh:.98;--h-size:clamp(50px,9.4vw,128px);--h-size-m:clamp(40px,12.6vw,52px)}
+  html[data-letra="3"]{--headline:'Barlow Condensed','Anton',sans-serif;--h-wt:800;--h-st:100%;--h-ls:0em;--h-lh:.98;--h-size:clamp(50px,9.4vw,128px);--h-size-m:clamp(40px,12.6vw,52px)}
+  html[data-letra="4"]{--headline:'SABRI SUBY FONT','Anton',sans-serif;--h-wt:400;--h-st:100%;--h-ls:.01em;--h-lh:.9;--h-size:clamp(56px,12vw,164px);--h-size-m:clamp(48px,16vw,64px)}
+  html[data-letra="5"]{--headline:'Bebas Neue','Anton',sans-serif;--h-wt:400;--h-st:100%;--h-ls:.01em;--h-lh:.92;--h-size:clamp(52px,11vw,150px);--h-size-m:clamp(46px,15vw,60px)}
+  html[data-letra="6"]{--headline:'Anton',sans-serif;--h-wt:400;--h-st:100%;--h-ls:0em;--h-lh:.98;--h-size:clamp(50px,9vw,124px);--h-size-m:clamp(40px,12.4vw,52px)}
+  html[data-letra="7"]{--headline:'Anton',sans-serif;--h-style:italic;--h-wt:400;--h-st:100%;--h-ls:0em;--h-lh:.98;--h-size:clamp(50px,9vw,124px);--h-size-m:clamp(40px,12.4vw,52px)}
+  html[data-letra="8"]{--headline:'Oswald','Anton',sans-serif;--h-wt:700;--h-st:100%;--h-ls:0em;--h-lh:.98;--h-size:clamp(50px,8.6vw,118px);--h-size-m:clamp(38px,12vw,50px)}
+  html[data-letra="9"]{--headline:'Antonio','Anton',sans-serif;--h-wt:700;--h-st:100%;--h-ls:0em;--h-lh:.98;--h-size:clamp(50px,10vw,136px);--h-size-m:clamp(42px,13.6vw,56px)}
+  html[data-letra="10"]{--headline:'League Gothic','Anton',sans-serif;--h-wt:400;--h-st:100%;--h-ls:.005em;--h-lh:.9;--h-size:clamp(56px,11.6vw,158px);--h-size-m:clamp(48px,15.6vw,62px)}
+
+  .tuner{position:fixed;right:16px;bottom:16px;z-index:99;width:300px;background:#111;color:#fff;border-radius:14px;box-shadow:0 10px 36px rgba(0,0,0,.4);font:500 13px/1.3 var(--body)}
+  .tuner .hd{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;cursor:pointer;font-weight:800;letter-spacing:.02em}
+  .tuner .hd span{opacity:.7;font-weight:600}
+  .tuner .bd{padding:0 14px 14px}
+  .tuner.min .bd{display:none}
+  .tuner label{display:block;margin-top:12px;font-weight:700}
+  .tuner label b{float:right;color:#ffb39e;font-weight:800}
+  .tuner select{width:100%;margin-top:6px;padding:8px;border-radius:8px;border:0;font:700 14px var(--body)}
+  .tuner input[type=range]{width:100%;margin-top:6px;accent-color:var(--red)}
+  .tuner .row{display:flex;gap:8px;margin-top:14px}
+  .tuner button{flex:1;border:0;border-radius:8px;padding:9px;font:700 13px var(--body);cursor:pointer;background:#2a2a2a;color:#fff}
+  .tuner button.main{background:var(--red)}
+  .tuner .val{margin-top:10px;font-size:11px;opacity:.75;word-break:break-all}
+  @media (max-width:640px){.tuner{left:8px;right:8px;bottom:8px;width:auto}}
 </style>
 </head>
 <body>
@@ -341,19 +355,66 @@
 <script>
   document.querySelectorAll('.js-checkout').forEach(a => a.href = CHECKOUT_URL);
 </script>
-<div class="pick" role="group" aria-label="Font test">
-  <button data-l="1">Letra 1</button><button data-l="2">Letra 2</button><button data-l="3">Letra 3</button><button data-l="4">Sabri nueva</button><button data-l="5">Bebas</button>
+<div class="tuner" id="tuner">
+  <div class="hd" id="tHd">AJUSTAR TITULAR <span id="tTg">▼ ocultar</span></div>
+  <div class="bd">
+    <label>Letra
+      <select id="tFont">
+        <option value="6">Anton (derecha)</option>
+        <option value="7">Anton cursiva</option>
+        <option value="8">Oswald</option>
+        <option value="9">Antonio</option>
+        <option value="10">League Gothic</option>
+        <option value="5">Bebas Neue</option>
+        <option value="4">Sabri nueva</option>
+        <option value="1">Mohave</option>
+        <option value="2">Archivo</option>
+        <option value="3">Barlow</option>
+      </select>
+    </label>
+    <label>Tamaño <b id="vT"></b><input type="range" id="tT" min="50" max="160" step="1"></label>
+    <label>Letras más juntas ↔ separadas <b id="vE"></b><input type="range" id="tE" min="-8" max="20" step="0.5"></label>
+    <label>Separación entre líneas <b id="vS"></b><input type="range" id="tS" min="60" max="140" step="1"></label>
+    <div class="row"><button id="tReset">Restablecer</button><button class="main" id="tCopy">Copiar link</button></div>
+    <div class="val" id="tVal"></div>
+  </div>
 </div>
 <script>
   (function(){
-    const p = new URLSearchParams(location.search).get('letra');
-    const set = l => {
-      document.documentElement.dataset.letra = l;
-      document.querySelectorAll('.pick button').forEach(b => b.classList.toggle('on', b.dataset.l === l));
-      history.replaceState(null, '', '?letra=' + l);
+    const H = document.documentElement, $ = id => document.getElementById(id);
+    const q = new URLSearchParams(location.search);
+    const fonts = [...$('tFont').options].map(o => o.value);
+    const defaults = () => {
+      H.style.removeProperty('--h-ls'); H.style.removeProperty('--h-lh');
+      const cs = getComputedStyle(H);
+      return { t: 100, e: Math.round(parseFloat(cs.getPropertyValue('--h-ls')) * 1000) / 10 || 0, s: Math.round(parseFloat(cs.getPropertyValue('--h-lh')) * 100) || 98 };
     };
-    set(['1','2','3','4','5'].includes(p) ? p : '1');
-    document.querySelectorAll('.pick button').forEach(b => b.onclick = () => set(b.dataset.l));
+    const apply = () => {
+      const t = +$('tT').value, e = +$('tE').value, s = +$('tS').value;
+      H.style.setProperty('--h-scale', t / 100);
+      H.style.setProperty('--h-ls', (e / 100) + 'em');
+      H.style.setProperty('--h-lh', s / 100);
+      $('vT').textContent = t + '%'; $('vE').textContent = e; $('vS').textContent = s;
+      const url = '?letra=' + H.dataset.letra + '&t=' + t + '&e=' + e + '&s=' + s;
+      history.replaceState(null, '', url);
+      $('tVal').textContent = $('tFont').selectedOptions[0].text + ' · tamaño ' + t + '% · letras ' + e + ' · líneas ' + s;
+    };
+    const setFont = (l, keep) => {
+      H.dataset.letra = l; $('tFont').value = l;
+      const d = defaults();
+      $('tT').value = keep && q.has('t') ? q.get('t') : d.t;
+      $('tE').value = keep && q.has('e') ? q.get('e') : d.e;
+      $('tS').value = keep && q.has('s') ? q.get('s') : d.s;
+      apply();
+    };
+    setFont(fonts.includes(q.get('letra')) ? q.get('letra') : '6', true);
+    $('tFont').onchange = () => setFont($('tFont').value, false);
+    ['tT','tE','tS'].forEach(id => $(id).oninput = apply);
+    $('tReset').onclick = () => setFont(H.dataset.letra, false);
+    $('tCopy').onclick = () => {
+      navigator.clipboard.writeText(location.href).then(() => { $('tCopy').textContent = '¡Copiado!'; setTimeout(() => $('tCopy').textContent = 'Copiar link', 1500); });
+    };
+    $('tHd').onclick = () => { const m = $('tuner').classList.toggle('min'); $('tTg').textContent = m ? '▲ abrir' : '▼ ocultar'; };
   })();
 </script>
 </body>
