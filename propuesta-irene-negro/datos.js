@@ -32,7 +32,7 @@ window.PROPUESTA = {
       porque: "No vende un producto, vende un recuerdo. La gente se ve en la escena, la comenta y etiqueta a quien vivió lo mismo. Así el crepe se vuelve un antojo antes de que lo prueben.",
       como: "Una escena corta con un niño o niña en uniforme, grabada con luz cálida y colores miel. Luego pasamos al local: el crepe preparándose y una clienta probándolo. Cerramos con el nombre del crepe en pantalla y hasta cuándo está disponible.",
       referencia: {
-        video: "../propuesta-irene/referencias/ref-1.mp4", poster: "../propuesta-irene/referencias/ref-1.jpg",
+        video: "../propuesta-irene/referencias/ref-1.mp4?v=4", poster: "../propuesta-irene/referencias/ref-1.jpg?v=4",
         url: "https://www.instagram.com/reel/DXSttdMAuEz/", cuenta: "@postresdeleo",
         vistas: "", me_gusta: "2,4 mil", comentarios: "123", compartidos: ""
       }
@@ -46,7 +46,7 @@ window.PROPUESTA = {
       porque: "Es humor suave, sin burlarse de nadie, y muestra al equipo como personas que disfrutan su trabajo. Por eso la gente lo comparte y etiqueta a amigos: más de 71 mil me gusta con una sola toma en el mostrador.",
       como: "Dos personas del equipo, una de cliente y otra detrás del mostrador, con subtítulos grandes. Te llevamos el guion escrito y lo ensayamos el mismo día. Tú no sales a cámara.",
       referencia: {
-        video: "../propuesta-irene/referencias/ref-2.mp4", poster: "../propuesta-irene/referencias/ref-2.jpg",
+        video: "../propuesta-irene/referencias/ref-2.mp4?v=4", poster: "../propuesta-irene/referencias/ref-2.jpg?v=4",
         url: "https://www.instagram.com/reel/DKwhjqHsNGN/", cuenta: "@ciabattadelicafe",
         vistas: "", me_gusta: "71,4 mil", comentarios: "682", compartidos: ""
       }
@@ -60,7 +60,7 @@ window.PROPUESTA = {
       porque: "Habla directo a un público que hoy casi no llega y lo hace riéndose de sí mismo, con memes y referencias que ellos reconocen. Este formato pasó los 84 mil me gusta y 2 mil comentarios. Además sirve como anuncio pagado.",
       como: "El equipo con su uniforme habla a cámara, por turnos, y metemos memes y cortes rápidos entre frase y frase. Se puede cerrar con una idea como la línea de emergencia para novios que quieren quedar bien con un crepe.",
       referencia: {
-        video: "../propuesta-irene/referencias/ref-3.mp4?v=3", poster: "../propuesta-irene/referencias/ref-3.jpg",
+        video: "../propuesta-irene/referencias/ref-3.mp4?v=4", poster: "../propuesta-irene/referencias/ref-3.jpg?v=4",
         url: "https://www.instagram.com/reel/DdZ9wqWg4cz/", cuenta: "@wishtropic",
         vistas: "", me_gusta: "84,8 mil", comentarios: "2,1 mil", compartidos: ""
       }
@@ -74,7 +74,7 @@ window.PROPUESTA = {
       porque: "Convierte el local en un plan para salir con amigas, no solo en un lugar para comer. Cada comentario es una persona interesada en el siguiente taller, y el emprendimiento invitado también lo comparte con su público.",
       como: "Ustedes organizan una tarde con un emprendimiento aliado, por ejemplo de pulseras o accesorios, y nosotros grabamos manos trabajando, crepes en la mesa y caras de la gente. Lo editamos rápido, con música y una palabra en pantalla por toma.",
       referencia: {
-        video: "../propuesta-irene/referencias/ref-4.mp4?v=3", poster: "../propuesta-irene/referencias/ref-4.jpg",
+        video: "../propuesta-irene/referencias/ref-4.mp4?v=4", poster: "../propuesta-irene/referencias/ref-4.jpg?v=4",
         url: "https://www.instagram.com/reel/DalTYmhJsgw/", cuenta: "@mustaches05",
         vistas: "", me_gusta: "224", comentarios: "27", compartidos: ""
       }
@@ -88,7 +88,7 @@ window.PROPUESTA = {
       porque: "Reúne a emprendedoras de la península en tu local y cada una lo comparte en sus redes. Es publicidad que llega a públicos nuevos sin pagar anuncios, y deja el local asociado a un ambiente cálido y femenino.",
       como: "Grabamos la llegada, las presentaciones con micrófono, la merienda de crepes y café, y un menú del día impreso con los colores de la marca. Cerramos agradeciendo a cada emprendimiento con su cuenta en pantalla.",
       referencia: {
-        video: "../propuesta-irene/referencias/ref-5.mp4", poster: "../propuesta-irene/referencias/ref-5.jpg",
+        video: "../propuesta-irene/referencias/ref-5.mp4?v=4", poster: "../propuesta-irene/referencias/ref-5.jpg?v=4",
         url: "https://www.instagram.com/reel/DdUl_ZfhSx2/", cuenta: "@emprendamosviaje",
         vistas: "", me_gusta: "300", comentarios: "23", compartidos: ""
       }
