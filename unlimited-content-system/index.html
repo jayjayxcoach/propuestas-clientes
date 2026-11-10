@@ -168,6 +168,16 @@
   .price-line b{color:var(--red);font-weight:800}
 
   /* ---------- responsive ---------- */
+  /* SECCIÓN 2: la agencia expone su sistema */
+  .expose{background:var(--ink);color:#fff;padding:clamp(56px,8vw,104px) 20px;text-align:center}
+  .expose .kick{display:inline-block;background:var(--red);color:#fff;font-family:var(--display);font-style:italic;font-weight:400;text-transform:uppercase;
+    letter-spacing:.06em;font-size:clamp(13px,1.4vw,17px);padding:.35em .9em;transform:rotate(-1.5deg);margin-bottom:26px}
+  .expose h2{font-family:var(--headline);font-weight:var(--h-wt);text-transform:uppercase;letter-spacing:var(--h-ls);line-height:1.02;
+    font-size:clamp(30px,5vw,68px);max-width:1080px;margin:0 auto}
+  .expose h2 em{font-style:normal;color:var(--red)}
+  .expose .lead{max-width:760px;margin:28px auto 0;font-size:clamp(17px,2vw,23px);line-height:1.5;font-weight:500;color:#e9e9e9}
+  .expose .lead s{color:#9a9a9a;text-decoration-color:var(--red);text-decoration-thickness:2px}
+  .expose .lead b{color:#fff;font-weight:800;background:var(--red);padding:0 .3em;white-space:nowrap}
   @media (max-width:980px){
     .doc2,.track{display:none}
     .doc1{width:200px;left:-30px}
@@ -312,6 +322,12 @@
 
   <p class="fine">Instant access<span class="dot">●</span>Works with free Notion<span class="dot">●</span>One-time payment</p>
   <p class="price-line">Total value <s>$358</s> · Launch price <b>$27</b>. No subscription.</p>
+</section>
+
+<section class="expose">
+  <div class="kick">Finally…</div>
+  <h2>An agency exposes the <em>exact content system</em> it uses for paying clients… so you can copy it and create your content yourself</h2>
+  <p class="lead">Our clients pay us <s>$1,500 to $2,500 a month</s> to create their content with this system. Today you can copy the whole thing for a one-time <b>$27</b>.</p>
 </section>
 
 <script>
