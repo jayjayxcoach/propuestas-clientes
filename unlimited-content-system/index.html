@@ -193,6 +193,122 @@
   .letter .who b{color:var(--ink)}
   .expose .btn{margin-top:clamp(30px,4vw,44px)}
 
+  /* SECCIONES 3–11 (titulares en Oswald, mismos colores del hero) */
+  .sec{padding:clamp(52px,7.5vw,100px) 20px;text-align:center;color:var(--ink)}
+  .sec.white{background:#fff}
+  .sec.cream{background:var(--cream)}
+  .sec.red{background:var(--red);color:#fff}
+  .sec .in{max-width:1080px;margin:0 auto}
+  .sec h2{font-family:var(--headline);font-weight:var(--h-wt);text-transform:uppercase;letter-spacing:var(--h-ls);line-height:1.04;
+    font-size:clamp(29px,4.6vw,60px);max-width:980px;margin:0 auto}
+  .sec h2 em{font-style:normal;color:var(--red)}
+  .sec.red h2 em{color:#fff;background:var(--ink);padding:0 .14em}
+  .sec h3{font-family:var(--headline);font-weight:700;text-transform:uppercase;letter-spacing:var(--h-ls);line-height:1.08;font-size:clamp(22px,2.8vw,34px)}
+  .kick{display:inline-block;background:var(--ink);color:#fff;font-family:var(--display);font-style:italic;font-weight:400;text-transform:uppercase;
+    letter-spacing:.06em;font-size:clamp(13px,1.35vw,16px);padding:.38em .9em;transform:rotate(-1.5deg);margin-bottom:22px}
+  .sec.red .kick{background:#fff;color:var(--red)}
+  .dek{max-width:720px;margin:20px auto 0;font-size:clamp(17px,1.9vw,21px);line-height:1.5;font-weight:500}
+  .col{max-width:700px;margin:34px auto 0;text-align:left}
+  .col p{font-size:clamp(17px,1.75vw,19px);line-height:1.62;margin-bottom:1.05em}
+  .col p b{font-weight:800}
+  .sec mark{background:var(--hl);color:inherit;padding:0 .15em}
+  .sec .btn{margin-top:clamp(34px,4.5vw,52px)}
+
+  .checks{list-style:none;max-width:700px;margin:34px auto 0;text-align:left;display:grid;gap:12px}
+  .checks li{position:relative;background:#fff;border:1px solid #f0d9d2;border-radius:6px;padding:16px 18px 16px 58px;font-size:clamp(17px,1.8vw,20px);line-height:1.4;font-weight:600}
+  .sec.white .checks li{background:var(--cream)}
+  .checks li::before{content:"✓";position:absolute;left:16px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:5px;background:var(--red);color:#fff;
+    font-weight:800;font-size:17px;display:grid;place-items:center}
+  .after{max-width:700px;margin:26px auto 0;font-size:clamp(17px,1.9vw,21px);font-weight:700;line-height:1.45}
+
+  .spaces{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px;text-align:left}
+  .space{background:var(--cream);border:1px solid #f0d9d2;border-radius:8px;padding:22px 20px}
+  .space i{display:block;font-family:var(--display);font-style:italic;font-size:44px;line-height:1;color:var(--red)}
+  .space h3{margin:10px 0 8px;font-size:clamp(22px,2.2vw,28px)}
+  .space p{font-size:16px;line-height:1.5;color:#333}
+
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,56px);align-items:center;margin-top:44px;text-align:left}
+  .duo .col{margin:0;max-width:none}
+  .card{background:#fff;border-radius:10px;box-shadow:0 1px 0 #e9dcd7,0 18px 44px rgba(60,20,8,.13);padding:20px}
+  .tenx h5,.io h5{font-size:14px;font-weight:800;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+  .tenx h5 small,.io h5 small{font-weight:600;color:var(--gray);font-size:12px}
+  .tenx .g{display:grid;grid-template-columns:auto repeat(10,1fr);gap:4px;align-items:center}
+  .tenx .g b{font-size:10px;font-weight:700;color:#777;padding-right:6px;white-space:nowrap}
+  .tenx .g i{aspect-ratio:1;border-radius:3px;background:var(--hl)}
+  .tenx .g i.on{background:var(--red)}
+  .tenx .cap{margin-top:12px;font-size:13px;color:#555;text-align:center;font-weight:600}
+  .io .in1{background:var(--cream);border:1px dashed #e5b8ab;border-radius:6px;padding:12px 14px;font-size:14px;line-height:1.5}
+  .io .in1 b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin-bottom:4px}
+  .io .arrow{text-align:center;font-family:var(--display);font-style:italic;color:var(--red);font-size:22px;margin:8px 0}
+  .io .out{border:1px solid #eee;border-radius:6px;padding:12px 14px;font-size:14px;line-height:1.5}
+  .io .out b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--red);margin:8px 0 2px}
+  .io .out b:first-child{margin-top:0}
+
+  .quote{display:flex;gap:16px;align-items:flex-start;max-width:700px;margin:40px auto 0;text-align:left;background:#fff;border-left:5px solid var(--red);
+    border-radius:6px;padding:20px 22px;box-shadow:0 10px 30px rgba(60,20,8,.09)}
+  .sec.white .quote{background:var(--cream);box-shadow:none}
+  .quote img{width:58px;height:58px;border-radius:50%;object-fit:cover;flex:none}
+  .quote .st,.rev .st{color:var(--red);letter-spacing:.12em;font-size:15px}
+  .quote p{font-size:clamp(16px,1.7vw,18px);line-height:1.5;font-weight:500;margin:4px 0 6px}
+  .quote cite,.rev cite{font-style:normal;font-weight:800;font-size:14px}
+
+  .revs{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;text-align:left}
+  .rev{background:#fff;color:var(--ink);border-radius:8px;padding:22px;box-shadow:0 6px 0 rgba(0,0,0,.18)}
+  .rev p{font-size:clamp(17px,1.8vw,20px);line-height:1.45;font-weight:600;margin:8px 0 16px}
+  .rev .who{display:flex;align-items:center;gap:10px}
+  .rev .who img{width:44px;height:44px;border-radius:50%;object-fit:cover}
+  .note{margin-top:18px;font-size:13px;opacity:.85}
+  .sec.red .btn{background:var(--ink);box-shadow:0 6px 0 #000}
+  .sec.red .btn:hover{background:#222}
+
+  .stack{max-width:760px;margin:40px auto 0;text-align:left;background:#fff;border:3px solid var(--ink);border-radius:10px;overflow:hidden}
+  .item{display:grid;grid-template-columns:1fr auto;gap:8px 20px;padding:22px 24px;border-bottom:1px solid #eee}
+  .item .tag{grid-column:1/-1;justify-self:start;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:var(--red);color:#fff;padding:3px 8px;border-radius:3px}
+  .item.core .tag{background:var(--ink)}
+  .item h3{font-size:clamp(21px,2.4vw,28px)}
+  .item .v{font-family:var(--headline);font-weight:700;font-size:clamp(21px,2.4vw,28px);white-space:nowrap}
+  .item p,.item ul{grid-column:1/-1;font-size:16px;line-height:1.55;color:#333}
+  .item ul{padding-left:1.15em}
+  .item ul li{margin-bottom:3px}
+  .total{background:var(--ink);color:#fff;padding:24px;text-align:center}
+  .total .a{font-size:16px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+  .total .a s{opacity:.75;text-decoration-color:var(--red);text-decoration-thickness:3px}
+  .total .b{font-family:var(--headline);font-weight:700;text-transform:uppercase;font-size:clamp(34px,5.6vw,66px);line-height:1.05;margin-top:6px}
+  .total .b em{font-style:normal;color:var(--red)}
+  .total .c{font-size:14px;opacity:.85;margin-top:6px}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;text-align:left}
+  .step{background:#fff;border:1px solid #f0d9d2;border-radius:8px;padding:22px 20px}
+  .step i{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--red);color:#fff;font-family:var(--display);font-style:italic;font-size:24px}
+  .step h3{margin:12px 0 8px;font-size:clamp(21px,2.2vw,26px)}
+  .step p{font-size:16px;line-height:1.5;color:#333}
+
+  .faq{max-width:760px;margin:40px auto 0;text-align:left}
+  .faq details{background:#fff;border:1px solid #eadfdb;border-radius:8px;margin-bottom:10px}
+  .faq summary{cursor:pointer;list-style:none;padding:18px 52px 18px 20px;font-weight:800;font-size:clamp(17px,1.8vw,19px);position:relative}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);font-size:28px;font-weight:500;color:var(--red);line-height:1}
+  .faq details[open] summary::after{content:"–"}
+  .faq details p{padding:0 20px 18px;font-size:17px;line-height:1.6;color:#333}
+
+  .ps{max-width:700px;margin:0 auto;text-align:left}
+  .ps p{font-size:clamp(17px,1.8vw,20px);line-height:1.62;margin-bottom:1.05em}
+  .ps p b{font-weight:800}
+  .ps .big{font-family:var(--headline);font-weight:700;font-size:1.5em;color:var(--red);margin-right:.2em}
+  .foot{background:var(--ink);color:#bdbdbd;text-align:center;padding:26px 20px;font-size:13px;line-height:1.6}
+  .foot b{color:#fff}
+
+  @media (max-width:860px){
+    .spaces{grid-template-columns:1fr 1fr}
+    .duo,.steps{grid-template-columns:1fr}
+  }
+  @media (max-width:640px){
+    .spaces,.revs{grid-template-columns:1fr}
+    .item{padding:18px 16px}
+    .quote{padding:16px}
+    .tenx .g b{font-size:8px;padding-right:3px}
+  }
+
   @media (max-width:980px){
     .doc2,.track{display:none}
     .doc1{width:200px;left:-30px}
@@ -372,6 +488,214 @@
 
   <a class="btn js-checkout" href="#checkout">Get instant access<small>Copy the agency system today for $27</small></a>
 </section>
+
+<section class="sec white">
+  <div class="in">
+    <h2>Who needs the <em>"Unlimited Content System"</em>?</h2>
+    <p class="dek">You know your craft. The trouble starts when you open the camera.</p>
+    <ul class="checks">
+      <li>You have years of experience in your field and zero videos published.</li>
+      <li>You open your phone to record and don't know where to start.</li>
+      <li>You save ideas in your notes app, and that is where they stay.</li>
+      <li>You posted three weeks in a row and then ran out of ideas.</li>
+    </ul>
+    <p class="after">If you saw yourself in any of these, the rest of this page is for you.</p>
+
+    <div class="col">
+      <h3>You start from zero every time you open the camera</h3>
+      <p style="margin-top:14px">Every video begins with the same question: what do I talk about today?</p>
+      <p>Each time you ask it, you spend the energy you needed for filming. By the time you pick a topic, you no longer feel like setting up the tripod.</p>
+      <p>Creators who post every day have a place where their ideas are already waiting. They open it, pick one and film. <mark>The decision was made before they sat down.</mark></p>
+      <p>That is the setup an agency builds for a paying client, and it is the one you are about to copy.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec cream">
+  <div class="in">
+    <div class="kick">Inside the system</div>
+    <h2>Here's just a fraction of <em>what's inside</em>…</h2>
+    <p class="dek">Four connected spaces that carry an idea from the moment you have it to the day it is published.</p>
+    <div class="spaces">
+      <div class="space" style="background:#fff"><i>1</i><h3>Ideas</h3><p>The Reference Bank. The ideas that already worked in your niche, sorted and ready for you to pick one.</p></div>
+      <div class="space" style="background:#fff"><i>2</i><h3>Scripts</h3><p>The 12 script templates, each with its AI prompt next to it and the library of 50 hooks one click away.</p></div>
+      <div class="space" style="background:#fff"><i>3</i><h3>Production</h3><p>What is filmed, what is missing and what goes out this week, on one board.</p></div>
+      <div class="space" style="background:#fff"><i>4</i><h3>Published</h3><p>The record of what you posted, on which platform and how it performed.</p></div>
+    </div>
+    <div class="col">
+      <p>You duplicate it with one click, and 60 seconds later it is inside your Notion with all the content in it. It works on the free Notion account.</p>
+      <p><b>The system ends right where the camera starts: with your script written, in your voice, ready to film.</b></p>
+    </div>
+    <a class="btn js-checkout" href="#checkout">Get instant access<small>Works with the free Notion account</small></a>
+  </div>
+</section>
+
+<section class="sec white">
+  <div class="in">
+    <div class="kick">The 10×10 Rule</div>
+    <h2><em>100 ideas</em> that already worked, waiting for you</h2>
+    <div class="duo">
+      <div class="col">
+        <p>You choose 10 creators in your niche. From each one you take their 10 most viewed videos.</p>
+        <p>That gives you <b>100 ideas that have already proven they work with your audience</b>, in a single table.</p>
+        <p>You take the angle and leave the video. The topic has shown that people care about it, and you tell it with your own experience and your own cases.</p>
+        <p>The table comes built, with the columns that matter and the instructions to fill it the first time. After that you just add what you find.</p>
+      </div>
+      <div class="card tenx" aria-hidden="true">
+        <h5>Reference Bank 10×10 <small>100 ideas</small></h5>
+        <div class="g"><b>Creator 1</b><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><b>Creator 2</b><i></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><b>Creator 3</b><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><b>Creator 4</b><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><b>Creator 5</b><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><b>Creator 6</b><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><b>Creator 7</b><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><b>Creator 8</b><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><b>Creator 9</b><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i></i><b>Creator 10</b><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></div>
+        <div class="cap">10 creators × their 10 most viewed videos</div>
+      </div>
+    </div>
+    <div class="quote">
+      <img src="img/Clara.jpg" alt="">
+      <div>
+        <div class="st">★★★★★</div>
+        <p>"I'm just starting my personal brand and it has made coming up with ideas so much easier. Now I always know where to start, without overcomplicating it."</p>
+        <cite>Clara A.</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec cream">
+  <div class="in">
+    <div class="kick">The template that writes with you</div>
+    <h2>You write three lines. It hands back <em>the full script</em>.</h2>
+    <div class="duo">
+      <div class="card io" aria-hidden="true">
+        <h5>Script Templates <small>Authority · Template 3</small></h5>
+        <div class="in1"><b>Your idea, in one line</b>Why most small businesses overpay on taxes in their first year.</div>
+        <div class="arrow">▼ AI prompt included</div>
+        <div class="out">
+          <b>Hook · 0–3s</b>You are probably paying more tax than you owe, and nobody told you.
+          <b>Problem · 3–15s</b>In year one, most owners mix personal and business spending…
+          <b>Value · 15–45s</b>Three things to fix this week, starting with…
+          <b>CTA · 45–55s</b>Follow for the next one on deductions.
+        </div>
+      </div>
+      <div class="col">
+        <p>You pick the template by what you want that day: to sell, to build authority or to start a conversation. There are 12 structures, sorted into those three groups.</p>
+        <p>Each template has its prompt already written beside it. You copy it, describe your idea in one line, and it returns the script with the hook in place and the length you asked for.</p>
+        <p>Generic prompts give generic scripts. These carry <b>the exact structure, the tone, the seconds for each block</b> and the instruction to write in your own words.</p>
+      </div>
+    </div>
+    <div class="quote">
+      <img src="img/Seul.jpg" alt="">
+      <div>
+        <div class="st">★★★★★</div>
+        <p>"I tried writing scripts with AI before, but they came out very generic. With these, the scripts feel much more natural."</p>
+        <cite>Seul C.</cite>
+      </div>
+    </div>
+    <a class="btn js-checkout" href="#checkout">Get instant access<small>12 templates + 50 hooks + AI prompts</small></a>
+  </div>
+</section>
+
+<section class="sec red">
+  <div class="in">
+    <div class="kick">Reviews</div>
+    <h2>See why <em>1,250+ creators</em> already use this system</h2>
+    <div class="revs">
+      <div class="rev"><div class="st">★★★★★</div><p>"It helped me a lot. I already knew how to create content, but having everything laid out in a professional system made my work easier."</p><div class="who"><img src="img/Erika.jpg" alt=""><cite>Erika N.</cite></div></div>
+      <div class="rev"><div class="st">★★★★★</div><p>"So cute!! The system is insane. It gives you viral scripts in no time. I'm amazed ✨"</p><div class="who"><img src="img/Rosa.jpg" alt=""><cite>Rosa A.</cite></div></div>
+      <div class="rev"><div class="st">★★★★★</div><p>"I was impressed by how easy it is to use."</p><div class="who"><img src="img/Anita.jpg" alt=""><cite>Anita R.</cite></div></div>
+      <div class="rev"><div class="st">★★★★★</div><p>"Bro, what a great system. Congrats, you did a great job building it."</p><div class="who"><img src="img/Rae.jpg" alt=""><cite>Rae W.</cite></div></div>
+    </div>
+    <p class="note">Reviews translated from Spanish.</p>
+    <a class="btn js-checkout" href="#checkout">Get instant access<small>Join the 1,250+ who already use it</small></a>
+  </div>
+</section>
+
+<section class="sec cream">
+  <div class="in">
+    <h2>Everything you get <em>today</em></h2>
+    <div class="stack">
+      <div class="item core">
+        <span class="tag">The system</span>
+        <h3>The Unlimited Content System in Notion</h3><span class="v">$197</span>
+        <ul>
+          <li>12 script templates in 3 groups: sell, authority and conversation</li>
+          <li>50 hooks, ready for you to drop your topic in</li>
+          <li>One AI prompt per template, already built</li>
+          <li>The Reference Bank with the 10×10 Rule</li>
+          <li>Content calendar and results tracker</li>
+        </ul>
+        <p><b>You leave with the script finished, in your voice, ready to film.</b></p>
+      </div>
+      <div class="item">
+        <span class="tag">Free bonus #1</span>
+        <h3>From Script To Camera</h3><span class="v">$67</span>
+        <p>How to film with your phone without looking like you are reading. Setting up the teleprompter, placing the light, framing the shot and handling the audio, with what you already have at home.</p>
+      </div>
+      <div class="item">
+        <span class="tag">Free bonus #2</span>
+        <h3>Minimum Viable Editing</h3><span class="v">$47</span>
+        <p>The least a video needs to be published: cuts, subtitles and vertical format. In CapCut, free, in under 10 minutes per video.</p>
+      </div>
+      <div class="item">
+        <span class="tag">Free bonus #3</span>
+        <h3>Masterclass: 30 Days Of Content In Under 1 Hour</h3><span class="v">$47</span>
+        <p>The full process on video, in the exact order: duplicate the workspace, choose your first template, run the prompt, adjust the script and schedule the month.</p>
+      </div>
+      <div class="total">
+        <div class="a">Total value <s>$358</s></div>
+        <div class="b">Today: <em>$27</em></div>
+        <div class="c">One-time payment · Instant access</div>
+      </div>
+    </div>
+    <a class="btn js-checkout" href="#checkout">Get instant access<small>You receive it right after payment</small></a>
+  </div>
+</section>
+
+<section class="sec white">
+  <div class="in">
+    <h2>Why am I selling this for <em>just $27</em>?</h2>
+    <div class="col">
+      <p>This is the first thing you buy from me. You don't know me yet, and I don't know you.</p>
+      <p>I could charge $197 and defend that price. You would think about it for two weeks and probably never buy.</p>
+      <p><b>At $27 you can decide in two minutes.</b></p>
+      <p>I would rather have a thousand creators using the system this week than ten of them thinking about it for a month.</p>
+      <p>$27 is the launch price, and it is going up. If you are reading this and the button still says $27, that is the price you pay.</p>
+    </div>
+    <a class="btn js-checkout" href="#checkout">Get instant access<small>Launch price: $27, one-time payment</small></a>
+  </div>
+</section>
+
+<section class="sec cream">
+  <div class="in">
+    <h2>Here's what to do <em>next</em></h2>
+    <div class="steps">
+      <div class="step"><i>1</i><h3>Click the red button</h3><p>Pay $27 once. There is no subscription.</p></div>
+      <div class="step"><i>2</i><h3>Copy it into your Notion</h3><p>The link arrives right after payment. One click, and 60 seconds later the system is in your account.</p></div>
+      <div class="step"><i>3</i><h3>Write your first script</h3><p>Follow the masterclass and you have your first script in under an hour. After that, about 10 minutes per script.</p></div>
+    </div>
+    <a class="btn js-checkout" href="#checkout">Get instant access<small>Start your first script today</small></a>
+
+    <h3 style="margin-top:clamp(52px,7vw,84px);font-size:clamp(26px,3.6vw,44px)">Questions people ask before buying</h3>
+    <div class="faq">
+      <details><summary>Do I need to pay for Notion?</summary><p>No. The whole system works on the free account. If you don't have one, you create it in two minutes and duplicate the system with one click.</p></details>
+      <details><summary>How do I receive it?</summary><p>Right away. As soon as the payment is confirmed you get the link to duplicate it into your Notion, together with the three bonuses.</p></details>
+      <details><summary>Is it a one-time payment or a subscription?</summary><p>A one-time payment of $27. The system stays in your account for good, and the updates I make to it reach you at no cost.</p></details>
+      <details><summary>Do I need to know how to film or edit?</summary><p>No. That is what bonuses 1 and 2 are for. I show you how to film with the phone you already have and how to finish the video in CapCut, which is free.</p></details>
+      <details><summary>Does it work for my niche?</summary><p>Yes. The templates are structures, and the knowledge comes from you. It works the same in finance, law, fitness, accounting, health, real estate, marketing or consulting. The prompts include the instruction to adapt each script to your industry and the way you speak.</p></details>
+      <details><summary>How long until I have my first script?</summary><p>Under an hour from the moment you duplicate it, following the masterclass. After that, about 10 minutes per script.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="sec white">
+  <div class="ps">
+    <p><span class="big">P.S.</span> In case you skipped to the end, here is the whole offer.</p>
+    <p>This is the Notion system my agency runs for clients who pay us <b>$1,500 to $2,500 a month</b>. You copy it into your free Notion account for a <b>one-time $27</b>.</p>
+    <p>You get the 12 script templates, the 50 hooks, an AI prompt for every template, the 10×10 Reference Bank, the calendar and tracker, and three bonuses.</p>
+    <p>The next time you open the camera, the script will already be written.</p>
+    <p>$27 is the launch price, and it is going up.</p>
+  </div>
+  <a class="btn js-checkout" href="#checkout">Get instant access<small>One-time payment · Instant access · Works with free Notion</small></a>
+</section>
+
+<footer class="foot"><b>The Unlimited Content System</b> · by Jay Álvarez, Nebraska Media<br>© 2026 Jay Personal Brand. All rights reserved.</footer>
 
 <script>
   document.querySelectorAll('.js-checkout').forEach(a => a.href = CHECKOUT_URL);
