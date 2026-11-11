@@ -1,0 +1,2828 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<title>Mis XV Años · Hanna</title>
+<meta name="description" content="Te invito a celebrar mis XV años · Domingo 27 de diciembre de 2026 · Misa 3:00 p.m. · Parroquia Virgen de Guadalupe">
+<meta property="og:title" content="Mis XV Años · Hanna">
+<meta property="og:description" content="Te invito a celebrar mis XV años · Domingo 27 de diciembre de 2026 · Misa 3:00 p.m. · Parroquia Virgen de Guadalupe">
+
+
+<!-- Armada con el motor de la librería de Invitaciones de Amor · receta: 20261110-234743-f9bdc401.receta.sin-marca.json -->
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap">
+<style>
+/* Estilos propios del motor (envolturas, marca de agua, botón de música y confirmación). */
+html, body { margin: 0; padding: 0; }
+body { background: var(--lib-fondo, #1d1a1a); -webkit-text-size-adjust: 100%; }
+html.lib-bloqueado, html.lib-bloqueado body { overflow: hidden; height: 100%; }
+.lib-pagina { max-width: 480px; margin: 0 auto; position: relative; overflow-x: clip; box-shadow: 0 0 60px rgba(0,0,0,.35); }
+.lib-sec { position: relative; overflow-x: clip; }
+.lib-sec.lib-apertura { position: fixed; inset: 0; z-index: 9000; overflow: visible; }
+.lib-anc { height: auto !important; min-height: 0 !important; max-height: none !important;
+  overflow-y: visible !important; scroll-snap-type: none !important; position: relative; }
+.lib-flotante { position: relative; z-index: 8000; }
+.lib-oculto { display: none !important; }
+
+/* Botón de música por defecto (si no se eligió uno de la librería) */
+#lib-boton-musica { position: fixed; right: 16px; bottom: 16px; z-index: 8500; width: 48px; height: 48px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.55); background: rgba(40,30,25,.55); color: #fff; backdrop-filter: blur(6px);
+  display: grid; place-items: center; cursor: pointer; padding: 0; }
+#lib-boton-musica svg { width: 20px; height: 20px; fill: currentColor; }
+#lib-boton-musica .play { display: none; }
+#lib-boton-musica.pausado .play { display: block; }
+#lib-boton-musica.pausado .pausa { display: none; }
+
+/* Marca de agua (se activa con "marcaAgua": true en la receta) */
+#lib-marca { position: fixed; inset: -50%; z-index: 9500; pointer-events: none; display: flex; flex-wrap: wrap; align-content: center;
+  justify-content: center; gap: 60px 40px; transform: rotate(-28deg); opacity: .16; user-select: none; }
+#lib-marca span { font: 600 15px/1 Georgia, 'Times New Roman', serif; letter-spacing: .25em; color: #000; text-shadow: 0 0 2px #fff, 0 0 6px #fff; white-space: nowrap; }
+#lib-marca-cinta { position: fixed; left: 0; right: 0; bottom: 0; z-index: 9600; pointer-events: none; text-align: center;
+  font: 600 11px/1 Georgia, serif; letter-spacing: .2em; padding: 7px 0; color: #fff; background: rgba(60,20,25,.78); }
+
+/* Ventana de confirmación por WhatsApp */
+#lib-rsvp { position: fixed; inset: 0; z-index: 9700; background: rgba(20,14,12,.55); backdrop-filter: blur(3px); display: none;
+  align-items: center; justify-content: center; padding: 16px; --lib-acento: #9a7a3c; }
+#lib-rsvp.abierto { display: flex; }
+#lib-rsvp form { background: #fffdf8; color: #3b2f2a; width: 100%; max-width: 360px; border-radius: 18px; padding: 26px 22px 20px;
+  font: 16px/1.4 Georgia, 'Times New Roman', serif; box-shadow: 0 20px 60px rgba(0,0,0,.35); position: relative; }
+#lib-rsvp h3 { margin: 0 0 14px; text-align: center; font-weight: 400; font-size: 24px; color: var(--lib-acento); }
+#lib-rsvp label { display: block; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin: 12px 0 5px; opacity: .8; }
+#lib-rsvp input, #lib-rsvp select, #lib-rsvp textarea { width: 100%; box-sizing: border-box; border: 1px solid #d9cfc2; border-radius: 10px;
+  padding: 10px 12px; font: inherit; background: #fff; color: inherit; }
+#lib-rsvp .opciones { display: flex; gap: 8px; }
+#lib-rsvp .opciones label { flex: 1; text-transform: none; letter-spacing: 0; font-size: 15px; border: 1px solid #d9cfc2; border-radius: 10px;
+  padding: 9px; text-align: center; margin: 0; cursor: pointer; opacity: 1; }
+#lib-rsvp .opciones input { display: none; }
+#lib-rsvp .opciones label:has(input:checked) { border-color: var(--lib-acento); background: var(--lib-acento); color: #fff; }
+#lib-rsvp button[type=submit] { margin-top: 18px; width: 100%; border: 0; border-radius: 999px; padding: 13px; font: inherit; font-size: 16px;
+  background: var(--lib-acento); color: #fff; cursor: pointer; }
+#lib-rsvp .cerrar { position: absolute; top: 8px; right: 12px; border: 0; background: none; font-size: 26px; cursor: pointer; color: #8a7d72; }
+
+/* Nombre en letra caligráfica dorada (cuando la original tenía el nombre como imagen) */
+.lib-nombre-texto { display: block; text-align: center; font: 400 clamp(58px, 18vw, 92px)/1.15 'Great Vibes', cursive;
+  background: linear-gradient(180deg, #fff1c4 0%, #e9c46c 30%, #b8862f 55%, #f3d68b 78%, #a87a28 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #c99a3e;
+  filter: drop-shadow(0 2px 2px rgba(80, 40, 10, .35)); padding: .08em .1em; width: auto !important; height: auto !important;
+  max-width: 100%; white-space: nowrap; }
+
+/* ===== Estilos (colores y tipografías) ===== */
+/* Estilo «Princesa Rosa» (XV-01) — colores y tipografías.
+   Cambia aquí los valores y se actualizan todas las secciones de este estilo. */
+[data-estilo="princesa-rosa"] {
+  /* variables con nombre de la invitación original */
+  --rosa-titulo: #a2475f;
+  --rosa-puerta: #f6bdaf;
+  --texto: #6b4148;
+  --oro: #cf9c4c;
+  --oro-osc: #9a6a25;
+  --crema: #fdf1e5;
+  --panel: linear-gradient(180deg, #fff6f1 0%, #fbe2d8 100%);
+  --script: 'Great Vibes', cursive;
+  --serif: 'Cormorant', Georgia, serif;
+  --caps: 'Cinzel', Georgia, serif;
+  --ancho: 440px;
+  --corona-respaldo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 70'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23fdecbb'/%3E%3Cstop offset='.55' stop-color='%23dba552'/%3E%3Cstop offset='1' stop-color='%23b07a2c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M12 52 L18 24 L33 40 L50 10 L67 40 L82 24 L88 52 Z' fill='url("http://localhost:5391/xv-princesa-rosa/%23g")' stroke='%23a3702a' stroke-width='1.6' stroke-linejoin='round'/%3E%3Crect x='11' y='52' width='78' height='8' rx='3' fill='url("http://localhost:5391/xv-princesa-rosa/%23g")' stroke='%23a3702a' stroke-width='1.6'/%3E%3Ccircle cx='18' cy='22' r='4' fill='%23f7b9c4' stroke='%23a3702a' stroke-width='1.4'/%3E%3Ccircle cx='50' cy='8' r='4.6' fill='%23f7b9c4' stroke='%23a3702a' stroke-width='1.4'/%3E%3Ccircle cx='82' cy='22' r='4' fill='%23f7b9c4' stroke='%23a3702a' stroke-width='1.4'/%3E%3Cpath d='M50 36c-3-5-10-2-7 4l7 7 7-7c3-6-4-9-7-4z' fill='%23f2a3b5' stroke='%23a3702a' stroke-width='1.2'/%3E%3Ccircle cx='30' cy='56' r='1.6' fill='%23fff6dc'/%3E%3Ccircle cx='50' cy='56' r='1.6' fill='%23fff6dc'/%3E%3Ccircle cx='70' cy='56' r='1.6' fill='%23fff6dc'/%3E%3C/svg%3E");
+  /* otros colores y tipografías usados en las secciones */
+  --color-1: rgb(255,255,255);
+  --color-2: rgb(246,214,203);
+  --color-3: rgba(120,50,50,0.22);
+  --color-4: rgba(140,90,30,0.3);
+  --color-5: rgba(255,248,240,.9);
+  --color-6: rgba(255,232,190,0.95);
+  --color-7: rgba(140,60,60,.18);
+  --color-8: rgba(130,70,30,0.2);
+  --color-9: rgba(255,252,248,0.9);
+  --color-10: rgba(246,189,175,.22);
+  --color-11: rgba(255,245,220,0.8);
+  --color-12: rgba(255,248,244,0.95);
+  --color-13: rgba(246,189,175,0.55);
+  --color-14: rgba(90,40,30,0.05);
+  --color-15: rgba(90,40,30,0.55);
+  --color-16: rgba(255,250,235,0);
+  --color-17: rgba(120,50,50,0.25);
+  --color-18: rgba(255,248,244,0.9);
+  --color-19: rgba(255,252,248,0.7);
+  --color-20: rgba(207,156,76,0.12);
+  --color-21: rgba(255,249,240,0.95);
+  --color-22: rgba(255,249,240,0);
+  --color-23: rgb(252,236,224);
+  --color-24: rgb(249,222,211);
+  --color-25: rgb(245,207,196);
+  --color-26: #f9ded3;
+  --color-27: rgba(255,246,240,0.18);
+  --color-28: rgb(244,205,191);
+  --color-29: rgb(255,255,250);
+  --color-30: rgba(255,240,214,0.95);
+  --color-31: rgba(255,214,190,0);
+  --color-32: rgba(255,250,235,0.95);
+  --color-33: rgba(255,246,225,0.95);
+  --color-34: rgba(255,244,222,0.95);
+  --color-35: rgba(110,60,30,0.4);
+  --color-36: rgba(255,236,200,0.95);
+  --color-37: rgba(255,220,170,0.9);
+  --color-38: rgb(255,244,201);
+  --color-39: rgb(240,207,122);
+  --color-40: rgb(201,154,62);
+  --color-41: rgb(142,100,32);
+  --color-42: rgba(255,240,200,0.7);
+  --color-43: rgba(110,60,30,0.35);
+  --color-44: rgba(255,248,243,0.93);
+  --color-45: rgba(255,236,180,0.9);
+  --color-46: rgba(255,236,180,0);
+  --color-47: rgb(255,230,230);
+  --color-48: rgb(245,179,180);
+  --color-49: rgb(229,143,151);
+  --color-50: rgba(255,226,170,0.9);
+  --color-51: rgb(255,253,248);
+  --color-52: rgb(255,243,230);
+  --color-53: rgb(251,224,212);
+  --color-54: rgba(249,222,211,0);
+  --color-55: rgb(0,0,0);
+  --color-56: rgba(255,248,242,0.55);
+  --color-57: rgba(120,60,30,0.35);
+  --color-58: rgba(255,248,242,0.95);
+  --color-59: rgba(255,248,242,0.9);
+  --color-60: rgb(255,248,243);
+  --color-61: rgb(252,231,222);
+  --color-62: rgba(120,60,50,0.25);
+  --color-63: rgba(140,60,60,.2);
+  --color-64: #fbe6b0;
+  --color-65: #a8762c;
+  --color-66: rgba(255,250,246,0.92);
+  --color-67: rgba(255,250,246,0.66);
+  --color-68: rgba(255,250,246,0);
+  --color-69: rgb(251,231,166);
+  --color-70: rgb(232,192,104);
+  --color-71: rgb(201,149,47);
+  --color-72: rgb(233,196,108);
+  --color-73: rgb(122,47,69);
+  --color-74: rgba(120,70,20,0.35);
+  --color-75: rgba(255,255,255,0.65);
+  --color-76: rgba(130,80,10,0.35);
+  --color-77: rgba(110,50,20,0.35);
+  --color-78: rgba(255,249,245,0.85);
+  --color-79: rgba(120,50,50,0.14);
+  --color-80: rgba(162,71,95,0.75);
+  --color-81: rgba(255,249,245,0.95);
+  --color-82: rgba(207,156,76,0.6);
+  --color-83: rgb(243,213,140);
+  --color-84: rgb(196,146,58);
+  --color-85: rgba(120,50,50,0.35);
+  --color-86: rgba(226,193,114,0.8);
+  --color-87: rgb(138,52,80);
+  --fuente-1: ;
+  --fuente-2: !important;
+}
+
+/* ===== Secciones ===== */
+/* Princesa Rosa · apertura (apertura) — generado desde elegancia-de-amor/xv-princesa-rosa */
+@font-face { font-family: "Great Vibes"; font-weight: 400; font-display: swap; src: url("recursos/xv-princesa-rosa--apertura/fuente-great-vibes.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-display: swap; src: url("recursos/xv-princesa-rosa--apertura/fuente-cormorant-500.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--apertura/fuente-cormorant-600.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-style: italic; font-display: swap; src: url("recursos/xv-princesa-rosa--apertura/fuente-cormorant-500-italica.woff2") format("woff2"); }
+@font-face { font-family: Cinzel; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--apertura/fuente-cinzel-600.woff2") format("woff2"); }
+[data-sec="xv-princesa-rosa--apertura"] * {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+[data-sec="xv-princesa-rosa--apertura"] {
+  background: var(--color-2);
+  color: var(--texto);
+  font-family: var(--serif);
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum";
+  -webkit-font-smoothing: antialiased;
+}
+[data-sec="xv-princesa-rosa--apertura"] img {
+  display: block;
+  max-width: 100%;
+}
+[data-sec="xv-princesa-rosa--apertura"] #fondo-fijo {
+  position: fixed;
+  top: 0px;
+  left: 50%;
+  z-index: 0;
+  width: min(100%, var(--ancho));
+  height: 100lvh;
+  translate: -50%;
+  pointer-events: none;
+  background: radial-gradient(120% 55% at 50% 0%, var(--color-21) 0%, var(--color-22) 62%), radial-gradient(90% 40% at 0% 100%, var(--color-13) 0%, transparent 70%), radial-gradient(90% 40% at 100% 100%, var(--color-13) 0%, transparent 70%), linear-gradient(var(--color-23) 0%, var(--color-24) 55%, var(--color-25) 100%);
+}
+[data-sec="xv-princesa-rosa--apertura"] #fondo-fijo.con-imagen {
+  background: var(--img) 50% 50% / cover no-repeat, var(--color-26);
+}
+[data-sec="xv-princesa-rosa--apertura"] #fondo-fijo.con-imagen::after {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  background: var(--color-27);
+}
+[data-sec="xv-princesa-rosa--apertura"].esperando #fondo-fijo {
+  display: none;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura {
+  position: fixed;
+  inset: 0px;
+  z-index: 100;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  background: var(--color-28);
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .relleno {
+  position: absolute;
+  inset: -40px;
+  filter: blur(18px) saturate(1.05);
+  transform: scale(1.06);
+  transition: opacity 0.6s;
+  background: url("data:image/webp;base64,UklGRsIAAABXRUJQVlA4ILYAAADwBgCdASobADAAPrVQoEynJKMiJWzI4BaJYwCxHyJMvI5APPXTCtFCV38Skc82VvL5/zD6NDKeEGMjwfZRgmQ4APwBX2Pq+44IQZvbwz6qIohA+BHakX7/sYcdIuUfTZFv29CFO2p5OiadJXk9V5ZPmcocmAN+eiSRag1ntwvQrYvt8HUAN4qyKgLp3gBKLbxVkIWVIeX9EhehFKViuAsHmkGkgj28PL2zzuULiL1OMCbVw3AAAA==") center center / cover no-repeat;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .escena {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100vw, 55.823svh);
+  aspect-ratio: 1438 / 2576;
+  translate: -50% -50%;
+  perspective: 1700px;
+  perspective-origin: 50% 55%;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .escena.lista {
+  opacity: 1;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .capa {
+  position: absolute;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .marco {
+  inset: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .puerta,
+[data-sec="xv-princesa-rosa--apertura"] #apertura .luz {
+  top: 12.4612%;
+  height: 87.5388%;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .luz {
+  left: 10.918%;
+  width: 78.164%;
+  z-index: 1;
+  opacity: 0;
+  border-radius: 50% 50% 0px 0px / 26% 26% 0px 0px;
+  background: radial-gradient(60% 45% at 50% 48%, var(--color-29) 0%, var(--color-30) 35%, var(--color-31) 100%);
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .puerta {
+  width: 39.082%;
+  z-index: 3;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .puerta img {
+  width: 100%;
+  height: 100%;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .puerta.izq {
+  left: 10.918%;
+  transform-origin: 0% 50%;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .puerta.der {
+  left: 50%;
+  transform-origin: 100% 50%;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .puerta::after {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  opacity: 0;
+  transition: opacity 1.9s cubic-bezier(0.55, 0.05, 0.3, 1) 0.5s;
+  mask: var(--mascara) center / 100% 100% no-repeat;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .puerta.izq::after {
+  background: linear-gradient(90deg, var(--color-14), var(--color-15));
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .puerta.der::after {
+  background: linear-gradient(270deg, var(--color-14), var(--color-15));
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .rendija {
+  left: 50%;
+  top: 13%;
+  height: 86%;
+  width: 1.4%;
+  translate: -50%;
+  z-index: 4;
+  mix-blend-mode: screen;
+  filter: blur(6px);
+  background: linear-gradient(var(--color-16), var(--color-32) 12%, var(--color-33) 88%, var(--color-16));
+  animation: 2.8s ease-in-out 0s infinite normal none running princesa-rosa__respira;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .sello {
+  left: 50%;
+  top: 50.1%;
+  width: 27%;
+  aspect-ratio: 1 / 1;
+  translate: -50% -50%;
+  z-index: 6;
+  border-radius: 50%;
+  animation: 2.4s ease-in-out 0s infinite normal none running princesa-rosa__latido;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .sello.cargado {
+  opacity: 1;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .sello img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(var(--color-34) 0px 0px 14px) drop-shadow(var(--color-35) 0px 8px 12px);
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .sello::before,
+[data-sec="xv-princesa-rosa--apertura"] #apertura .sello::after {
+  content: "";
+  position: absolute;
+  inset: -6%;
+  border-radius: 50%;
+  border: 2px solid var(--color-36);
+  box-shadow: var(--color-37) 0px 0px 16px;
+  animation: 2.4s ease-out 0s infinite normal none running princesa-rosa__anillo;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .sello::after {
+  animation-delay: 1.2s;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .sello.sin-imagen {
+  background: radial-gradient(circle at 35% 30%, var(--color-38) 0%, var(--color-39) 22%, var(--color-40) 55%, var(--color-41) 100%);
+  box-shadow: var(--color-42) 0px 0px 0px 3px inset, var(--color-43) 0px 8px 18px;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .sello.sin-imagen img {
+  display: none;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .sello.sin-imagen > b {
+  position: absolute;
+  inset: 22%;
+  background: var(--corona-respaldo) center / contain no-repeat;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .toca {
+  position: absolute;
+  left: 50%;
+  bottom: max(6%, env(safe-area-inset-bottom) + 18px);
+  translate: -50%;
+  z-index: 8;
+  padding: 0.6em 1.5em;
+  border-radius: 99px;
+  white-space: nowrap;
+  background: var(--color-44);
+  box-shadow: var(--color-17) 0px 4px 16px;
+  font: 600 clamp(12px, 3.5vw, 15px) var(--serif);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--rosa-titulo);
+  animation: 2.2s ease-in-out 1s infinite normal none running princesa-rosa__toca-pulso;
+  transition: opacity 0.4s;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura .destello {
+  position: absolute;
+  z-index: 6;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle, var(--color-1) 0%, var(--color-45) 35%, var(--color-46) 70%);
+  animation: 3.6s ease-in-out 0s infinite normal none running princesa-rosa__sube-destello;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura.tocado .toca {
+  animation: auto ease 0s 1 normal none running none;
+  opacity: 0;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura.abriendo .relleno {
+  opacity: 0;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura.abriendo .sello {
+  animation: auto ease 0s 1 normal none running none;
+  transition: transform 0.7s, opacity 0.6s;
+  transform: scale(1.25);
+  opacity: 0;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura.abriendo .sello::before,
+[data-sec="xv-princesa-rosa--apertura"] #apertura.abriendo .sello::after {
+  display: none;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura.abriendo .rendija {
+  mix-blend-mode: normal;
+  animation: 1.7s ease 0.2s 1 normal forwards running princesa-rosa__rendija-abre;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura.abriendo .puerta.izq {
+  transition: transform 2s cubic-bezier(0.55, 0.05, 0.3, 1) 0.5s;
+  transform: rotateY(84deg);
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura.abriendo .puerta.der {
+  transition: transform 2s cubic-bezier(0.55, 0.05, 0.3, 1) 0.5s;
+  transform: rotateY(-84deg);
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura.abriendo .puerta::after {
+  opacity: 1;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura.abriendo .luz {
+  animation: 2.4s ease 0.45s 1 normal forwards running princesa-rosa__rafaga;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura.abriendo .escena {
+  transition: opacity 0.5s, scale 1.5s cubic-bezier(0.5, 0, 0.3, 1) 1.5s;
+  scale: 1.35;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura.sin-zoom.abriendo .escena {
+  scale: 1;
+}
+[data-sec="xv-princesa-rosa--apertura"] #apertura.abriendo {
+  background: transparent;
+  transition: opacity 1.1s 1.8s, background 0.3s 0.4s;
+  opacity: 0;
+}
+[data-sec="xv-princesa-rosa--apertura"].muestra img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+[data-sec="xv-princesa-rosa--apertura"] #petalos {
+  position: fixed;
+  inset: 0px;
+  z-index: 90;
+  pointer-events: none;
+  overflow: hidden;
+}
+[data-sec="xv-princesa-rosa--apertura"] #petalos i {
+  position: absolute;
+  top: -8vh;
+  left: var(--x);
+  width: var(--t);
+  height: calc(var(--t) * 1.2);
+  border-radius: 70% 0px;
+  opacity: 0.8;
+  background: radial-gradient(circle at 30% 30%, var(--color-47), var(--color-48) 55%, var(--color-49));
+  animation: princesa-rosa__cae var(--d) linear var(--r) infinite;
+  will-change: transform;
+}
+[data-sec="xv-princesa-rosa--apertura"].esperando #petalos {
+  display: none;
+}
+@media (min-aspect-ratio: 3 / 4) {
+[data-sec="xv-princesa-rosa--apertura"] #apertura .escena {
+  width: calc(55.823svh);
+}
+}
+@media print {
+[data-sec="xv-princesa-rosa--apertura"].muestra * {
+  display: none !important;
+}
+}
+@media (prefers-reduced-motion: reduce) {
+[data-sec="xv-princesa-rosa--apertura"] *,
+[data-sec="xv-princesa-rosa--apertura"] ::before,
+[data-sec="xv-princesa-rosa--apertura"] ::after {
+  animation-duration: 0.01s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01s !important;
+  transition-delay: 0s !important;
+}
+[data-sec="xv-princesa-rosa--apertura"] #petalos {
+  display: none;
+}
+}
+@keyframes princesa-rosa__respira { 
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+@keyframes princesa-rosa__latido { 
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.045); }
+}
+@keyframes princesa-rosa__anillo { 
+  0% { transform: scale(0.9); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: scale(1.45); opacity: 0; }
+}
+@keyframes princesa-rosa__toca-pulso { 
+  0%, 100% { scale: 1; box-shadow: var(--color-17) 0px 4px 16px; }
+  50% { scale: 1.05; box-shadow: var(--color-50) 0px 4px 22px; }
+}
+@keyframes princesa-rosa__sube-destello { 
+  0% { opacity: 0; transform: translateY(0px) scale(0.6); }
+  40% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-40px) scale(1.2); }
+}
+@keyframes princesa-rosa__rendija-abre { 
+  0% { opacity: 0.8; width: 1.4%; }
+  35% { opacity: 1; width: 10%; }
+  100% { opacity: 0; width: 34%; }
+}
+@keyframes princesa-rosa__rafaga { 
+  0% { opacity: 0; }
+  30% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes princesa-rosa__cae { 
+  0% { transform: translate3d(0px, 0px, 0px) rotate(0deg); }
+  50% { transform: translate3d(var(--dx), 58vh, 0) rotate(260deg); }
+  100% { transform: translate3d(0px, 118vh, 0px) rotate(520deg); }
+}
+
+/* Princesa Rosa · portada (portada) — generado desde elegancia-de-amor/xv-princesa-rosa */
+@font-face { font-family: "Great Vibes"; font-weight: 400; font-display: swap; src: url("recursos/xv-princesa-rosa--portada/fuente-great-vibes.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-display: swap; src: url("recursos/xv-princesa-rosa--portada/fuente-cormorant-500.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--portada/fuente-cormorant-600.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-style: italic; font-display: swap; src: url("recursos/xv-princesa-rosa--portada/fuente-cormorant-500-italica.woff2") format("woff2"); }
+@font-face { font-family: Cinzel; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--portada/fuente-cinzel-600.woff2") format("woff2"); }
+[data-sec="xv-princesa-rosa--portada"] * {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+[data-sec="xv-princesa-rosa--portada"] {
+  background: var(--color-2);
+  color: var(--texto);
+  font-family: var(--serif);
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum";
+  -webkit-font-smoothing: antialiased;
+}
+[data-sec="xv-princesa-rosa--portada"] img {
+  display: block;
+  max-width: 100%;
+}
+[data-sec="xv-princesa-rosa--portada"] .invitacion {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--ancho);
+  margin: 0px auto;
+  container-type: inline-size;
+  overflow: hidden;
+  box-shadow: var(--color-3) 0px 0px 70px;
+}
+[data-sec="xv-princesa-rosa--portada"] section {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+[data-sec="xv-princesa-rosa--portada"] section > * {
+  position: relative;
+  z-index: 2;
+}
+[data-sec="xv-princesa-rosa--portada"].esperando .invitacion {
+  display: none;
+}
+[data-sec="xv-princesa-rosa--portada"] .destellos {
+  position: absolute;
+  inset: 0px;
+  z-index: 1;
+  pointer-events: none;
+}
+[data-sec="xv-princesa-rosa--portada"] .destellos i,
+[data-sec="xv-princesa-rosa--portada"] .estrella {
+  position: absolute;
+  width: var(--t, 10px);
+  aspect-ratio: 1 / 1;
+  opacity: 0;
+  background: radial-gradient(circle, var(--color-1) 0px, var(--color-1) 16%, var(--color-6) 30%, transparent 68%);
+  clip-path: polygon(50% 0px, 59% 41%, 100% 50%, 59% 59%, 50% 100%, 41% 59%, 0px 50%, 41% 41%);
+  animation: princesa-rosa__titila var(--d, 3s) var(--r, 0s) ease-in-out infinite;
+}
+[data-sec="xv-princesa-rosa--portada"] .mariposa {
+  position: absolute;
+  z-index: 4;
+  width: var(--w, 10cqw);
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  perspective: 40cqw;
+  animation: princesa-rosa__vuela var(--d, 16s) var(--r, 0s) ease-in-out infinite;
+}
+[data-sec="xv-princesa-rosa--portada"] .mariposa .cuerpo {
+  position: absolute;
+  inset: 0px;
+  transform: rotateX(48deg) rotateZ(var(--giro, -18deg));
+  transform-style: preserve-3d;
+}
+[data-sec="xv-princesa-rosa--portada"] .mariposa i {
+  position: absolute;
+  inset: 0px;
+  background: var(--img-mariposa) center / contain no-repeat;
+  filter: drop-shadow(var(--color-11) 0px 0px 4px);
+}
+[data-sec="xv-princesa-rosa--portada"] .mariposa i:first-child {
+  clip-path: inset(0px 50% 0px 0px);
+  animation: 0.34s ease-in-out 0s infinite alternate none running princesa-rosa__ala-izq;
+}
+[data-sec="xv-princesa-rosa--portada"] .mariposa i:last-child {
+  clip-path: inset(0px 0px 0px 50%);
+  animation: 0.34s ease-in-out 0s infinite alternate none running princesa-rosa__ala-der;
+}
+[data-sec="xv-princesa-rosa--portada"] .caps {
+  font: 600 3.5cqw/1.4 var(--caps);
+  letter-spacing: 0.16em;
+  padding-left: 0.16em;
+  text-transform: uppercase;
+  color: var(--oro-osc);
+}
+[data-sec="xv-princesa-rosa--portada"] .corona {
+  width: var(--cw, 22cqw);
+  aspect-ratio: 100 / 70;
+  margin: 0px auto;
+  background: var(--img-corona, var(--corona-respaldo)) center / contain no-repeat;
+  filter: drop-shadow(var(--color-4) 0px 3px 4px);
+}
+[data-sec="xv-princesa-rosa--portada"] #portada {
+  min-height: 100svh;
+  aspect-ratio: 720 / 1290;
+}
+[data-sec="xv-princesa-rosa--portada"] #portada.sin-imagen {
+  background: radial-gradient(52% 44%, var(--color-51) 0%, var(--color-52) 42%, var(--color-53) 78%, var(--color-54) 100%);
+}
+[data-sec="xv-princesa-rosa--portada"] #portada.sin-imagen .velo {
+  display: none;
+}
+[data-sec="xv-princesa-rosa--portada"] #portada.sin-imagen .encabezado {
+  top: 34%;
+}
+[data-sec="xv-princesa-rosa--portada"] #portada .fecha-portada {
+  display: none;
+  margin-top: 4cqw;
+  opacity: 0;
+}
+[data-sec="xv-princesa-rosa--portada"] #portada.sin-imagen .fecha-portada {
+  display: block;
+}
+[data-sec="xv-princesa-rosa--portada"] #portada.visible .fecha-portada {
+  animation: 0.9s ease-out 1.6s 1 normal forwards running princesa-rosa__sube;
+}
+[data-sec="xv-princesa-rosa--portada"] #portada.sin-imagen .baja {
+  bottom: 9cqw;
+}
+[data-sec="xv-princesa-rosa--portada"] #portada .portada-img {
+  position: absolute;
+  inset: 0px;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 35%;
+  transform: scale(1.08);
+  mask-image: linear-gradient(var(--color-55) 82%, transparent);
+}
+[data-sec="xv-princesa-rosa--portada"] #portada.visible .portada-img {
+  animation: 9s ease-out 0s 1 normal forwards running princesa-rosa__acerca;
+}
+[data-sec="xv-princesa-rosa--portada"] #portada .velo {
+  position: absolute;
+  inset: 0px 0px auto;
+  z-index: 1;
+  height: 62cqw;
+  background: linear-gradient(var(--color-56), transparent);
+}
+[data-sec="xv-princesa-rosa--portada"] #portada .encabezado {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 10cqw;
+  z-index: 3;
+}
+[data-sec="xv-princesa-rosa--portada"] #portada .corona {
+  --cw: 20cqw;
+  opacity: 0;
+  transform: translateY(-4cqw);
+}
+[data-sec="xv-princesa-rosa--portada"] #portada:not(.sin-imagen) .corona {
+  display: none;
+}
+[data-sec="xv-princesa-rosa--portada"] #portada:not(.sin-imagen) .encabezado {
+  top: 5cqw;
+}
+[data-sec="xv-princesa-rosa--portada"] #portada:not(.sin-imagen) .nombre {
+  width: 80cqw;
+}
+[data-sec="xv-princesa-rosa--portada"] #portada .nombre {
+  width: 86cqw;
+  min-height: 22cqw;
+  margin: 1cqw auto 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transform: scale(0.9);
+}
+[data-sec="xv-princesa-rosa--portada"] .nombre {
+  position: relative;
+}
+[data-sec="xv-princesa-rosa--portada"] .nombre img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(var(--color-57) 0px 2px 3px);
+}
+[data-sec="xv-princesa-rosa--portada"] #portada .arriba {
+  margin-top: 1cqw;
+  font: 600 5cqw/1 var(--caps);
+  letter-spacing: 0.24em;
+  padding-left: 0.24em;
+  text-transform: uppercase;
+  color: var(--rosa-titulo);
+  text-shadow: var(--color-58) 0px 0px 10px, var(--color-59) 0px 0px 2px;
+  opacity: 0;
+  transform: translateY(3cqw);
+}
+[data-sec="xv-princesa-rosa--portada"] #portada.visible .corona {
+  animation: 1s ease-out 0.1s 1 normal forwards running princesa-rosa__sube;
+}
+[data-sec="xv-princesa-rosa--portada"] #portada.visible .nombre {
+  animation: 1.3s cubic-bezier(0.2, 0.8, 0.3, 1) 0.4s 1 normal forwards running princesa-rosa__aparece-nombre;
+}
+[data-sec="xv-princesa-rosa--portada"] #portada.visible .arriba {
+  animation: 0.9s ease-out 1.2s 1 normal forwards running princesa-rosa__sube;
+}
+[data-sec="xv-princesa-rosa--portada"] .estrella {
+  z-index: 3;
+}
+[data-sec="xv-princesa-rosa--portada"] #portada .baja {
+  position: absolute;
+  left: 50%;
+  bottom: 6cqw;
+  z-index: 4;
+  translate: -50%;
+  font: 600 3cqw/1 var(--caps);
+  letter-spacing: 0.25em;
+  padding-left: 0.25em;
+  text-transform: uppercase;
+  color: var(--rosa-titulo);
+  text-shadow: var(--color-1) 0px 0px 6px, var(--color-1) 0px 0px 2px;
+  animation: 2s ease-in-out 0s infinite normal none running princesa-rosa__flota;
+}
+[data-sec="xv-princesa-rosa--portada"] #portada .baja::after {
+  content: "";
+  display: block;
+  width: 2.6cqw;
+  height: 2.6cqw;
+  margin: 2cqw auto 0px;
+  border-right: 2px solid var(--oro);
+  border-bottom: 2px solid var(--oro);
+  transform: rotate(45deg);
+}
+[data-sec="xv-princesa-rosa--portada"].muestra img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+@media print {
+[data-sec="xv-princesa-rosa--portada"].muestra * {
+  display: none !important;
+}
+}
+@media (prefers-reduced-motion: reduce) {
+[data-sec="xv-princesa-rosa--portada"] *,
+[data-sec="xv-princesa-rosa--portada"] ::before,
+[data-sec="xv-princesa-rosa--portada"] ::after {
+  animation-duration: 0.01s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01s !important;
+  transition-delay: 0s !important;
+}
+}
+@keyframes princesa-rosa__ala-izq { 
+  0% { transform: rotateY(-8deg); }
+  100% { transform: rotateY(68deg); }
+}
+@keyframes princesa-rosa__ala-der { 
+  0% { transform: rotateY(8deg); }
+  100% { transform: rotateY(-68deg); }
+}
+@keyframes princesa-rosa__sube { 
+  100% { opacity: 1; transform: none; }
+}
+@keyframes princesa-rosa__acerca { 
+  100% { transform: scale(1); }
+}
+@keyframes princesa-rosa__aparece-nombre { 
+  100% { opacity: 1; transform: none; }
+}
+@keyframes princesa-rosa__flota { 
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(1.6cqw); }
+}
+@keyframes princesa-rosa__titila { 
+  0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(45deg); }
+}
+@keyframes princesa-rosa__vuela { 
+  0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+  25% { transform: translate(var(--x1, 12cqw), var(--y1, -10cqw)) rotate(8deg); }
+  50% { transform: translate(var(--x2, 26cqw), var(--y2, 4cqw)) rotate(-6deg); }
+  75% { transform: translate(var(--x3, 10cqw), var(--y3, 12cqw)) rotate(5deg); }
+}
+
+/* Princesa Rosa · historia (mensaje) — generado desde elegancia-de-amor/xv-princesa-rosa */
+@font-face { font-family: "Great Vibes"; font-weight: 400; font-display: swap; src: url("recursos/xv-princesa-rosa--mensaje/fuente-great-vibes.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-display: swap; src: url("recursos/xv-princesa-rosa--mensaje/fuente-cormorant-500.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--mensaje/fuente-cormorant-600.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-style: italic; font-display: swap; src: url("recursos/xv-princesa-rosa--mensaje/fuente-cormorant-500-italica.woff2") format("woff2"); }
+@font-face { font-family: Cinzel; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--mensaje/fuente-cinzel-600.woff2") format("woff2"); }
+[data-sec="xv-princesa-rosa--mensaje"] * {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+[data-sec="xv-princesa-rosa--mensaje"] {
+  background: var(--color-2);
+  color: var(--texto);
+  font-family: var(--serif);
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum";
+  -webkit-font-smoothing: antialiased;
+}
+[data-sec="xv-princesa-rosa--mensaje"] img {
+  display: block;
+  max-width: 100%;
+}
+[data-sec="xv-princesa-rosa--mensaje"] .invitacion {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--ancho);
+  margin: 0px auto;
+  container-type: inline-size;
+  overflow: hidden;
+  box-shadow: var(--color-3) 0px 0px 70px;
+}
+[data-sec="xv-princesa-rosa--mensaje"] section {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+[data-sec="xv-princesa-rosa--mensaje"] section > * {
+  position: relative;
+  z-index: 2;
+}
+[data-sec="xv-princesa-rosa--mensaje"].esperando .invitacion {
+  display: none;
+}
+[data-sec="xv-princesa-rosa--mensaje"] .destellos {
+  position: absolute;
+  inset: 0px;
+  z-index: 1;
+  pointer-events: none;
+}
+[data-sec="xv-princesa-rosa--mensaje"] .destellos i {
+  position: absolute;
+  width: var(--t, 10px);
+  aspect-ratio: 1 / 1;
+  opacity: 0;
+  background: radial-gradient(circle, var(--color-1) 0px, var(--color-1) 16%, var(--color-6) 30%, transparent 68%);
+  clip-path: polygon(50% 0px, 59% 41%, 100% 50%, 59% 59%, 50% 100%, 41% 59%, 0px 50%, 41% 41%);
+  animation: princesa-rosa__titila var(--d, 3s) var(--r, 0s) ease-in-out infinite;
+}
+[data-sec="xv-princesa-rosa--mensaje"] .corona {
+  width: var(--cw, 22cqw);
+  aspect-ratio: 100 / 70;
+  margin: 0px auto;
+  background: var(--img-corona, var(--corona-respaldo)) center / contain no-repeat;
+  filter: drop-shadow(var(--color-4) 0px 3px 4px);
+}
+[data-sec="xv-princesa-rosa--mensaje"] .revela {
+  opacity: 0;
+  transform: translateY(8cqw);
+  transition: opacity 0.9s, transform 0.9s;
+}
+[data-sec="xv-princesa-rosa--mensaje"] .revela.visible {
+  opacity: 1;
+  transform: none;
+}
+[data-sec="xv-princesa-rosa--mensaje"] .guirnalda {
+  position: absolute;
+  top: 0px;
+  left: -3cqw;
+  z-index: 4;
+  width: 106cqw;
+  height: auto;
+  pointer-events: none;
+  transform-origin: 50% 0px;
+  animation: 7s ease-in-out 0s infinite alternate none running princesa-rosa__mece;
+}
+[data-sec="xv-princesa-rosa--mensaje"] #mensaje {
+  padding: 34cqw 0px 6cqw;
+  overflow: visible;
+}
+[data-sec="xv-princesa-rosa--mensaje"] .marco-arco {
+  position: relative;
+  width: 92cqw;
+  margin: 0px auto;
+}
+[data-sec="xv-princesa-rosa--mensaje"] .marco-arco .relleno {
+  position: absolute;
+  z-index: 1;
+  border-radius: 50% 50% 3% 3% / 25% 25% 3% 3%;
+  background: linear-gradient(var(--color-60) 0%, var(--color-61) 100%);
+}
+[data-sec="xv-princesa-rosa--mensaje"] .marco-arco .marco-img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(var(--color-62) 0px 10px 16px);
+}
+[data-sec="xv-princesa-rosa--mensaje"] .marco-arco .texto {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 1cqw;
+}
+[data-sec="xv-princesa-rosa--mensaje"] .marco-arco .texto p {
+  font: italic 500 5cqw/1.45 var(--serif);
+  color: var(--texto);
+}
+[data-sec="xv-princesa-rosa--mensaje"] .marco-arco .firma {
+  margin-top: 3cqw;
+  font-variant-ligatures: !important;
+  font-variant-caps: !important;
+  font-variant-numeric: !important;
+  font-variant-east-asian: !important;
+  font-variant-alternates: !important;
+  font-variant-position: !important;
+  font-variant-emoji: !important;
+  font-weight: !important;
+  font-stretch: !important;
+  font-size: !important;
+  line-height: !important;
+  font-family: !important;
+  font-optical-sizing: !important;
+  font-size-adjust: !important;
+  font-kerning: !important;
+  font-feature-settings: !important;
+  font-variation-settings: !important;
+  font-language-override: !important;
+  font-style: normal !important;
+  color: var(--rosa-titulo) !important;
+}
+[data-sec="xv-princesa-rosa--mensaje"] .marco-arco.sin-marco {
+  width: 84cqw;
+  padding: 30cqw 8cqw 15cqw;
+  border-radius: 42cqw 42cqw 3cqw 3cqw / 36cqw 36cqw 3cqw 3cqw;
+  background: var(--panel);
+  box-shadow: 0 0 0 1.6px var(--oro), 0 0 0 5px var(--color-5), 0 0 0 6.4px var(--oro), 0 18px 36px var(--color-63);
+}
+[data-sec="xv-princesa-rosa--mensaje"] .marco-arco.sin-marco::before {
+  content: "";
+  position: absolute;
+  inset: 2.8cqw;
+  z-index: 1;
+  border: 1.4px solid var(--oro);
+  border-radius: 39cqw 39cqw 1.6cqw 1.6cqw / 33cqw 33cqw 1.6cqw 1.6cqw;
+  pointer-events: none;
+}
+[data-sec="xv-princesa-rosa--mensaje"] .marco-arco.sin-marco .relleno,
+[data-sec="xv-princesa-rosa--mensaje"] .marco-arco.sin-marco .marco-img {
+  display: none;
+}
+[data-sec="xv-princesa-rosa--mensaje"] .marco-arco.sin-marco .texto {
+  position: relative;
+  padding: 0px;
+}
+[data-sec="xv-princesa-rosa--mensaje"] .marco-arco .corona-arco {
+  position: absolute;
+  z-index: 4;
+  left: 50%;
+  top: 8cqw;
+  translate: -50%;
+  --cw: 24cqw;
+  display: none;
+}
+[data-sec="xv-princesa-rosa--mensaje"] .marco-arco.sin-marco .corona-arco {
+  display: block;
+}
+[data-sec="xv-princesa-rosa--mensaje"].muestra img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+@media print {
+[data-sec="xv-princesa-rosa--mensaje"].muestra * {
+  display: none !important;
+}
+}
+@media (prefers-reduced-motion: reduce) {
+[data-sec="xv-princesa-rosa--mensaje"] *,
+[data-sec="xv-princesa-rosa--mensaje"] ::before,
+[data-sec="xv-princesa-rosa--mensaje"] ::after {
+  animation-duration: 0.01s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01s !important;
+  transition-delay: 0s !important;
+}
+}
+@keyframes princesa-rosa__mece { 
+  0% { transform: rotate(-0.5deg); }
+  100% { transform: rotate(0.5deg); }
+}
+@keyframes princesa-rosa__titila { 
+  0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(45deg); }
+}
+
+/* Princesa Rosa · padres (padres) — generado desde elegancia-de-amor/xv-princesa-rosa */
+@font-face { font-family: "Great Vibes"; font-weight: 400; font-display: swap; src: url("recursos/xv-princesa-rosa--padres/fuente-great-vibes.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-display: swap; src: url("recursos/xv-princesa-rosa--padres/fuente-cormorant-500.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--padres/fuente-cormorant-600.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-style: italic; font-display: swap; src: url("recursos/xv-princesa-rosa--padres/fuente-cormorant-500-italica.woff2") format("woff2"); }
+@font-face { font-family: Cinzel; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--padres/fuente-cinzel-600.woff2") format("woff2"); }
+[data-sec="xv-princesa-rosa--padres"] * {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+[data-sec="xv-princesa-rosa--padres"] {
+  background: var(--color-2);
+  color: var(--texto);
+  font-family: var(--serif);
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum";
+  -webkit-font-smoothing: antialiased;
+}
+[data-sec="xv-princesa-rosa--padres"] .invitacion {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--ancho);
+  margin: 0px auto;
+  container-type: inline-size;
+  overflow: hidden;
+  box-shadow: var(--color-3) 0px 0px 70px;
+}
+[data-sec="xv-princesa-rosa--padres"] section {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+[data-sec="xv-princesa-rosa--padres"] section > * {
+  position: relative;
+  z-index: 2;
+}
+[data-sec="xv-princesa-rosa--padres"].esperando .invitacion {
+  display: none;
+}
+[data-sec="xv-princesa-rosa--padres"] .destellos {
+  position: absolute;
+  inset: 0px;
+  z-index: 1;
+  pointer-events: none;
+}
+[data-sec="xv-princesa-rosa--padres"] .destellos i {
+  position: absolute;
+  width: var(--t, 10px);
+  aspect-ratio: 1 / 1;
+  opacity: 0;
+  background: radial-gradient(circle, var(--color-1) 0px, var(--color-1) 16%, var(--color-6) 30%, transparent 68%);
+  clip-path: polygon(50% 0px, 59% 41%, 100% 50%, 59% 59%, 50% 100%, 41% 59%, 0px 50%, 41% 41%);
+  animation: princesa-rosa__titila var(--d, 3s) var(--r, 0s) ease-in-out infinite;
+}
+[data-sec="xv-princesa-rosa--padres"] .intro {
+  font: italic 500 5.2cqw/1.4 var(--serif);
+  color: var(--texto);
+}
+[data-sec="xv-princesa-rosa--padres"] .caps {
+  font: 600 3.5cqw/1.4 var(--caps);
+  letter-spacing: 0.16em;
+  padding-left: 0.16em;
+  text-transform: uppercase;
+  color: var(--oro-osc);
+}
+[data-sec="xv-princesa-rosa--padres"] .adorno {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.4cqw;
+  width: 56cqw;
+  margin: 5cqw auto;
+}
+[data-sec="xv-princesa-rosa--padres"] .adorno::before,
+[data-sec="xv-princesa-rosa--padres"] .adorno::after {
+  content: "";
+  flex: 1 1 0%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--oro));
+}
+[data-sec="xv-princesa-rosa--padres"] .adorno::after {
+  background: linear-gradient(270deg, transparent, var(--oro));
+}
+[data-sec="xv-princesa-rosa--padres"] .adorno i {
+  width: 2.6cqw;
+  aspect-ratio: 1 / 1;
+  rotate: 45deg;
+  background: linear-gradient(135deg, var(--color-64), var(--oro) 60%, var(--color-65));
+}
+[data-sec="xv-princesa-rosa--padres"] .corona {
+  width: var(--cw, 22cqw);
+  aspect-ratio: 100 / 70;
+  margin: 0px auto;
+  background: var(--img-corona, var(--corona-respaldo)) center / contain no-repeat;
+  filter: drop-shadow(var(--color-4) 0px 3px 4px);
+}
+[data-sec="xv-princesa-rosa--padres"] .revela {
+  opacity: 0;
+  transform: translateY(8cqw);
+  transition: opacity 0.9s, transform 0.9s;
+}
+[data-sec="xv-princesa-rosa--padres"] .revela.visible {
+  opacity: 1;
+  transform: none;
+}
+[data-sec="xv-princesa-rosa--padres"] #padres {
+  padding: 12cqw 8cqw 6cqw;
+}
+[data-sec="xv-princesa-rosa--padres"] #padres .corona {
+  --cw: 18cqw;
+  margin-bottom: 4cqw;
+}
+[data-sec="xv-princesa-rosa--padres"] #padres .intro {
+  max-width: 76cqw;
+  margin: 0px auto;
+}
+[data-sec="xv-princesa-rosa--padres"] .nombres {
+  margin-top: 3cqw;
+  font: 400 10.4cqw/1.15 var(--script);
+  color: var(--rosa-titulo);
+}
+[data-sec="xv-princesa-rosa--padres"] .nombres .y {
+  display: block;
+  font-size: 0.7em;
+  line-height: 1;
+  color: var(--oro);
+}
+[data-sec="xv-princesa-rosa--padres"] #padrinos-caja .nombres {
+  font-size: 9cqw;
+}
+[data-sec="xv-princesa-rosa--padres"] #padres .invito {
+  max-width: 74cqw;
+  margin: 8cqw auto 0px;
+}
+@media print {
+[data-sec="xv-princesa-rosa--padres"].muestra * {
+  display: none !important;
+}
+}
+@media (prefers-reduced-motion: reduce) {
+[data-sec="xv-princesa-rosa--padres"] *,
+[data-sec="xv-princesa-rosa--padres"] ::before,
+[data-sec="xv-princesa-rosa--padres"] ::after {
+  animation-duration: 0.01s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01s !important;
+  transition-delay: 0s !important;
+}
+}
+@keyframes princesa-rosa__titila { 
+  0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(45deg); }
+}
+
+/* Princesa Rosa · cuenta-regresiva (cuenta) — generado desde elegancia-de-amor/xv-princesa-rosa */
+@font-face { font-family: "Great Vibes"; font-weight: 400; font-display: swap; src: url("recursos/xv-princesa-rosa--cuenta/fuente-great-vibes.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-display: swap; src: url("recursos/xv-princesa-rosa--cuenta/fuente-cormorant-500.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--cuenta/fuente-cormorant-600.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-style: italic; font-display: swap; src: url("recursos/xv-princesa-rosa--cuenta/fuente-cormorant-500-italica.woff2") format("woff2"); }
+@font-face { font-family: Cinzel; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--cuenta/fuente-cinzel-600.woff2") format("woff2"); }
+[data-sec="xv-princesa-rosa--cuenta"] * {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+[data-sec="xv-princesa-rosa--cuenta"] {
+  background: var(--color-2);
+  color: var(--texto);
+  font-family: var(--serif);
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum";
+  -webkit-font-smoothing: antialiased;
+}
+[data-sec="xv-princesa-rosa--cuenta"] .invitacion {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--ancho);
+  margin: 0px auto;
+  container-type: inline-size;
+  overflow: hidden;
+  box-shadow: var(--color-3) 0px 0px 70px;
+}
+[data-sec="xv-princesa-rosa--cuenta"] section {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+[data-sec="xv-princesa-rosa--cuenta"] section > * {
+  position: relative;
+  z-index: 2;
+}
+[data-sec="xv-princesa-rosa--cuenta"].esperando .invitacion {
+  display: none;
+}
+[data-sec="xv-princesa-rosa--cuenta"] .destellos {
+  position: absolute;
+  inset: 0px;
+  z-index: 1;
+  pointer-events: none;
+}
+[data-sec="xv-princesa-rosa--cuenta"] .destellos i {
+  position: absolute;
+  width: var(--t, 10px);
+  aspect-ratio: 1 / 1;
+  opacity: 0;
+  background: radial-gradient(circle, var(--color-1) 0px, var(--color-1) 16%, var(--color-6) 30%, transparent 68%);
+  clip-path: polygon(50% 0px, 59% 41%, 100% 50%, 59% 59%, 50% 100%, 41% 59%, 0px 50%, 41% 41%);
+  animation: princesa-rosa__titila var(--d, 3s) var(--r, 0s) ease-in-out infinite;
+}
+[data-sec="xv-princesa-rosa--cuenta"] .mariposa {
+  position: absolute;
+  z-index: 4;
+  width: var(--w, 10cqw);
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  perspective: 40cqw;
+  animation: princesa-rosa__vuela var(--d, 16s) var(--r, 0s) ease-in-out infinite;
+}
+[data-sec="xv-princesa-rosa--cuenta"] .mariposa .cuerpo {
+  position: absolute;
+  inset: 0px;
+  transform: rotateX(48deg) rotateZ(var(--giro, -18deg));
+  transform-style: preserve-3d;
+}
+[data-sec="xv-princesa-rosa--cuenta"] .mariposa i {
+  position: absolute;
+  inset: 0px;
+  background: var(--img-mariposa) center / contain no-repeat;
+  filter: drop-shadow(var(--color-11) 0px 0px 4px);
+}
+[data-sec="xv-princesa-rosa--cuenta"] .mariposa i:first-child {
+  clip-path: inset(0px 50% 0px 0px);
+  animation: 0.34s ease-in-out 0s infinite alternate none running princesa-rosa__ala-izq;
+}
+[data-sec="xv-princesa-rosa--cuenta"] .mariposa i:last-child {
+  clip-path: inset(0px 0px 0px 50%);
+  animation: 0.34s ease-in-out 0s infinite alternate none running princesa-rosa__ala-der;
+}
+[data-sec="xv-princesa-rosa--cuenta"] .titulo-script {
+  font: 400 var(--tam, 12cqw)/1.15 var(--script);
+  color: var(--rosa-titulo);
+  padding: 0px 0.12em;
+}
+[data-sec="xv-princesa-rosa--cuenta"] .revela {
+  opacity: 0;
+  transform: translateY(8cqw);
+  transition: opacity 0.9s, transform 0.9s;
+}
+[data-sec="xv-princesa-rosa--cuenta"] .revela.visible {
+  opacity: 1;
+  transform: none;
+}
+[data-sec="xv-princesa-rosa--cuenta"] #cuenta {
+  padding-top: 20cqw;
+}
+[data-sec="xv-princesa-rosa--cuenta"] #cuenta .titulo-script {
+  --tam: 13cqw;
+  text-shadow: var(--color-12) 0px 0px 14px, var(--color-18) 0px 0px 4px;
+}
+[data-sec="xv-princesa-rosa--cuenta"] .contador {
+  display: flex;
+  justify-content: center;
+  gap: 3.2cqw;
+  margin: 4cqw auto 0px;
+}
+[data-sec="xv-princesa-rosa--cuenta"] .contador > div {
+  width: 18.6cqw;
+  padding: 7cqw 0px 3.6cqw;
+  border-radius: 9.3cqw 9.3cqw 1.6cqw 1.6cqw / 8cqw 8cqw 1.6cqw 1.6cqw;
+  background: var(--panel);
+  box-shadow: 0 0 0 1.4px var(--oro), 0 0 0 3.4px var(--color-5), 0 0 0 4.6px var(--oro), 0 8px 18px var(--color-7);
+}
+[data-sec="xv-princesa-rosa--cuenta"] .contador b {
+  display: block;
+  font-style: ;
+  font-variant-ligatures: ;
+  font-variant-caps: ;
+  font-variant-east-asian: ;
+  font-variant-alternates: ;
+  font-variant-position: ;
+  font-variant-emoji: ;
+  font-weight: ;
+  font-stretch: ;
+  font-size: ;
+  line-height: ;
+  font-family: ;
+  font-optical-sizing: ;
+  font-size-adjust: ;
+  font-kerning: ;
+  font-variation-settings: ;
+  font-language-override: ;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum", "tnum";
+  color: var(--rosa-titulo);
+}
+[data-sec="xv-princesa-rosa--cuenta"] .contador span {
+  display: block;
+  margin-top: 2cqw;
+  font: 600 2.5cqw/1 var(--caps);
+  letter-spacing: 0.1em;
+  padding-left: 0.1em;
+  text-transform: uppercase;
+  color: var(--oro-osc);
+}
+[data-sec="xv-princesa-rosa--cuenta"] .contador.fin {
+  display: block;
+}
+@media print {
+[data-sec="xv-princesa-rosa--cuenta"].muestra * {
+  display: none !important;
+}
+}
+@media (prefers-reduced-motion: reduce) {
+[data-sec="xv-princesa-rosa--cuenta"] *,
+[data-sec="xv-princesa-rosa--cuenta"] ::before,
+[data-sec="xv-princesa-rosa--cuenta"] ::after {
+  animation-duration: 0.01s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01s !important;
+  transition-delay: 0s !important;
+}
+}
+@keyframes princesa-rosa__ala-izq { 
+  0% { transform: rotateY(-8deg); }
+  100% { transform: rotateY(68deg); }
+}
+@keyframes princesa-rosa__ala-der { 
+  0% { transform: rotateY(8deg); }
+  100% { transform: rotateY(-68deg); }
+}
+@keyframes princesa-rosa__titila { 
+  0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(45deg); }
+}
+@keyframes princesa-rosa__vuela { 
+  0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+  25% { transform: translate(var(--x1, 12cqw), var(--y1, -10cqw)) rotate(8deg); }
+  50% { transform: translate(var(--x2, 26cqw), var(--y2, 4cqw)) rotate(-6deg); }
+  75% { transform: translate(var(--x3, 10cqw), var(--y3, 12cqw)) rotate(5deg); }
+}
+
+/* Princesa Rosa · fecha (fecha) — generado desde elegancia-de-amor/xv-princesa-rosa */
+@font-face { font-family: "Great Vibes"; font-weight: 400; font-display: swap; src: url("recursos/xv-princesa-rosa--fecha/fuente-great-vibes.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-display: swap; src: url("recursos/xv-princesa-rosa--fecha/fuente-cormorant-500.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--fecha/fuente-cormorant-600.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-style: italic; font-display: swap; src: url("recursos/xv-princesa-rosa--fecha/fuente-cormorant-500-italica.woff2") format("woff2"); }
+@font-face { font-family: Cinzel; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--fecha/fuente-cinzel-600.woff2") format("woff2"); }
+[data-sec="xv-princesa-rosa--fecha"] * {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+[data-sec="xv-princesa-rosa--fecha"] {
+  background: var(--color-2);
+  color: var(--texto);
+  font-family: var(--serif);
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum";
+  -webkit-font-smoothing: antialiased;
+}
+[data-sec="xv-princesa-rosa--fecha"] img {
+  display: block;
+  max-width: 100%;
+}
+[data-sec="xv-princesa-rosa--fecha"] .invitacion {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--ancho);
+  margin: 0px auto;
+  container-type: inline-size;
+  overflow: hidden;
+  box-shadow: var(--color-3) 0px 0px 70px;
+}
+[data-sec="xv-princesa-rosa--fecha"] section {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+[data-sec="xv-princesa-rosa--fecha"] section > * {
+  position: relative;
+  z-index: 2;
+}
+[data-sec="xv-princesa-rosa--fecha"].esperando .invitacion {
+  display: none;
+}
+[data-sec="xv-princesa-rosa--fecha"] .titulo-script {
+  font: 400 var(--tam, 12cqw)/1.15 var(--script);
+  color: var(--rosa-titulo);
+  padding: 0px 0.12em;
+}
+[data-sec="xv-princesa-rosa--fecha"] .corona {
+  width: var(--cw, 22cqw);
+  aspect-ratio: 100 / 70;
+  margin: 0px auto;
+  background: var(--img-corona, var(--corona-respaldo)) center / contain no-repeat;
+  filter: drop-shadow(var(--color-4) 0px 3px 4px);
+}
+[data-sec="xv-princesa-rosa--fecha"] .revela {
+  opacity: 0;
+  transform: translateY(8cqw);
+  transition: opacity 0.9s, transform 0.9s;
+}
+[data-sec="xv-princesa-rosa--fecha"] .revela.visible {
+  opacity: 1;
+  transform: none;
+}
+[data-sec="xv-princesa-rosa--fecha"] .bloque {
+  padding: 22cqw 0px 0px;
+  overflow: visible;
+}
+[data-sec="xv-princesa-rosa--fecha"] .panel {
+  position: relative;
+  width: 82cqw;
+  margin: 0px auto;
+  padding: 14cqw 7cqw;
+  border-radius: 41cqw 41cqw 3cqw 3cqw / 30cqw 30cqw 3cqw 3cqw;
+  background: var(--panel);
+  box-shadow: 0 0 0 1.6px var(--oro), 0 0 0 5px var(--color-5), 0 0 0 6.4px var(--oro), 0 18px 36px var(--color-7);
+}
+[data-sec="xv-princesa-rosa--fecha"] .panel::before {
+  content: "";
+  position: absolute;
+  inset: 2.6cqw;
+  z-index: 0;
+  border: 1.4px solid var(--oro);
+  border-radius: 38.4cqw 38.4cqw 1.6cqw 1.6cqw / 27.4cqw 27.4cqw 1.6cqw 1.6cqw;
+  pointer-events: none;
+}
+[data-sec="xv-princesa-rosa--fecha"] .panel > * {
+  position: relative;
+  z-index: 1;
+}
+[data-sec="xv-princesa-rosa--fecha"] .panel > .corona {
+  position: absolute;
+  left: 50%;
+  top: -10cqw;
+  translate: -50%;
+  --cw: 24cqw;
+  z-index: 3;
+}
+[data-sec="xv-princesa-rosa--fecha"] .panel .esq {
+  position: absolute;
+  z-index: 0;
+  bottom: 3.4cqw;
+  right: 3.4cqw;
+  width: 19cqw;
+  aspect-ratio: 300 / 355;
+  background: var(--img-esquina) center / contain no-repeat;
+  pointer-events: none;
+}
+[data-sec="xv-princesa-rosa--fecha"] .panel .esq.izq {
+  right: auto;
+  left: 3.4cqw;
+  scale: -1 1;
+}
+[data-sec="xv-princesa-rosa--fecha"] .panel:has(.esq) {
+  padding-bottom: 21cqw;
+}
+[data-sec="xv-princesa-rosa--fecha"] .panel .titulo-script {
+  --tam: 11cqw;
+}
+[data-sec="xv-princesa-rosa--fecha"] .icono {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--iw, 30cqw);
+  margin: 0px auto 2cqw;
+}
+[data-sec="xv-princesa-rosa--fecha"] .icono img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(var(--color-8) 0px 4px 6px);
+}
+[data-sec="xv-princesa-rosa--fecha"] .icono svg {
+  width: 21cqw;
+  height: 21cqw;
+  padding: 4.4cqw;
+  border-radius: 50%;
+  background: var(--color-9);
+  box-shadow: 0 0 0 1.4px var(--oro), 0 0 0 2.8cqw var(--color-10);
+  fill: none;
+  stroke: var(--oro-osc);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+[data-sec="xv-princesa-rosa--fecha"] .icono.con-imagen svg {
+  display: none;
+}
+[data-sec="xv-princesa-rosa--fecha"] #fecha .mes {
+  margin-top: 2cqw;
+  font: 400 12cqw/1 var(--script);
+  color: var(--rosa-titulo);
+}
+[data-sec="xv-princesa-rosa--fecha"] .fecha-fila {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3cqw;
+  margin-top: 2cqw;
+}
+[data-sec="xv-princesa-rosa--fecha"] .fecha-fila .lado {
+  width: 21cqw;
+  padding: 2.2cqw 0px 2.2cqw 0.12em;
+  border-top: 1.5px solid var(--oro);
+  border-bottom: 1.5px solid var(--oro);
+  font: 600 3.7cqw/1 var(--caps);
+  letter-spacing: 0.12em;
+  color: var(--oro-osc);
+  text-transform: uppercase;
+}
+[data-sec="xv-princesa-rosa--fecha"] .fecha-fila b {
+  font-style: ;
+  font-variant-ligatures: ;
+  font-variant-caps: ;
+  font-variant-east-asian: ;
+  font-variant-alternates: ;
+  font-variant-position: ;
+  font-variant-emoji: ;
+  font-weight: ;
+  font-stretch: ;
+  font-size: ;
+  line-height: ;
+  font-family: ;
+  font-optical-sizing: ;
+  font-size-adjust: ;
+  font-kerning: ;
+  font-variation-settings: ;
+  font-language-override: ;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum";
+  color: var(--rosa-titulo);
+}
+[data-sec="xv-princesa-rosa--fecha"] #fecha .hora-linea {
+  margin-top: 4cqw;
+  font: italic 500 5cqw/1.3 var(--serif);
+  color: var(--texto);
+}
+[data-sec="xv-princesa-rosa--fecha"] #fecha .hora-linea b {
+  font-style: normal;
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum";
+}
+[data-sec="xv-princesa-rosa--fecha"].muestra img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+@media print {
+[data-sec="xv-princesa-rosa--fecha"].muestra * {
+  display: none !important;
+}
+}
+@media (prefers-reduced-motion: reduce) {
+[data-sec="xv-princesa-rosa--fecha"] *,
+[data-sec="xv-princesa-rosa--fecha"] ::before,
+[data-sec="xv-princesa-rosa--fecha"] ::after {
+  animation-duration: 0.01s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01s !important;
+  transition-delay: 0s !important;
+}
+}
+
+/* Princesa Rosa · ubicacion (ceremonia) — generado desde elegancia-de-amor/xv-princesa-rosa */
+@font-face { font-family: "Great Vibes"; font-weight: 400; font-display: swap; src: url("recursos/xv-princesa-rosa--ceremonia/fuente-great-vibes.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-display: swap; src: url("recursos/xv-princesa-rosa--ceremonia/fuente-cormorant-500.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--ceremonia/fuente-cormorant-600.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-style: italic; font-display: swap; src: url("recursos/xv-princesa-rosa--ceremonia/fuente-cormorant-500-italica.woff2") format("woff2"); }
+@font-face { font-family: Cinzel; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--ceremonia/fuente-cinzel-600.woff2") format("woff2"); }
+[data-sec="xv-princesa-rosa--ceremonia"] * {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] {
+  background: var(--color-2);
+  color: var(--texto);
+  font-family: var(--serif);
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum";
+  -webkit-font-smoothing: antialiased;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] img {
+  display: block;
+  max-width: 100%;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] a {
+  color: inherit;
+  text-decoration: none;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .invitacion {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--ancho);
+  margin: 0px auto;
+  container-type: inline-size;
+  overflow: hidden;
+  box-shadow: var(--color-3) 0px 0px 70px;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] section {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] section > * {
+  position: relative;
+  z-index: 2;
+}
+[data-sec="xv-princesa-rosa--ceremonia"].esperando .invitacion {
+  display: none;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .titulo-script {
+  font: 400 var(--tam, 12cqw)/1.15 var(--script);
+  color: var(--rosa-titulo);
+  padding: 0px 0.12em;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .corona {
+  width: var(--cw, 22cqw);
+  aspect-ratio: 100 / 70;
+  margin: 0px auto;
+  background: var(--img-corona, var(--corona-respaldo)) center / contain no-repeat;
+  filter: drop-shadow(var(--color-4) 0px 3px 4px);
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .revela {
+  opacity: 0;
+  transform: translateY(8cqw);
+  transition: opacity 0.9s, transform 0.9s;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .revela.visible {
+  opacity: 1;
+  transform: none;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .bloque {
+  padding: 22cqw 0px 0px;
+  overflow: visible;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .panel {
+  position: relative;
+  width: 82cqw;
+  margin: 0px auto;
+  padding: 14cqw 7cqw;
+  border-radius: 41cqw 41cqw 3cqw 3cqw / 30cqw 30cqw 3cqw 3cqw;
+  background: var(--panel);
+  box-shadow: 0 0 0 1.6px var(--oro), 0 0 0 5px var(--color-5), 0 0 0 6.4px var(--oro), 0 18px 36px var(--color-7);
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .panel::before {
+  content: "";
+  position: absolute;
+  inset: 2.6cqw;
+  z-index: 0;
+  border: 1.4px solid var(--oro);
+  border-radius: 38.4cqw 38.4cqw 1.6cqw 1.6cqw / 27.4cqw 27.4cqw 1.6cqw 1.6cqw;
+  pointer-events: none;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .panel > * {
+  position: relative;
+  z-index: 1;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .panel > .corona {
+  position: absolute;
+  left: 50%;
+  top: -10cqw;
+  translate: -50%;
+  --cw: 24cqw;
+  z-index: 3;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .panel .esq {
+  position: absolute;
+  z-index: 0;
+  bottom: 3.4cqw;
+  right: 3.4cqw;
+  width: 19cqw;
+  aspect-ratio: 300 / 355;
+  background: var(--img-esquina) center / contain no-repeat;
+  pointer-events: none;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .panel .esq.izq {
+  right: auto;
+  left: 3.4cqw;
+  scale: -1 1;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .panel:has(.esq) {
+  padding-bottom: 21cqw;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .panel .titulo-script {
+  --tam: 11cqw;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .icono {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--iw, 30cqw);
+  margin: 0px auto 2cqw;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .icono img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(var(--color-8) 0px 4px 6px);
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .icono svg {
+  width: 21cqw;
+  height: 21cqw;
+  padding: 4.4cqw;
+  border-radius: 50%;
+  background: var(--color-9);
+  box-shadow: 0 0 0 1.4px var(--oro), 0 0 0 2.8cqw var(--color-10);
+  fill: none;
+  stroke: var(--oro-osc);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .icono.con-imagen svg {
+  display: none;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .lugar {
+  margin-top: 3cqw;
+  font: 600 5.6cqw/1.3 var(--serif);
+  color: var(--texto);
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .lugar small {
+  display: block;
+  margin-top: 1cqw;
+  font: 500 4.6cqw/1.35 var(--serif);
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .hora {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3cqw;
+  margin-top: 4cqw;
+  font-style: ;
+  font-variant-ligatures: ;
+  font-variant-caps: ;
+  font-variant-east-asian: ;
+  font-variant-alternates: ;
+  font-variant-position: ;
+  font-variant-emoji: ;
+  font-weight: ;
+  font-stretch: ;
+  font-size: ;
+  line-height: ;
+  font-family: ;
+  font-optical-sizing: ;
+  font-size-adjust: ;
+  font-kerning: ;
+  font-variation-settings: ;
+  font-language-override: ;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum";
+  letter-spacing: 0.08em;
+  color: var(--oro-osc);
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .hora::before,
+[data-sec="xv-princesa-rosa--ceremonia"] .hora::after {
+  content: "";
+  width: 9cqw;
+  height: 1.5px;
+  background: var(--oro);
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .boton-linea {
+  display: inline-flex;
+  align-items: center;
+  gap: 2cqw;
+  margin-top: 6cqw;
+  padding: 3cqw 7cqw;
+  border: 1.5px solid var(--oro);
+  border-radius: 99px;
+  background: var(--color-19);
+  font: 600 3.5cqw/1 var(--caps);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rosa-titulo);
+  transition: transform 0.2s, background 0.2s;
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .boton-linea svg {
+  width: 4.4cqw;
+  height: 4.4cqw;
+  fill: var(--oro);
+}
+[data-sec="xv-princesa-rosa--ceremonia"] .boton-linea:active {
+  transform: scale(0.96);
+  background: var(--color-20);
+}
+[data-sec="xv-princesa-rosa--ceremonia"].muestra img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+@media print {
+[data-sec="xv-princesa-rosa--ceremonia"].muestra * {
+  display: none !important;
+}
+}
+@media (prefers-reduced-motion: reduce) {
+[data-sec="xv-princesa-rosa--ceremonia"] *,
+[data-sec="xv-princesa-rosa--ceremonia"] ::before,
+[data-sec="xv-princesa-rosa--ceremonia"] ::after {
+  animation-duration: 0.01s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01s !important;
+  transition-delay: 0s !important;
+}
+}
+
+/* Princesa Rosa · ubicacion (recepcion) — generado desde elegancia-de-amor/xv-princesa-rosa */
+@font-face { font-family: "Great Vibes"; font-weight: 400; font-display: swap; src: url("recursos/xv-princesa-rosa--recepcion/fuente-great-vibes.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-display: swap; src: url("recursos/xv-princesa-rosa--recepcion/fuente-cormorant-500.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--recepcion/fuente-cormorant-600.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-style: italic; font-display: swap; src: url("recursos/xv-princesa-rosa--recepcion/fuente-cormorant-500-italica.woff2") format("woff2"); }
+@font-face { font-family: Cinzel; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--recepcion/fuente-cinzel-600.woff2") format("woff2"); }
+[data-sec="xv-princesa-rosa--recepcion"] * {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+[data-sec="xv-princesa-rosa--recepcion"] {
+  background: var(--color-2);
+  color: var(--texto);
+  font-family: var(--serif);
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum";
+  -webkit-font-smoothing: antialiased;
+}
+[data-sec="xv-princesa-rosa--recepcion"] img {
+  display: block;
+  max-width: 100%;
+}
+[data-sec="xv-princesa-rosa--recepcion"] a {
+  color: inherit;
+  text-decoration: none;
+}
+[data-sec="xv-princesa-rosa--recepcion"] .invitacion {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--ancho);
+  margin: 0px auto;
+  container-type: inline-size;
+  overflow: hidden;
+  box-shadow: var(--color-3) 0px 0px 70px;
+}
+[data-sec="xv-princesa-rosa--recepcion"] section {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+[data-sec="xv-princesa-rosa--recepcion"] section > * {
+  position: relative;
+  z-index: 2;
+}
+[data-sec="xv-princesa-rosa--recepcion"].esperando .invitacion {
+  display: none;
+}
+[data-sec="xv-princesa-rosa--recepcion"] .titulo-script {
+  font: 400 var(--tam, 12cqw)/1.15 var(--script);
+  color: var(--rosa-titulo);
+  padding: 0px 0.12em;
+}
+[data-sec="xv-princesa-rosa--recepcion"] .corona {
+  width: var(--cw, 22cqw);
+  aspect-ratio: 100 / 70;
+  margin: 0px auto;
+  background: var(--img-corona, var(--corona-respaldo)) center / contain no-repeat;
+  filter: drop-shadow(var(--color-4) 0px 3px 4px);
+}
+[data-sec="xv-princesa-rosa--recepcion"] .revela {
+  opacity: 0;
+  transform: translateY(8cqw);
+  transition: opacity 0.9s, transform 0.9s;
+}
+[data-sec="xv-princesa-rosa--recepcion"] .revela.visible {
+  opacity: 1;
+  transform: none;
+}
+[data-sec="xv-princesa-rosa--recepcion"] .bloque {
+  padding: 22cqw 0px 0px;
+  overflow: visible;
+}
+[data-sec="xv-princesa-rosa--recepcion"] .panel {
+  position: relative;
+  width: 82cqw;
+  margin: 0px auto;
+  padding: 14cqw 7cqw;
+  border-radius: 41cqw 41cqw 3cqw 3cqw / 30cqw 30cqw 3cqw 3cqw;
+  background: var(--panel);
+  box-shadow: 0 0 0 1.6px var(--oro), 0 0 0 5px var(--color-5), 0 0 0 6.4px var(--oro), 0 18px 36px var(--color-7);
+}
+[data-sec="xv-princesa-rosa--recepcion"] .panel::before {
+  content: "";
+  position: absolute;
+  inset: 2.6cqw;
+  z-index: 0;
+  border: 1.4px solid var(--oro);
+  border-radius: 38.4cqw 38.4cqw 1.6cqw 1.6cqw / 27.4cqw 27.4cqw 1.6cqw 1.6cqw;
+  pointer-events: none;
+}
+[data-sec="xv-princesa-rosa--recepcion"] .panel > * {
+  position: relative;
+  z-index: 1;
+}
+[data-sec="xv-princesa-rosa--recepcion"] .panel > .corona {
+  position: absolute;
+  left: 50%;
+  top: -10cqw;
+  translate: -50%;
+  --cw: 24cqw;
+  z-index: 3;
+}
+[data-sec="xv-princesa-rosa--recepcion"] .panel .esq {
+  position: absolute;
+  z-index: 0;
+  bottom: 3.4cqw;
+  right: 3.4cqw;
+  width: 19cqw;
+  aspect-ratio: 300 / 355;
+  background: var(--img-esquina) center / contain no-repeat;
+  pointer-events: none;
+}
+[data-sec="xv-princesa-rosa--recepcion"] .panel .esq.izq {
+  right: auto;
+  left: 3.4cqw;
+  scale: -1 1;
+}
+[data-sec="xv-princesa-rosa--recepcion"] .panel:has(.esq) {
+  padding-bottom: 21cqw;
+}
+[data-sec="xv-princesa-rosa--recepcion"] .panel .titulo-script {
+  --tam: 11cqw;
+}
+[data-sec="xv-princesa-rosa--recepcion"] .icono {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--iw, 30cqw);
+  margin: 0px auto 2cqw;
+}
+[data-sec="xv-princesa-rosa--recepcion"] .icono img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(var(--color-8) 0px 4px 6px);
+}
+[data-sec="xv-princesa-rosa--recepcion"] .icono svg {
+  width: 21cqw;
+  height: 21cqw;
+  padding: 4.4cqw;
+  border-radius: 50%;
+  background: var(--color-9);
+  box-shadow: 0 0 0 1.4px var(--oro), 0 0 0 2.8cqw var(--color-10);
+  fill: none;
+  stroke: var(--oro-osc);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+[data-sec="xv-princesa-rosa--recepcion"] .icono.con-imagen svg {
+  display: none;
+}
+[data-sec="xv-princesa-rosa--recepcion"] .lugar {
+  margin-top: 3cqw;
+  font: 600 5.6cqw/1.3 var(--serif);
+  color: var(--texto);
+}
+[data-sec="xv-princesa-rosa--recepcion"] .lugar small {
+  display: block;
+  margin-top: 1cqw;
+  font: 500 4.6cqw/1.35 var(--serif);
+}
+[data-sec="xv-princesa-rosa--recepcion"] .hora {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3cqw;
+  margin-top: 4cqw;
+  font-style: ;
+  font-variant-ligatures: ;
+  font-variant-caps: ;
+  font-variant-east-asian: ;
+  font-variant-alternates: ;
+  font-variant-position: ;
+  font-variant-emoji: ;
+  font-weight: ;
+  font-stretch: ;
+  font-size: ;
+  line-height: ;
+  font-family: ;
+  font-optical-sizing: ;
+  font-size-adjust: ;
+  font-kerning: ;
+  font-variation-settings: ;
+  font-language-override: ;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum";
+  letter-spacing: 0.08em;
+  color: var(--oro-osc);
+}
+[data-sec="xv-princesa-rosa--recepcion"] .hora::before,
+[data-sec="xv-princesa-rosa--recepcion"] .hora::after {
+  content: "";
+  width: 9cqw;
+  height: 1.5px;
+  background: var(--oro);
+}
+[data-sec="xv-princesa-rosa--recepcion"] .boton-linea {
+  display: inline-flex;
+  align-items: center;
+  gap: 2cqw;
+  margin-top: 6cqw;
+  padding: 3cqw 7cqw;
+  border: 1.5px solid var(--oro);
+  border-radius: 99px;
+  background: var(--color-19);
+  font: 600 3.5cqw/1 var(--caps);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--rosa-titulo);
+  transition: transform 0.2s, background 0.2s;
+}
+[data-sec="xv-princesa-rosa--recepcion"] .boton-linea svg {
+  width: 4.4cqw;
+  height: 4.4cqw;
+  fill: var(--oro);
+}
+[data-sec="xv-princesa-rosa--recepcion"] .boton-linea:active {
+  transform: scale(0.96);
+  background: var(--color-20);
+}
+[data-sec="xv-princesa-rosa--recepcion"].muestra img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+@media print {
+[data-sec="xv-princesa-rosa--recepcion"].muestra * {
+  display: none !important;
+}
+}
+@media (prefers-reduced-motion: reduce) {
+[data-sec="xv-princesa-rosa--recepcion"] *,
+[data-sec="xv-princesa-rosa--recepcion"] ::before,
+[data-sec="xv-princesa-rosa--recepcion"] ::after {
+  animation-duration: 0.01s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01s !important;
+  transition-delay: 0s !important;
+}
+}
+
+/* Princesa Rosa · cierre (despedida) — generado desde elegancia-de-amor/xv-princesa-rosa */
+@font-face { font-family: "Great Vibes"; font-weight: 400; font-display: swap; src: url("recursos/xv-princesa-rosa--despedida/fuente-great-vibes.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-display: swap; src: url("recursos/xv-princesa-rosa--despedida/fuente-cormorant-500.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--despedida/fuente-cormorant-600.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-style: italic; font-display: swap; src: url("recursos/xv-princesa-rosa--despedida/fuente-cormorant-500-italica.woff2") format("woff2"); }
+@font-face { font-family: Cinzel; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--despedida/fuente-cinzel-600.woff2") format("woff2"); }
+[data-sec="xv-princesa-rosa--despedida"] * {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+[data-sec="xv-princesa-rosa--despedida"] {
+  background: var(--color-2);
+  color: var(--texto);
+  font-family: var(--serif);
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum";
+  -webkit-font-smoothing: antialiased;
+}
+[data-sec="xv-princesa-rosa--despedida"] img {
+  display: block;
+  max-width: 100%;
+}
+[data-sec="xv-princesa-rosa--despedida"] a {
+  color: inherit;
+  text-decoration: none;
+}
+[data-sec="xv-princesa-rosa--despedida"] .invitacion {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--ancho);
+  margin: 0px auto;
+  container-type: inline-size;
+  overflow: hidden;
+  box-shadow: var(--color-3) 0px 0px 70px;
+}
+[data-sec="xv-princesa-rosa--despedida"] section {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+[data-sec="xv-princesa-rosa--despedida"] section > * {
+  position: relative;
+  z-index: 2;
+}
+[data-sec="xv-princesa-rosa--despedida"].esperando .invitacion {
+  display: none;
+}
+[data-sec="xv-princesa-rosa--despedida"] .destellos {
+  position: absolute;
+  inset: 0px;
+  z-index: 1;
+  pointer-events: none;
+}
+[data-sec="xv-princesa-rosa--despedida"] .destellos i {
+  position: absolute;
+  width: var(--t, 10px);
+  aspect-ratio: 1 / 1;
+  opacity: 0;
+  background: radial-gradient(circle, var(--color-1) 0px, var(--color-1) 16%, var(--color-6) 30%, transparent 68%);
+  clip-path: polygon(50% 0px, 59% 41%, 100% 50%, 59% 59%, 50% 100%, 41% 59%, 0px 50%, 41% 41%);
+  animation: princesa-rosa__titila var(--d, 3s) var(--r, 0s) ease-in-out infinite;
+}
+[data-sec="xv-princesa-rosa--despedida"] .mariposa {
+  position: absolute;
+  z-index: 4;
+  width: var(--w, 10cqw);
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  perspective: 40cqw;
+  animation: princesa-rosa__vuela var(--d, 16s) var(--r, 0s) ease-in-out infinite;
+}
+[data-sec="xv-princesa-rosa--despedida"] .mariposa .cuerpo {
+  position: absolute;
+  inset: 0px;
+  transform: rotateX(48deg) rotateZ(var(--giro, -18deg));
+  transform-style: preserve-3d;
+}
+[data-sec="xv-princesa-rosa--despedida"] .mariposa i {
+  position: absolute;
+  inset: 0px;
+  background: var(--img-mariposa) center / contain no-repeat;
+  filter: drop-shadow(var(--color-11) 0px 0px 4px);
+}
+[data-sec="xv-princesa-rosa--despedida"] .mariposa i:first-child {
+  clip-path: inset(0px 50% 0px 0px);
+  animation: 0.34s ease-in-out 0s infinite alternate none running princesa-rosa__ala-izq;
+}
+[data-sec="xv-princesa-rosa--despedida"] .mariposa i:last-child {
+  clip-path: inset(0px 0px 0px 50%);
+  animation: 0.34s ease-in-out 0s infinite alternate none running princesa-rosa__ala-der;
+}
+[data-sec="xv-princesa-rosa--despedida"] .caps {
+  font: 600 3.5cqw/1.4 var(--caps);
+  letter-spacing: 0.16em;
+  padding-left: 0.16em;
+  text-transform: uppercase;
+  color: var(--oro-osc);
+}
+[data-sec="xv-princesa-rosa--despedida"] .revela {
+  opacity: 0;
+  transform: translateY(8cqw);
+  transition: opacity 0.9s, transform 0.9s;
+}
+[data-sec="xv-princesa-rosa--despedida"] .revela.visible {
+  opacity: 1;
+  transform: none;
+}
+[data-sec="xv-princesa-rosa--despedida"] .guirnalda {
+  position: absolute;
+  top: 0px;
+  left: -3cqw;
+  z-index: 4;
+  width: 106cqw;
+  height: auto;
+  pointer-events: none;
+  transform-origin: 50% 0px;
+  animation: 7s ease-in-out 0s infinite alternate none running princesa-rosa__mece;
+}
+[data-sec="xv-princesa-rosa--despedida"] .rosal {
+  position: absolute;
+  bottom: 0px;
+  z-index: 1;
+  width: 38cqw;
+  height: auto;
+  pointer-events: none;
+  transform-origin: 50% 100%;
+  animation: 6s ease-in-out 0s infinite alternate none running princesa-rosa__mece-rosal;
+}
+[data-sec="xv-princesa-rosa--despedida"] .rosal.izq {
+  left: -3cqw;
+}
+[data-sec="xv-princesa-rosa--despedida"] .rosal.der {
+  right: -3cqw;
+  scale: -1 1;
+}
+[data-sec="xv-princesa-rosa--despedida"] #despedida {
+  padding: 0px 0px 12cqw;
+}
+[data-sec="xv-princesa-rosa--despedida"] #despedida .cierre {
+  position: relative;
+  padding: 50cqw 0px;
+}
+[data-sec="xv-princesa-rosa--despedida"] #despedida .guirnalda {
+  z-index: 1;
+}
+[data-sec="xv-princesa-rosa--despedida"] #despedida .cierre > :not(.guirnalda):not(.rosal) {
+  position: relative;
+  z-index: 2;
+}
+[data-sec="xv-princesa-rosa--despedida"] #despedida .frase {
+  width: 78cqw;
+  margin: 0px auto;
+  font: italic 500 6.2cqw/1.4 var(--serif);
+  color: var(--rosa-titulo);
+  text-shadow: var(--color-12) 0px 0px 12px, var(--color-18) 0px 0px 3px;
+}
+[data-sec="xv-princesa-rosa--despedida"] #despedida .te-espero {
+  width: 80cqw;
+  height: auto;
+  margin: 6cqw auto 0px;
+  filter: drop-shadow(var(--color-77) 0px 3px 4px);
+}
+[data-sec="xv-princesa-rosa--despedida"] #despedida .fecha-corta {
+  margin-top: 4cqw;
+  text-shadow: var(--color-12) 0px 0px 10px;
+}
+[data-sec="xv-princesa-rosa--despedida"] .credito {
+  display: block;
+  width: fit-content;
+  margin: 6cqw auto 0px;
+  padding: 3.4cqw 7cqw 3.6cqw;
+  border-radius: 4cqw;
+  background: var(--color-78);
+  box-shadow: var(--color-79) 0px 6px 18px;
+  font: 600 3cqw/1.6 var(--serif);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-80);
+  transition: background 0.3s;
+}
+[data-sec="xv-princesa-rosa--despedida"] .credito:active {
+  background: var(--color-81);
+}
+[data-sec="xv-princesa-rosa--despedida"] .credito b {
+  display: block;
+  font: 400 8cqw/1.15 var(--script);
+  letter-spacing: 0px;
+  text-transform: none;
+  color: var(--oro);
+}
+[data-sec="xv-princesa-rosa--despedida"] .credito em {
+  display: inline-block;
+  margin-top: 1.6cqw;
+  padding: 1.2cqw 3.6cqw;
+  border: 1px solid var(--color-82);
+  border-radius: 99px;
+  font-variant-ligatures: ;
+  font-variant-caps: ;
+  font-variant-numeric: ;
+  font-variant-east-asian: ;
+  font-variant-alternates: ;
+  font-variant-position: ;
+  font-variant-emoji: ;
+  font-weight: ;
+  font-stretch: ;
+  font-size: ;
+  line-height: ;
+  font-family: ;
+  font-optical-sizing: ;
+  font-size-adjust: ;
+  font-kerning: ;
+  font-feature-settings: ;
+  font-variation-settings: ;
+  font-language-override: ;
+  font-style: normal;
+  letter-spacing: 0.16em;
+  color: var(--rosa-titulo);
+}
+[data-sec="xv-princesa-rosa--despedida"].muestra img {
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+@media print {
+[data-sec="xv-princesa-rosa--despedida"].muestra * {
+  display: none !important;
+}
+}
+@media (prefers-reduced-motion: reduce) {
+[data-sec="xv-princesa-rosa--despedida"] *,
+[data-sec="xv-princesa-rosa--despedida"] ::before,
+[data-sec="xv-princesa-rosa--despedida"] ::after {
+  animation-duration: 0.01s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01s !important;
+  transition-delay: 0s !important;
+}
+}
+@keyframes princesa-rosa__ala-izq { 
+  0% { transform: rotateY(-8deg); }
+  100% { transform: rotateY(68deg); }
+}
+@keyframes princesa-rosa__ala-der { 
+  0% { transform: rotateY(8deg); }
+  100% { transform: rotateY(-68deg); }
+}
+@keyframes princesa-rosa__mece { 
+  0% { transform: rotate(-0.5deg); }
+  100% { transform: rotate(0.5deg); }
+}
+@keyframes princesa-rosa__mece-rosal { 
+  0% { transform: rotate(-1.2deg); }
+  100% { transform: rotate(1.2deg); }
+}
+@keyframes princesa-rosa__titila { 
+  0%, 100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(45deg); }
+}
+@keyframes princesa-rosa__vuela { 
+  0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+  25% { transform: translate(var(--x1, 12cqw), var(--y1, -10cqw)) rotate(8deg); }
+  50% { transform: translate(var(--x2, 26cqw), var(--y2, 4cqw)) rotate(-6deg); }
+  75% { transform: translate(var(--x3, 10cqw), var(--y3, 12cqw)) rotate(5deg); }
+}
+
+/* Princesa Rosa · musica (musica) — generado desde elegancia-de-amor/xv-princesa-rosa */
+@font-face { font-family: "Great Vibes"; font-weight: 400; font-display: swap; src: url("recursos/xv-princesa-rosa--musica/fuente-great-vibes.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-display: swap; src: url("recursos/xv-princesa-rosa--musica/fuente-cormorant-500.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--musica/fuente-cormorant-600.woff2") format("woff2"); }
+@font-face { font-family: Cormorant; font-weight: 500; font-style: italic; font-display: swap; src: url("recursos/xv-princesa-rosa--musica/fuente-cormorant-500-italica.woff2") format("woff2"); }
+@font-face { font-family: Cinzel; font-weight: 600; font-display: swap; src: url("recursos/xv-princesa-rosa--musica/fuente-cinzel-600.woff2") format("woff2"); }
+[data-sec="xv-princesa-rosa--musica"] * {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+[data-sec="xv-princesa-rosa--musica"] {
+  background: var(--color-2);
+  color: var(--texto);
+  font-family: var(--serif);
+  font-weight: 600;
+  font-variant-numeric: lining-nums;
+  font-feature-settings: "lnum";
+  -webkit-font-smoothing: antialiased;
+}
+[data-sec="xv-princesa-rosa--musica"] #musica-boton {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--color-83), var(--color-84));
+  box-shadow: var(--color-85) 0px 4px 12px;
+  cursor: pointer;
+  z-index: 102;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+[data-sec="xv-princesa-rosa--musica"] #musica-boton.visible {
+  display: flex;
+  animation: 0.6s ease-out 0s 1 normal both running princesa-rosa__aparece;
+}
+[data-sec="xv-princesa-rosa--musica"] #musica-boton:active {
+  transform: scale(0.92);
+}
+[data-sec="xv-princesa-rosa--musica"] #musica-boton::before {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  border-radius: 50%;
+  border: 2px solid var(--color-86);
+  animation: 2s ease-out 0s infinite normal none running princesa-rosa__onda-musica;
+}
+[data-sec="xv-princesa-rosa--musica"] #musica-boton.pausado::before {
+  animation: auto ease 0s 1 normal none running none;
+  opacity: 0;
+}
+[data-sec="xv-princesa-rosa--musica"] #musica-boton svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--color-87);
+}
+[data-sec="xv-princesa-rosa--musica"] #musica-boton .icono-play {
+  display: none;
+}
+[data-sec="xv-princesa-rosa--musica"] #musica-boton.pausado .icono-play {
+  display: block;
+}
+[data-sec="xv-princesa-rosa--musica"] #musica-boton.pausado .icono-pausa {
+  display: none;
+}
+@media print {
+[data-sec="xv-princesa-rosa--musica"].muestra * {
+  display: none !important;
+}
+}
+@media (prefers-reduced-motion: reduce) {
+[data-sec="xv-princesa-rosa--musica"] *,
+[data-sec="xv-princesa-rosa--musica"] ::before,
+[data-sec="xv-princesa-rosa--musica"] ::after {
+  animation-duration: 0.01s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01s !important;
+  transition-delay: 0s !important;
+}
+}
+@keyframes princesa-rosa__aparece { 
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes princesa-rosa__onda-musica { 
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+</style>
+</head>
+<body style="--lib-fondo: var(--color-1)" data-estilo="princesa-rosa">
+<div class="lib-sec lib-apertura " data-sec="xv-princesa-rosa--apertura" data-estilo="princesa-rosa" data-tipo="apertura" data-origen="XV-01 Princesa Rosa">
+<div id="apertura" role="button" aria-label="Toca el sello para abrir la invitación" data-ap="u28"><div class="relleno" data-ap="u29"></div><div class="escena lista" data-ap="u30"><div class="capa luz" data-ap="u31"></div><div class="capa puerta izq" style="--mascara: url(recursos/xv-princesa-rosa--apertura/apertura-puerta-izq.webp);" data-ap="u32"><img alt="" decoding="async" src="recursos/xv-princesa-rosa--apertura/apertura-puerta-izq.webp" data-ap="u33"></div><div class="capa puerta der" style="--mascara: url(recursos/xv-princesa-rosa--apertura/apertura-puerta-der.webp);" data-ap="u34"><img alt="" decoding="async" src="recursos/xv-princesa-rosa--apertura/apertura-puerta-der.webp" data-ap="u35"></div><div class="capa rendija" data-ap="u36"></div><img class="capa marco" alt="" decoding="async" src="recursos/xv-princesa-rosa--apertura/apertura-marco.webp" data-ap="u37"><div class="capa sello cargado" data-ap="u38"><img alt="" decoding="async" src="recursos/xv-princesa-rosa--apertura/sello-corona.webp" data-ap="u39"><b data-ap="u40"></b></div><span class="destello" style="left: 18%; top: 62%; animation-delay: 0s;" data-ap="u41"></span><span class="destello" style="left: 80%; top: 58%; animation-delay: 0.45s;" data-ap="u42"></span><span class="destello" style="left: 30%; top: 40%; animation-delay: 0.9s;" data-ap="u43"></span><span class="destello" style="left: 70%; top: 36%; animation-delay: 1.35s;" data-ap="u44"></span><span class="destello" style="left: 50%; top: 30%; animation-delay: 1.8s;" data-ap="u45"></span><span class="destello" style="left: 24%; top: 78%; animation-delay: 2.25s;" data-ap="u46"></span><span class="destello" style="left: 76%; top: 80%; animation-delay: 2.7s;" data-ap="u47"></span><span class="destello" style="left: 60%; top: 70%; animation-delay: 3.15s;" data-ap="u48"></span><span class="destello" style="left: 40%; top: 66%; animation-delay: 3.6s;" data-ap="u49"></span></div><div class="toca" data-ap="u50">Toca el sello para abrir</div></div>
+<div id="fondo-fijo" aria-hidden="true" class="con-imagen" style="--img: url(recursos/xv-princesa-rosa--apertura/fondo.webp);" data-ap="u51"></div>
+<div id="petalos" aria-hidden="true" data-ap="u292"><i style="--x: 94.6%; --t: 15px; --d: 14.0s; --r: -6.6s; --dx: -17px;" data-ap="u293"></i><i style="--x: 45.4%; --t: 9px; --d: 10.6s; --r: -6.3s; --dx: -21px;" data-ap="u294"></i><i style="--x: 61.1%; --t: 16px; --d: 17.1s; --r: -15.8s; --dx: 11px;" data-ap="u295"></i><i style="--x: 74.2%; --t: 15px; --d: 14.4s; --r: -8.7s; --dx: 54px;" data-ap="u296"></i><i style="--x: 19.8%; --t: 13px; --d: 14.3s; --r: -11.9s; --dx: -21px;" data-ap="u297"></i><i style="--x: 17.5%; --t: 9px; --d: 15.9s; --r: -3.9s; --dx: 48px;" data-ap="u298"></i><i style="--x: 16.0%; --t: 10px; --d: 17.8s; --r: -11.2s; --dx: 9px;" data-ap="u299"></i><i style="--x: 29.5%; --t: 17px; --d: 13.5s; --r: -13.9s; --dx: -40px;" data-ap="u300"></i></div>
+
+</div>
+
+<main class="lib-pagina">
+<div class="lib-sec  " data-sec="xv-princesa-rosa--portada" data-estilo="princesa-rosa" data-tipo="portada" data-origen="XV-01 Princesa Rosa">
+<div class="lib-anc invitacion"><section id="portada" data-revela="visible">
+    <img class="portada-img" data-img="portada" alt="" loading="lazy" decoding="async" width="720" height="1290" src="recursos/xv-princesa-rosa--portada/portada.webp">
+    
+    <div class="velo"></div>
+    <div class="destellos"><i style="left: 78.0542%; top: 23.8567%; --t: 15px; --d: 4.8s; --r: 0.6s;"></i><i style="left: 12.2106%; top: 25.3726%; --t: 15px; --d: 5.4s; --r: 1.1s;"></i><i style="left: 11.2477%; top: 48.8072%; --t: 13px; --d: 4.5s; --r: 1.2s;"></i><i style="left: 15.9687%; top: 68.8122%; --t: 7px; --d: 5.2s; --r: 2.1s;"></i><i style="left: 74.5699%; top: 66.092%; --t: 14px; --d: 4.0s; --r: 2.9s;"></i><i style="left: 86.9729%; top: 64.9545%; --t: 15px; --d: 5.2s; --r: 2.8s;"></i><i style="left: 5.94898%; top: 47.075%; --t: 13px; --d: 3.0s; --r: 1.3s;"></i><i style="left: 54.0107%; top: 77.6711%; --t: 16px; --d: 2.7s; --r: 0.8s;"></i></div>
+    <div class="encabezado">
+      <div class="corona" data-corona=""></div>
+      <div class="nombre" data-nombre="" style="--tam-nombre: 18.7cqw;"><span class="lib-nombre-texto " role="img" aria-label="Hanna">Hanna</span><i class="estrella" style="left: 8%; top: 20%; --t: 14px; --d: 2.6s; --r: 2s;"></i><i class="estrella" style="left: 60%; top: 4%; --t: 14px; --d: 2.6s; --r: 2.9s;"></i><i class="estrella" style="left: 92%; top: 58%; --t: 14px; --d: 2.6s; --r: 3.7s;"></i><i class="estrella" style="left: 32%; top: 82%; --t: 14px; --d: 2.6s; --r: 4.3s;"></i></div>
+      <p class="arriba" id="arriba">Mis XV Años</p>
+      <p class="caps fecha-portada" id="fecha-portada">27 · 12 · 2026</p>
+    </div>
+    <div class="mariposa" style="--w:10cqw;left:8cqw;top:96cqw;--d:15s;--x1:14cqw;--y1:-12cqw;--x2:30cqw;--y2:-2cqw;--x3:12cqw;--y3:10cqw"><div class="cuerpo"><i></i><i></i></div></div>
+    <div class="mariposa" style="--w:7.5cqw;right:10cqw;top:120cqw;--d:18s;--r:-6s;--giro:20deg;--x1:-12cqw;--y1:-8cqw;--x2:-22cqw;--y2:6cqw;--x3:-8cqw;--y3:12cqw"><div class="cuerpo"><i></i><i></i></div></div>
+    <p class="baja">Desliza</p>
+  </section>
+</div>
+</div>
+
+<div class="lib-sec  " data-sec="xv-princesa-rosa--mensaje" data-estilo="princesa-rosa" data-tipo="historia" data-origen="XV-01 Princesa Rosa">
+<div class="lib-anc invitacion"><section id="mensaje">
+    <img class="guirnalda" data-img="guirnalda" alt="" loading="lazy" decoding="async" src="recursos/xv-princesa-rosa--mensaje/guirnalda.webp">
+    <div class="destellos"><i style="left: 82.3113%; top: 64.9813%; --t: 12px; --d: 3.5s; --r: 1.1s;"></i><i style="left: 51.9069%; top: 11.1668%; --t: 11px; --d: 4.0s; --r: 2.9s;"></i><i style="left: 28.18%; top: 40.0599%; --t: 18px; --d: 3.4s; --r: 3.6s;"></i><i style="left: 17.5496%; top: 70.4408%; --t: 9px; --d: 3.4s; --r: 3.3s;"></i><i style="left: 3.02367%; top: 33.7585%; --t: 18px; --d: 3.5s; --r: 0.2s;"></i><i style="left: 6.33902%; top: 66.3247%; --t: 15px; --d: 2.4s; --r: 1.2s;"></i><i style="left: 28.5609%; top: 31.4408%; --t: 9px; --d: 3.2s; --r: 0.7s;"></i><i style="left: 0.949301%; top: 75.9135%; --t: 8px; --d: 5.3s; --r: 1.1s;"></i></div>
+    <figure class="marco-arco revela" id="marco-arco" data-revela="visible">
+      <div class="relleno" style="left: 13.1%; top: 9.9%; width: 74.3%; height: 82.4%;"></div>
+      <img class="marco-img" data-img="marcoFiligrana" alt="" loading="lazy" decoding="async" src="recursos/xv-princesa-rosa--mensaje/marco-filigrana.webp">
+      <div class="corona corona-arco" data-corona=""></div>
+      <div class="texto" style="left: 22%; top: 17%; width: 56%; height: 62%;">
+        <p id="mensaje-texto">Desde niña soñé con este día… Hoy las puertas de mi castillo se abren para celebrar mis quince años, el comienzo de un nuevo capítulo lleno de sueños, ilusiones y bendiciones.</p>
+        <p class="firma" id="mensaje-firma">Hanna</p>
+      </div>
+    </figure>
+  </section>
+</div>
+</div>
+
+<div class="lib-sec  " data-sec="xv-princesa-rosa--padres" data-estilo="princesa-rosa" data-tipo="padres" data-origen="XV-01 Princesa Rosa">
+<div class="lib-anc invitacion"><section id="padres">
+    <div class="destellos"><i style="left: 92.7311%; top: 59.6309%; --t: 14px; --d: 3.5s; --r: 1.7s;"></i><i style="left: 26.0743%; top: 49.6781%; --t: 16px; --d: 2.8s; --r: 0.4s;"></i><i style="left: 89.4494%; top: 75.4658%; --t: 10px; --d: 3.7s; --r: 1.0s;"></i><i style="left: 42.8969%; top: 70.7585%; --t: 7px; --d: 3.2s; --r: 0.7s;"></i><i style="left: 31.3894%; top: 25.2481%; --t: 12px; --d: 3.2s; --r: 2.4s;"></i><i style="left: 24.4233%; top: 84.628%; --t: 10px; --d: 4.3s; --r: 0.5s;"></i><i style="left: 26.7236%; top: 54.1359%; --t: 12px; --d: 4.0s; --r: 2.9s;"></i><i style="left: 46.0464%; top: 74.1089%; --t: 10px; --d: 4.4s; --r: 3.3s;"></i></div>
+    <div class="revela" data-revela="visible">
+      <div class="corona" data-corona=""></div>
+      <p class="intro" id="padres-titulo">Con la bendición de Dios y el amor de mi madre</p>
+      <p class="nombres" id="padres-nombres">Dra. Verónica Tapia Pineda<span class="y"></span></p>
+    </div>
+    <div class="revela" id="padrinos-caja" data-revela="visible">
+      <div class="adorno"><i></i></div>
+      <p class="intro" id="padrinos-titulo">y de mis padrinos</p>
+      <p class="nombres" id="padrinos-nombres">C.P. Concepción Morán Aragón<span class="y">&amp;</span>Ing. Alejandro Sánchez Carrera</p>
+    </div>
+    <p class="caps invito revela" id="invitacion" data-revela="visible">Tengo el honor de invitarte a celebrar este día tan especial</p>
+  </section>
+</div>
+</div>
+
+<div class="lib-sec  " data-sec="xv-princesa-rosa--cuenta" data-estilo="princesa-rosa" data-tipo="cuenta-regresiva" data-origen="XV-01 Princesa Rosa">
+<div class="lib-anc invitacion"><section id="cuenta">
+    <div class="destellos"><i style="left: 66.7199%; top: 64.7771%; --t: 10px; --d: 3.1s; --r: 2.1s;"></i><i style="left: 18.5115%; top: 5.97282%; --t: 12px; --d: 2.8s; --r: 1.0s;"></i><i style="left: 29.3251%; top: 80.734%; --t: 11px; --d: 4.0s; --r: 1.5s;"></i><i style="left: 91.5745%; top: 24.0941%; --t: 11px; --d: 3.4s; --r: 2.3s;"></i><i style="left: 12.0784%; top: 51.3909%; --t: 12px; --d: 5.4s; --r: 1.8s;"></i><i style="left: 64.5122%; top: 91.0402%; --t: 10px; --d: 5.0s; --r: 3.0s;"></i><i style="left: 52.1627%; top: 28.7462%; --t: 14px; --d: 2.7s; --r: 0.4s;"></i><i style="left: 7.56839%; top: 18.5136%; --t: 7px; --d: 4.3s; --r: 3.6s;"></i></div>
+    <div class="mariposa" style="--w:9cqw;left:6cqw;top:4cqw;--d:17s;--x1:16cqw;--y1:4cqw;--x2:30cqw;--y2:-4cqw;--x3:14cqw;--y3:-8cqw"><div class="cuerpo"><i></i><i></i></div></div>
+    <h2 class="titulo-script revela" id="cuenta-titulo" data-revela="visible">Falta poco</h2>
+    <div class="contador revela" id="contador" data-revela="visible">
+      <div><b id="dias" data-cd="d">281</b><span>Días</span></div>
+      <div><b id="horas" data-cd="h">13</b><span>Horas</span></div>
+      <div><b id="minutos" data-cd="m">36</b><span>Min</span></div>
+      <div><b id="segundos" data-cd="s">57</b><span>Seg</span></div>
+    </div>
+  </section>
+</div>
+</div>
+
+<div class="lib-sec  " data-sec="xv-princesa-rosa--fecha" data-estilo="princesa-rosa" data-tipo="fecha" data-origen="XV-01 Princesa Rosa">
+<div class="lib-anc invitacion"><section class="bloque" id="fecha">
+    <div class="panel revela" data-revela="visible"><i class="esq izq"></i><i class="esq"></i>
+      <div class="corona" data-corona=""></div>
+      <div class="icono con-imagen" data-icono="iconoCalendario">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="9" y="12" width="30" height="27" rx="3"></rect><path d="M9 20h30M17 8v8M31 8v8"></path><path d="M24 34.5c-1.8-1.7-5.4-3.6-5.4-6.5 0-1.8 1.4-3.2 3.1-3.2 1 0 1.8.5 2.3 1.3.5-.8 1.3-1.3 2.3-1.3 1.7 0 3.1 1.4 3.1 3.2 0 2.9-3.6 4.8-5.4 6.5z"></path></svg>
+      <img loading="lazy" decoding="async" alt="" src="recursos/xv-princesa-rosa--fecha/icono-calendario.webp"></div>
+      <h2 class="titulo-script" id="fecha-titulo">Reserva la fecha</h2>
+      <p class="mes" id="mes-texto">Diciembre</p>
+      <div class="fecha-fila">
+        <span class="lado" id="dia-semana">Domingo</span>
+        <b id="dia-numero">27</b>
+        <span class="lado" id="anio-texto">2026</span>
+      </div>
+      <p class="hora-linea" id="hora-linea"><span>Misa</span> <b>3:00 p.m.</b></p>
+    </div>
+  </section>
+</div>
+</div>
+
+<div class="lib-sec  " data-sec="xv-princesa-rosa--ceremonia" data-estilo="princesa-rosa" data-tipo="ubicacion" data-origen="XV-01 Princesa Rosa">
+<div class="lib-anc invitacion"><section class="bloque" id="ceremonia">
+    <div class="panel revela" data-revela="visible"><i class="esq izq"></i><i class="esq"></i>
+      <div class="corona" data-corona=""></div>
+      <div class="icono con-imagen" data-icono="iconoIglesia">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4v8M20.5 7.5h7"></path><path d="M13 22l11-10 11 10"></path><path d="M15.5 20v20h17V20"></path><path d="M8 40h32"></path><path d="M21 40v-6.5a3 3 0 0 1 6 0V40"></path><circle cx="24" cy="25.5" r="2.4"></circle></svg>
+      <img loading="lazy" decoding="async" alt="" src="recursos/xv-princesa-rosa--ceremonia/icono-iglesia.webp"></div>
+      <h2 class="titulo-script" id="ceremonia-titulo" style="--tam:10.2cqw">Misa</h2>
+      <p class="lugar"><span id="ceremonia-lugar">Parroquia Virgen de Guadalupe</span><small id="ceremonia-direccion">El Camarón, Yautepec, Oaxaca</small></p>
+      <p class="hora" id="ceremonia-hora">3:00 p.m.</p>
+      <a class="boton-linea" id="ceremonia-mapa" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Parroquia+Virgen+de+Guadalupe+El+Camar%C3%B3n+Yautepec+Oaxaca"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"></path></svg><span>Ver ubicación</span></a>
+    </div>
+  </section>
+</div>
+</div>
+
+<div class="lib-sec  " data-sec="xv-princesa-rosa--recepcion" data-estilo="princesa-rosa" data-tipo="ubicacion" data-origen="XV-01 Princesa Rosa">
+<div class="lib-anc invitacion"><section class="bloque" id="recepcion">
+    <div class="panel revela" data-revela="visible"><i class="esq izq"></i><i class="esq"></i>
+      <div class="corona" data-corona=""></div>
+      <div class="icono con-imagen" data-icono="iconoRecepcion">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><g transform="rotate(-12 19 40)"><path d="M14.5 10h9l-.7 9.5a3.8 3.8 0 0 1-7.6 0z"></path><path d="M19 23.3V36M15 38.5h8"></path></g><g transform="rotate(12 29 40)"><path d="M24.5 10h9l-.7 9.5a3.8 3.8 0 0 1-7.6 0z"></path><path d="M29 23.3V36M25 38.5h8"></path></g><path d="M24 3v3.5M20.5 5l1.6 1.8M27.5 5l-1.6 1.8"></path></svg>
+      <img loading="lazy" decoding="async" alt="" src="recursos/xv-princesa-rosa--recepcion/icono-recepcion.webp"></div>
+      <h2 class="titulo-script" id="recepcion-titulo">Recepción</h2>
+      <p class="lugar"><span id="recepcion-lugar">Cancha Municipal</span><small id="recepcion-direccion">Centro, El Camarón, Yautepec, Oaxaca</small></p>
+      <p class="hora" id="recepcion-hora">Por confirmar</p>
+      <a class="boton-linea" id="recepcion-mapa" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&amp;query=Cancha+Municipal+Centro+El+Camar%C3%B3n+Yautepec+Oaxaca"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"></path></svg><span>Ver ubicación</span></a>
+    </div>
+  </section>
+</div>
+</div>
+
+<div class="lib-sec  " data-sec="xv-princesa-rosa--despedida" data-estilo="princesa-rosa" data-tipo="cierre" data-origen="XV-01 Princesa Rosa">
+<div class="lib-anc invitacion"><section id="despedida">
+    <div class="cierre">
+      <img class="guirnalda" data-img="guirnalda" alt="" loading="lazy" decoding="async" src="recursos/xv-princesa-rosa--despedida/guirnalda.webp">
+      <div class="destellos"><i style="left: 85.0186%; top: 65.6513%; --t: 16px; --d: 3.4s; --r: 2.2s;"></i><i style="left: 19.9679%; top: 32.2261%; --t: 16px; --d: 4.1s; --r: 2.8s;"></i><i style="left: 82.5679%; top: 10.8031%; --t: 9px; --d: 3.8s; --r: 0.9s;"></i><i style="left: 58.7953%; top: 25.5739%; --t: 17px; --d: 5.3s; --r: 2.6s;"></i><i style="left: 79.1092%; top: 91.8343%; --t: 14px; --d: 4.9s; --r: 0.6s;"></i><i style="left: 53.5186%; top: 28.4274%; --t: 15px; --d: 4.6s; --r: 0.2s;"></i><i style="left: 41.0016%; top: 54.9215%; --t: 13px; --d: 4.1s; --r: 0.7s;"></i><i style="left: 88.0959%; top: 16.6153%; --t: 12px; --d: 4.5s; --r: 0.0s;"></i></div>
+      <div class="mariposa" style="--w:9cqw;right:8cqw;top:40cqw;--d:16s;--r:-4s;--giro:16deg;--x1:-14cqw;--y1:8cqw;--x2:-26cqw;--y2:-2cqw;--x3:-10cqw;--y3:-10cqw"><div class="cuerpo"><i></i><i></i></div></div>
+      <p class="frase revela" id="despedida-frase" data-revela="visible">Gracias por ser parte de mi cuento</p>
+      <div class="revela" id="te-espero" data-revela="visible"><img loading="lazy" decoding="async" alt="Te Espero" class="te-espero" src="recursos/xv-princesa-rosa--despedida/te-espero-oro.webp"></div>
+      <p class="caps fecha-corta revela" id="fecha-corta" data-revela="visible">27 · 12 · 2026</p>
+      <img class="rosal izq" data-img="rosal" alt="" loading="lazy" decoding="async" src="recursos/xv-princesa-rosa--despedida/rosal.webp">
+      <img class="rosal der" data-img="rosal" alt="" loading="lazy" decoding="async" src="recursos/xv-princesa-rosa--despedida/rosal.webp">
+    </div>
+    <a class="credito" id="credito" target="_blank" rel="noopener" href="https://eleganciadeamor.com/#nuestros-trabajos"><span>Página hecha con amor por</span><b>Invitaciones de Amor</b><em>Ver nuestros trabajos ›</em></a>
+  </section>
+</div>
+</div>
+
+</main>
+<div class="lib-sec lib-flotante lib-oculto " data-sec="xv-princesa-rosa--musica" data-estilo="princesa-rosa" data-tipo="musica" data-origen="XV-01 Princesa Rosa">
+<div id="musica-boton" class="visible" title="Música" aria-label="Música" role="button">
+  <svg class="icono-pausa" viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>
+  <svg class="icono-play" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"></polygon></svg>
+</div>
+
+</div>
+
+<audio id="lib-musica" loop preload="none" src="https://pub-4dc8201144ca418fb604349c73e8c724.r2.dev/Einaudi_%20Divenire%20(1)%20(1).mp3"></audio>
+
+<div id="lib-rsvp" role="dialog" aria-modal="true">
+  <form>
+    <button type="button" class="cerrar" data-cerrar aria-label="Cerrar">×</button>
+    <h3>Confirma tu asistencia</h3>
+    <label for="lib-n">Nombre</label><input id="lib-n" name="nombre" required placeholder="Tu nombre">
+    <label>¿Asistirás?</label>
+    <div class="opciones"><label><input type="radio" name="asiste" value="si" checked>Sí, asistiré</label><label><input type="radio" name="asiste" value="no">No podré</label></div>
+    <label for="lib-p">Número de personas</label><select id="lib-p" name="personas"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select>
+    <label for="lib-m">Mensaje (opcional)</label><textarea id="lib-m" name="mensaje" rows="2"></textarea>
+    <button type="submit">Enviar por WhatsApp</button>
+  </form>
+</div>
+
+<script>window.__INV = {"fechaEvento":"2026-12-27T15:00:00-06:00","whatsapp":"593900000000","aperturas":{"xv-princesa-rosa--apertura":[{"t":9,"u":"u28","a":"class","v":"tocado abriendo"},{"t":9,"u":"body","a":"class","v":"bloqueado"},{"t":9,"u":"u28","a":"class","v":"tocado abriendo"},{"t":1378,"u":"body","a":"class","v":"bloqueado"},{"t":2972,"u":"body","a":"class","v":""},{"t":2972,"u":"body","a":"class","v":""}]},"textos":{"rsvpEncabezado":"Confirmación · Mis XV Años · Hanna"}};</script>
+<script>
+/* Motor de Invitaciones de Amor — funciones en vivo de la invitación armada.
+   Lee window.__INV (lo escribe armar.js). No hace falta tocar este archivo. */
+(function () {
+  var C = window.__INV || {};
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  /* ---------- 1. Cuenta regresiva ---------- */
+  function cuenta() {
+    var fin = new Date(C.fechaEvento).getTime();
+    if (isNaN(fin)) return;
+    var s = Math.max(0, Math.floor((fin - Date.now()) / 1000));
+    var v = { d: Math.floor(s / 86400), h: Math.floor(s % 86400 / 3600), m: Math.floor(s % 3600 / 60), s: s % 60 };
+    $$('[data-cd]').forEach(function (e) {
+      var k = e.getAttribute('data-cd');
+      e.textContent = k === 'd' ? String(v.d).padStart(2, '0') : String(v[k]).padStart(2, '0');
+    });
+  }
+  cuenta(); setInterval(cuenta, 1000);
+
+  /* ---------- 2. Animaciones al aparecer (las mismas clases que usaba la invitación original) ---------- */
+  var pendientes = $$('[data-revela],[data-revela-quita]');
+  function revisar() {
+    var limite = innerHeight * 0.92;
+    pendientes = pendientes.filter(function (e) {
+      var r = e.getBoundingClientRect();
+      var visible = r.top < limite && r.bottom > -50;
+      if (!visible && !(r.width === 0 && r.height === 0 && e.closest('.lib-sec').getBoundingClientRect().top < limite)) return true;
+      (e.getAttribute('data-revela') || '').split(' ').forEach(function (c) { if (c) e.classList.add(c); });
+      (e.getAttribute('data-revela-quita') || '').split(' ').forEach(function (c) { if (c) e.classList.remove(c); });
+      return false;
+    });
+  }
+  var programado = false;
+  function alDesplazar() { if (programado) return; programado = true; requestAnimationFrame(function () { programado = false; revisar(); }); }
+  addEventListener('scroll', alDesplazar, { passive: true });
+  addEventListener('resize', alDesplazar);
+
+  /* ---------- 3. Música ---------- */
+  var audio = document.getElementById('lib-musica');
+  var botones = $$('[data-tipo="musica"] button, [data-tipo="musica"] a, #lib-boton-musica');
+  function pintarMusica() {
+    var suena = audio && !audio.paused;
+    $$('[data-tipo="musica"] > *, #lib-boton-musica').forEach(function (b) {
+      b.classList.toggle('pausado', !suena); b.classList.toggle('sonando', suena); b.classList.toggle('reproduciendo', suena);
+    });
+  }
+  function tocarMusica() { if (audio && audio.src) { var p = audio.play(); if (p && p.catch) p.catch(function () {}); } }
+  botones.forEach(function (b) {
+    b.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      if (!audio || !audio.src) return;
+      if (audio.paused) tocarMusica(); else audio.pause();
+    });
+  });
+  if (audio) { audio.addEventListener('play', pintarMusica); audio.addEventListener('pause', pintarMusica); }
+
+  /* ---------- 4. Apertura (sobre): repite la animación grabada de la original ---------- */
+  var ap = document.querySelector('.lib-apertura');
+  function mostrarFlotantes() { $$('.lib-flotante').forEach(function (f) { f.classList.remove('lib-oculto'); }); }
+  if (ap) {
+    document.documentElement.classList.add('lib-bloqueado');
+    var abierto = false;
+    var abrir = function () {
+      if (abierto) return; abierto = true;
+      tocarMusica();
+      var tl = (C.aperturas || {})[ap.getAttribute('data-sec')] || [];
+      var clasesBase = 'lib-sec lib-apertura ';
+      var ultimo = 0, video = null;
+      tl.forEach(function (ev) {
+        ultimo = Math.max(ultimo, ev.t);
+        setTimeout(function () {
+          var el = (ev.u === 'html' || ev.u === 'body') ? ap : ap.querySelector('[data-ap="' + ev.u + '"]');
+          if (!el) return;
+          if (ev.play) { video = el; el.muted = true; var p = el.play(); if (p && p.catch) p.catch(function () {}); return; }
+          if (ev.a === 'class') el.setAttribute('class', (el === ap ? clasesBase : '') + (ev.v || ''));
+          else if (ev.v === null || ev.v === undefined) el.removeAttribute(ev.a);
+          else el.setAttribute(ev.a, ev.v);
+        }, ev.t);
+      });
+      var cerrar = function () {
+        if (!ap.parentNode) return;
+        ap.style.transition = 'opacity .8s ease'; ap.style.opacity = '0'; ap.style.pointerEvents = 'none';
+        document.documentElement.classList.remove('lib-bloqueado');
+        mostrarFlotantes();
+        setTimeout(function () { if (ap.parentNode) ap.parentNode.removeChild(ap); revisar(); }, 820);
+      };
+      var sigueVisible = function () {
+        return Array.prototype.some.call(ap.children, function (c) {
+          var cs = getComputedStyle(c);
+          return cs.display !== 'none' && cs.visibility !== 'hidden' && parseFloat(cs.opacity) > 0.05 && c.getBoundingClientRect().height > 0;
+        });
+      };
+      setTimeout(function () {
+        if (!sigueVisible()) cerrar();
+        else if (video && !video.ended && !video.paused) {
+          video.addEventListener('ended', cerrar);
+          setTimeout(cerrar, 9000);
+        } else cerrar();
+      }, Math.min(Math.max(ultimo + 1300, 900), 8000));
+    };
+    ap.addEventListener('click', abrir);
+    ap.addEventListener('touchend', function (e) { e.preventDefault(); abrir(); });
+  } else mostrarFlotantes();
+
+  /* ---------- 5. Confirmación de asistencia por WhatsApp ---------- */
+  var modal = document.getElementById('lib-rsvp');
+  function numeroWA() { return String(C.whatsapp || '').replace(/\D/g, ''); }
+  $$('a[href*="wa.me"], a[href*="api.whatsapp.com"]').forEach(function (a) {
+    if (!numeroWA()) return;
+    try {
+      var u = new URL(a.href); var txt = u.searchParams.get('text') || '';
+      a.href = 'https://wa.me/' + numeroWA() + (txt ? '?text=' + encodeURIComponent(txt) : '');
+    } catch (e) {}
+  });
+  // a) Secciones que traen su propio formulario: se envía tal cual por WhatsApp
+  function etiquetaDe(campo) {
+    var l = campo.id && document.querySelector('label[for="' + campo.id + '"]');
+    var t = (l && l.textContent) || campo.getAttribute('placeholder') || campo.getAttribute('aria-label') || campo.name || '';
+    if (!t) { var p = campo.closest('label, div, p'); t = p ? p.textContent : ''; }
+    return t.replace(/\s+/g, ' ').trim().replace(/[:*]$/, '');
+  }
+  function enviarFormularioPropio(sec) {
+    var lineas = [], radios = {};
+    $$('input, select, textarea', sec).forEach(function (c) {
+      if (c.type === 'hidden' || c.type === 'submit' || c.type === 'button') return;
+      if (c.type === 'radio' || c.type === 'checkbox') {
+        if (!c.checked) return;
+        var lab = c.closest('label'); var txt = (lab ? lab.textContent : c.value).replace(/\s+/g, ' ').trim();
+        var grupo = c.name || 'opcion';
+        if (c.type === 'radio') radios[grupo] = txt; else lineas.push('✓ ' + txt);
+        return;
+      }
+      if (String(c.value).trim()) lineas.push(etiquetaDe(c) + ': ' + c.value.trim());
+    });
+    Object.keys(radios).forEach(function (g) { lineas.push(radios[g]); });
+    if (!lineas.length) return false;
+    var msj = (C.textos && C.textos.rsvpEncabezado ? C.textos.rsvpEncabezado + '\n' : '') + lineas.join('\n');
+    window.open('https://wa.me/' + numeroWA() + '?text=' + encodeURIComponent(msj), '_blank');
+    return true;
+  }
+  $$('[data-tipo="confirmacion"]').forEach(function (sec) {
+    if (!sec.querySelector('input, select, textarea')) return;
+    sec.setAttribute('data-form-propio', '');
+    $$('form', sec).forEach(function (f) { f.addEventListener('submit', function (e) { e.preventDefault(); if (!enviarFormularioPropio(sec) && modal) modal.classList.add('abierto'); }); });
+    $$('button, [role="button"], input[type="submit"]', sec).forEach(function (b) {
+      if (b.closest('form') && (b.type === 'submit' || !b.getAttribute('type'))) return;
+      b.addEventListener('click', function (e) { e.preventDefault(); if (!enviarFormularioPropio(sec) && modal) modal.classList.add('abierto'); });
+    });
+  });
+  // b) Secciones con solo un botón (sello, "confirmar"…): abren el formulario del motor
+  $$('[data-tipo="confirmacion"]:not([data-form-propio]) button, [data-tipo="confirmacion"]:not([data-form-propio]) a[href="#"], [data-tipo="confirmacion"]:not([data-form-propio]) a:not([href]), [data-tipo="confirmacion"]:not([data-form-propio]) [role="button"]').forEach(function (b) {
+    b.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      if (!modal) return;
+      var tit = b.closest('.lib-sec').querySelector('h1,h2,h3');
+      if (tit) modal.style.setProperty('--lib-acento', getComputedStyle(tit).color);
+      modal.classList.add('abierto');
+    });
+  });
+  if (modal) {
+    modal.addEventListener('click', function (e) { if (e.target === modal || e.target.hasAttribute('data-cerrar')) modal.classList.remove('abierto'); });
+    modal.querySelector('form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = e.target;
+      var msj = (C.textos && C.textos.rsvpEncabezado ? C.textos.rsvpEncabezado + '\n' : '') +
+        'Nombre: ' + f.nombre.value + '\n' +
+        'Asistiré: ' + (f.asiste.value === 'si' ? 'Sí, con gusto' : 'No podré asistir') + '\n' +
+        (f.asiste.value === 'si' ? 'Personas: ' + f.personas.value + '\n' : '') +
+        (f.mensaje.value ? 'Mensaje: ' + f.mensaje.value : '');
+      var url = 'https://wa.me/' + numeroWA() + '?text=' + encodeURIComponent(msj);
+      window.open(url, '_blank');
+      modal.classList.remove('abierto');
+    });
+  }
+
+  /* ---------- 6. Videos de fondo: se reproducen solos ---------- */
+  $$('video').forEach(function (v) {
+    if (v.closest('.lib-apertura')) return;
+    if (v.hasAttribute('loop') || v.hasAttribute('autoplay') || v.muted) { v.muted = true; v.setAttribute('playsinline', ''); var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  });
+
+  /* ---------- 7. Nombres en letra caligráfica: que quepan en su espacio ---------- */
+  function ajustarNombres() {
+    $$('.lib-nombre-texto').forEach(function (e) {
+      e.style.fontSize = '';
+      var cont = e.parentElement, max = Math.min(cont.clientWidth || innerWidth, innerWidth - 24);
+      var fs = parseFloat(getComputedStyle(e).fontSize), i = 0;
+      while (e.scrollWidth > max && fs > 24 && i++ < 40) { fs -= 3; e.style.fontSize = fs + 'px'; }
+    });
+  }
+  ajustarNombres();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(ajustarNombres);
+  addEventListener('resize', ajustarNombres);
+
+  revisar();
+  setTimeout(revisar, 400);
+})();
+
+</script>
+</body>
+</html>
