@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="robots" content="noindex">
+<title>Your access · The Unlimited Content System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>
+  // ===== Payphone (tienda Digital Creations) =====
+  const PAYPHONE_TOKEN = 'Fsm4wOS6U_zUEdkMz3QKNswhMgDIEHFTCls71jRQjwAPWk666u2scpiCmDXgczJs-XSzDr7teH5flXw5c9Z_KnzIIIImXsaziyBSf1pchokNXQavHC4quCqNAoErvXELGDTc0azHUMcrSeUkG4xlZThS1Gb_1VbqoPqj4WR8qJ8oF0x2Z_iMi4KHupnMiomvnH-GrTgePCQE9xSDdsKEbrIaRimBr52WJUwpvrW3SsGc-jWidpOahbzO7cogYUqXhBXrAFQCl0TWhOwCM1859QsQlSnpR44fXren6Y5HtRKfZt8H1eRrawfmkmV47oPzSu9BVQ';
+  const CONFIRM_URL    = 'https://paymentbox.payphonetodoesposible.com/api/confirm';
+
+  // ===== Entrega =====
+  // Enlace público del Notion para duplicar. Mientras esté vacío, el botón de acceso no aparece.
+  const ACCESS_URL  = '';
+  // Bonos: [{ name:'From Script To Camera', url:'https://...' }, ...]. Vacío = no se muestran.
+  const BONUS_LINKS = [];
+</script>
+<style>
+  :root{
+    --headline:'Oswald','Anton','Impact',sans-serif; --h-ls:-.015em;
+    --display:'Anton','Impact','Arial Narrow',sans-serif; --body:'Inter',system-ui,sans-serif;
+    --red:#E8380D; --red-dark:#C42E08; --ink:#111; --cream:#FFF4F1; --gray:#8A8A8A; --hl:#FFD9CC; --line:#f0d9d2; --ok:#1f8a4c;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:var(--body);color:var(--ink);background:var(--cream);overflow-x:hidden;min-height:100vh;display:flex;flex-direction:column}
+  a{color:inherit}
+  header.top{background:var(--red);color:#fff;padding:16px}
+  .top .row{max-width:860px;margin:0 auto;display:flex;align-items:center;justify-content:center}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .brand .mark{width:32px;height:32px;background:var(--ink);border-radius:6px;display:grid;place-items:center;transform:skew(-8deg);flex:none}
+  .brand .mark svg{width:21px;height:21px}
+  .brand span{font-family:var(--display);font-style:italic;font-size:19px;letter-spacing:.04em;text-transform:uppercase;line-height:1}
+
+  main{flex:1;width:100%;max-width:760px;margin:0 auto;padding:clamp(28px,6vw,64px) 16px 60px;text-align:center}
+  .state{display:none}
+  .state.on{display:block}
+
+  .spin{width:54px;height:54px;border-radius:50%;border:5px solid var(--hl);border-top-color:var(--red);margin:0 auto 22px;animation:r 1s linear infinite}
+  @keyframes r{to{transform:rotate(360deg)}}
+  .badge{width:74px;height:74px;border-radius:50%;margin:0 auto 20px;display:grid;place-items:center;font-size:38px;font-weight:800;color:#fff}
+  .badge.ok{background:var(--ok)}
+  .badge.no{background:var(--ink)}
+
+  .kick{display:inline-block;background:var(--ink);color:#fff;font-family:var(--display);font-style:italic;text-transform:uppercase;
+    letter-spacing:.06em;font-size:15px;padding:.38em .9em;transform:rotate(-1.5deg);margin-bottom:18px}
+  h1{font-family:var(--headline);font-weight:700;text-transform:uppercase;letter-spacing:var(--h-ls);line-height:.98;font-size:clamp(36px,6.4vw,66px)}
+  h1 em{font-style:normal;color:var(--red)}
+  .lead{max-width:600px;margin:16px auto 0;font-size:clamp(17px,2vw,20px);line-height:1.5;font-weight:500;color:#333}
+  .lead b{color:var(--ink)}
+
+  .btn{display:block;width:100%;max-width:620px;margin:28px auto 0;border:0;cursor:pointer;background:var(--red);color:#fff;text-decoration:none;border-radius:8px;
+    font-family:var(--display);font-style:italic;font-weight:400;text-transform:uppercase;font-size:clamp(28px,4.2vw,44px);
+    line-height:1;padding:.34em .5em .3em;box-shadow:0 6px 0 var(--red-dark);transition:transform .12s,box-shadow .12s,background .2s}
+  .btn:hover{background:#f04416}
+  .btn:active{transform:translateY(4px);box-shadow:0 2px 0 var(--red-dark)}
+  .btn small{display:block;font-family:var(--body);font-style:normal;font-weight:600;text-transform:none;font-size:14px;margin-top:.45em;opacity:.95}
+  .btn.dark{background:var(--ink);box-shadow:0 6px 0 #000}
+
+  .card{background:#fff;border-radius:10px;box-shadow:0 1px 0 #e9dcd7,0 18px 44px rgba(60,20,8,.13);text-align:left;margin:30px auto 0;max-width:620px;overflow:hidden}
+  .card h2{font-family:var(--headline);font-weight:700;text-transform:uppercase;letter-spacing:var(--h-ls);font-size:22px;padding:16px 22px;border-bottom:1px solid #f1e6e2}
+  .card .in{padding:18px 22px 22px}
+  ol.how{list-style:none;counter-reset:h;display:grid;gap:12px}
+  ol.how li{counter-increment:h;display:flex;gap:12px;font-size:16px;line-height:1.45;font-weight:500}
+  ol.how li::before{content:counter(h);flex:none;width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;
+    font-family:var(--display);font-style:italic;font-size:15px}
+  .bonus{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px dashed #eee;font-weight:700}
+  .bonus:last-child{border-bottom:0}
+  .bonus a{font-size:14px;color:var(--red);white-space:nowrap}
+
+  .receipt{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;font-size:15px}
+  .receipt dt{color:var(--gray);font-weight:600}
+  .receipt dd{font-weight:700;text-align:right;word-break:break-all}
+  .note{margin-top:18px;font-size:14px;color:#555;line-height:1.5}
+  .pending{margin-top:26px;background:#fff;border:2px dashed #e5b8ab;border-radius:8px;padding:16px;font-size:15px;line-height:1.5;color:#333;max-width:620px;margin-left:auto;margin-right:auto}
+
+  footer{background:var(--ink);color:#bdbdbd;text-align:center;padding:22px 16px;font-size:13px;line-height:1.6}
+  footer b{color:#fff}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="row">
+    <a class="brand" href="../">
+      <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#E8380D" stroke-width="2.6" stroke-linecap="round"><path d="M6.5 8.5c-2 0-3.5 1.6-3.5 3.5s1.5 3.5 3.5 3.5c3.5 0 7.5-7 11-7 2 0 3.5 1.6 3.5 3.5s-1.5 3.5-3.5 3.5c-3.5 0-7.5-7-11-7z"/></svg></span>
+      <span>The Unlimited Content System</span>
+    </a>
+  </div>
+</header>
+
+<main>
+  <!-- Confirmando -->
+  <section class="state on" id="sWait" aria-live="polite">
+    <div class="spin" aria-hidden="true"></div>
+    <h1>Confirming your <em>payment</em></h1>
+    <p class="lead">This takes a few seconds. Please don't close this page.</p>
+  </section>
+
+  <!-- Aprobado -->
+  <section class="state" id="sOk">
+    <div class="badge ok" aria-hidden="true">✓</div>
+    <span class="kick">Payment confirmed</span>
+    <h1>You're in<span id="okName"></span>. <em>Let's create.</em></h1>
+    <p class="lead">Your copy of <b>The Unlimited Content System</b> is ready. Open it and duplicate it into your Notion.</p>
+
+    <a class="btn" id="accessBtn" href="#" target="_blank" rel="noopener" hidden>Open the system<small>Opens in Notion · works with the free plan</small></a>
+    <div class="pending" id="accessPending" hidden>Your access link is being prepared. Save this page and the transaction number below.</div>
+
+    <div class="card">
+      <h2>How to get it into your Notion</h2>
+      <div class="in">
+        <ol class="how">
+          <li>Click the red button above. The system opens in Notion.</li>
+          <li>Log in to Notion, or create a free account.</li>
+          <li>Click <b>&nbsp;Duplicate&nbsp;</b> at the top right. The full system is now in your workspace.</li>
+          <li>Start with the first template and run its AI prompt with your topic.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="card" id="bonusCard" hidden>
+      <h2>Your 3 bonuses</h2>
+      <div class="in" id="bonusList"></div>
+    </div>
+
+    <div class="card">
+      <h2>Your receipt</h2>
+      <div class="in">
+        <dl class="receipt" id="receipt"></dl>
+        <p class="note">The charge appears on your statement as a payment processed by Payphone. Keep this page or take a screenshot for your records.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- No aprobado -->
+  <section class="state" id="sNo">
+    <div class="badge no" aria-hidden="true">!</div>
+    <h1>Your payment <em>didn't go through</em></h1>
+    <p class="lead" id="noMsg">No money was charged. You can try again with the same card or a different one.</p>
+    <a class="btn" href="../checkout/">Try again<small>Launch price: $27, one-time payment</small></a>
+  </section>
+
+  <!-- Error al confirmar -->
+  <section class="state" id="sErr">
+    <div class="badge no" aria-hidden="true">?</div>
+    <h1>We couldn't <em>confirm it yet</em></h1>
+    <p class="lead">This is usually a connection issue. Tap the button to check again. If you paid, your payment is safe.</p>
+    <button class="btn dark" id="retry" type="button">Check again<small>It only takes a few seconds</small></button>
+    <p class="note" id="errRef"></p>
+  </section>
+</main>
+
+<footer><b>The Unlimited Content System</b> · Sold by Digital Creations<br>Payments processed securely by Payphone.</footer>
+
+<script>
+(function(){
+  const $ = s => document.querySelector(s);
+  const show = id => document.querySelectorAll('.state').forEach(s => s.classList.toggle('on', s.id === id));
+  const qs = new URLSearchParams(location.search);
+  const id = parseInt(qs.get('id'), 10);
+  const clientTxId = qs.get('clientTransactionId') || '';
+  const KEY = 'ucs_paid_' + id;
+
+  let buyer = null;
+  try{ buyer = JSON.parse(localStorage.getItem('ucs_buyer') || 'null'); }catch(e){}
+
+  function money(cents){ return (typeof cents === 'number') ? '$' + (cents/100).toFixed(2) + ' USD' : '$27.00 USD'; }
+
+  function approved(r){
+    if(buyer && buyer.name) $('#okName').textContent = ', ' + buyer.name;
+    if(ACCESS_URL){ const a = $('#accessBtn'); a.href = ACCESS_URL; a.hidden = false; }
+    else { $('#accessPending').hidden = false; }
+    if(BONUS_LINKS.length){
+      $('#bonusCard').hidden = false;
+      BONUS_LINKS.forEach(b => {
+        const row = document.createElement('div'); row.className = 'bonus';
+        const n = document.createElement('span'); n.textContent = b.name;
+        const l = document.createElement('a'); l.href = b.url; l.target = '_blank'; l.rel = 'noopener'; l.textContent = 'Open →';
+        row.append(n, l); $('#bonusList').append(row);
+      });
+    }
+    const rows = [
+      ['Product', 'The Unlimited Content System'],
+      ['Amount', money(r.amount)],
+      ['Card', (r.cardBrand ? r.cardBrand + ' ' : '') + (r.lastDigits ? '•••• ' + r.lastDigits : '')],
+      ['Authorization', r.authorizationCode],
+      ['Transaction', r.transactionId || id],
+      ['Email', (r.email || (buyer && buyer.email))]
+    ];
+    const dl = $('#receipt'); dl.innerHTML = '';
+    rows.forEach(([k, v]) => { if(!v || !String(v).trim()) return;
+      const dt = document.createElement('dt'); dt.textContent = k;
+      const dd = document.createElement('dd'); dd.textContent = v;
+      dl.append(dt, dd); });
+    show('sOk');
+  }
+
+  async function confirmPay(){
+    show('sWait');
+    if(!id || !clientTxId){ show('sNo'); $('#noMsg').textContent = 'We could not find a payment in this link. If you just paid, open the link from your payment again.'; return; }
+
+    // Si ya se confirmó en este navegador, no volver a preguntar
+    try{ const saved = JSON.parse(localStorage.getItem(KEY) || 'null'); if(saved){ approved(saved); return; } }catch(e){}
+
+    try{
+      const res = await fetch(CONFIRM_URL, {
+        method:'POST',
+        headers:{ 'Authorization':'Bearer ' + PAYPHONE_TOKEN, 'Content-Type':'application/json' },
+        body: JSON.stringify({ id: id, clientTxId: clientTxId })
+      });
+      const r = await res.json().catch(() => ({}));
+      if(res.ok && (r.statusCode === 3 || r.transactionStatus === 'Approved')){
+        try{ localStorage.setItem(KEY, JSON.stringify(r)); }catch(e){}
+        approved(r);
+      } else if(res.ok){
+        show('sNo');
+        if(r.message) $('#noMsg').textContent = 'No money was charged. ' + r.message;
+      } else {
+        $('#errRef').textContent = 'Reference: ' + id + (r.message ? ' · ' + r.message : '');
+        show('sErr');
+      }
+    }catch(e){
+      $('#errRef').textContent = 'Reference: ' + id;
+      show('sErr');
+    }
+  }
+
+  $('#retry').addEventListener('click', confirmPay);
+  confirmPay();
+})();
+</script>
+</body>
+</html>
