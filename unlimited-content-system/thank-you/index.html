@@ -144,7 +144,7 @@
     <div class="badge no" aria-hidden="true">!</div>
     <h1>Your payment <em>didn't go through</em></h1>
     <p class="lead" id="noMsg">No money was charged. You can try again with the same card or a different one.</p>
-    <a class="btn" href="../checkout/">Try again<small>Launch price: $27, one-time payment</small></a>
+    <a class="btn" href="../checkout/">Try again<small>Launch price: $47, one-time payment</small></a>
   </section>
 
   <!-- Error al confirmar -->
@@ -171,7 +171,7 @@
   let buyer = null;
   try{ buyer = JSON.parse(localStorage.getItem('ucs_buyer') || 'null'); }catch(e){}
 
-  function money(cents){ return (typeof cents === 'number') ? '$' + (cents/100).toFixed(2) + ' USD' : '$27.00 USD'; }
+  function money(cents){ return (typeof cents === 'number') ? '$' + (cents/100).toFixed(2) + ' USD' : '$47.00 USD'; }
 
   function approved(r){
     if(buyer && buyer.name) $('#okName').textContent = ', ' + buyer.name;
