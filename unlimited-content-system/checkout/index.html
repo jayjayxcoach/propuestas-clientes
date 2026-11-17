@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="origin-when-cross-origin">
+<meta name="robots" content="noindex">
+<title>Checkout · The Unlimited Content System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.payphonetodoesposible.com/box/v2.0/payphone-payment-box.css">
+<script type="module" src="https://cdn.payphonetodoesposible.com/box/v2.0/payphone-payment-box.js"></script>
+<script>
+  // ===== Payphone (tienda Digital Creations) =====
+  // Mientras PAYPHONE_TOKEN esté vacío, la página muestra una vista previa de la caja de pago.
+  const PAYPHONE_TOKEN    = '';
+  const PAYPHONE_STORE_ID = '';
+  const PRICE_CENTS       = 2700;              // $27.00
+  const PRODUCT_REF       = 'The Unlimited Content System';
+</script>
+<style>
+  :root{
+    --headline:'Oswald','Anton','Impact',sans-serif; --h-ls:-.015em;
+    --display:'Anton','Impact','Arial Narrow',sans-serif;
+    --body:'Inter',system-ui,sans-serif;
+    --red:#E8380D; --red-dark:#C42E08; --ink:#111; --cream:#FFF4F1; --gray:#8A8A8A; --hl:#FFD9CC; --line:#f0d9d2;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{font-family:var(--body);color:var(--ink);background:var(--cream);overflow-x:hidden}
+  a{color:inherit}
+
+  .strip{background:var(--ink);color:#fff;font-family:var(--display);font-style:italic;letter-spacing:.06em;text-transform:uppercase;
+    font-size:15px;text-align:center;padding:9px 16px}
+  .strip b{color:var(--red);font-weight:400}
+
+  header.top{background:var(--red);color:#fff;padding:16px}
+  .top .row{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .brand .mark{width:32px;height:32px;background:var(--ink);border-radius:6px;display:grid;place-items:center;transform:skew(-8deg);flex:none}
+  .brand .mark svg{width:21px;height:21px}
+  .brand span{font-family:var(--display);font-style:italic;font-size:19px;letter-spacing:.04em;text-transform:uppercase;line-height:1}
+  .secure{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+  .secure svg{width:16px;height:16px}
+
+  /* pasos */
+  .steps{max-width:1120px;margin:26px auto 0;padding:0 16px;display:flex;justify-content:center;gap:8px;list-style:none;counter-reset:s}
+  .steps li[data-s]{counter-increment:s;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gray)}
+  .steps li[data-s]::before{content:counter(s);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#fff;border:2px solid #e3cfc8;
+    font-family:var(--display);font-style:italic;font-weight:400;font-size:14px;letter-spacing:0;color:var(--gray)}
+  .steps .sep{width:34px;height:2px;background:#e3cfc8;align-self:center;flex:none}
+  .steps li.on{color:var(--ink)}
+  .steps li.on::before{background:var(--red);border-color:var(--red);color:#fff}
+  .steps li.done::before{content:"✓";background:var(--ink);border-color:var(--ink);color:#fff;font-family:var(--body);font-style:normal;font-weight:800}
+
+  /* layout */
+  main{max-width:1120px;margin:22px auto 0;padding:0 16px 60px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:28px;align-items:start}
+  h1{font-family:var(--headline);font-weight:700;text-transform:uppercase;letter-spacing:var(--h-ls);line-height:.98;font-size:clamp(34px,4.4vw,54px)}
+  h1 em{font-style:normal;color:var(--red)}
+  .lead{margin-top:10px;font-size:18px;line-height:1.45;font-weight:500;color:#333}
+
+  .panel{background:#fff;border-radius:10px;box-shadow:0 1px 0 #e9dcd7,0 18px 44px rgba(60,20,8,.13);margin-top:22px;overflow:hidden}
+  .panel .ph{display:flex;align-items:center;gap:10px;padding:16px 22px;border-bottom:1px solid #f1e6e2}
+  .panel .ph i{width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-family:var(--display);font-size:15px;flex:none}
+  .panel .ph h2{font-family:var(--headline);font-weight:700;text-transform:uppercase;letter-spacing:var(--h-ls);font-size:22px;line-height:1}
+  .panel .ph .edit{margin-left:auto;font-size:14px;font-weight:700;color:var(--red);background:none;border:0;cursor:pointer;text-decoration:underline;font-family:inherit}
+  .panel .pb{padding:20px 22px 24px}
+  .panel.locked{opacity:.55}
+  .panel.locked .pb{display:none}
+
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:14px;font-weight:700;margin-bottom:6px}
+  .field label small{font-weight:500;color:var(--gray)}
+  .field input,.field select{width:100%;font:inherit;font-size:17px;padding:13px 14px;border:2px solid #e6dad6;border-radius:7px;background:#fff;color:var(--ink);outline:none;transition:border-color .15s}
+  .field input:focus,.field select:focus{border-color:var(--red)}
+  .field.bad input{border-color:#d93025}
+  .field .err{display:none;color:#d93025;font-size:13px;font-weight:600;margin-top:5px}
+  .field.bad .err{display:block}
+  .tel{display:grid;grid-template-columns:128px 1fr;gap:8px}
+  .hint{font-size:13px;color:#666;margin-top:6px}
+
+  .btn{display:block;width:100%;border:0;cursor:pointer;background:var(--red);color:#fff;text-decoration:none;border-radius:8px;text-align:center;
+    font-family:var(--display);font-style:italic;font-weight:400;text-transform:uppercase;font-size:clamp(28px,3.4vw,38px);
+    line-height:1;padding:.36em .5em .32em;box-shadow:0 6px 0 var(--red-dark);transition:transform .12s,box-shadow .12s,background .2s;margin-top:8px}
+  .btn:hover{background:#f04416}
+  .btn:active{transform:translateY(4px);box-shadow:0 2px 0 var(--red-dark)}
+  .btn small{display:block;font-family:var(--body);font-style:normal;font-weight:600;text-transform:none;font-size:14px;margin-top:.45em;opacity:.95}
+
+  .summary-line{font-size:15px;line-height:1.5;color:#333}
+  .summary-line b{color:var(--ink)}
+
+  #pp-button{min-height:120px}
+  .paynote{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:#555;margin-top:14px;line-height:1.45}
+  .paynote svg{width:16px;height:16px;flex:none;margin-top:1px}
+  .cards{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+  .cards span{font-size:11px;font-weight:800;letter-spacing:.04em;border:1px solid #e6dad6;border-radius:4px;padding:4px 7px;color:#444;background:#fff}
+
+  /* vista previa de la caja (solo cuando falta el token) */
+  .demo{border:2px dashed #e5b8ab;border-radius:8px;padding:18px;background:var(--cream)}
+  .demo .tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:var(--ink);color:#fff;padding:3px 8px;border-radius:3px}
+  .demo .tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}
+  .demo .tabs div{border:2px solid #e6dad6;border-radius:7px;padding:10px;text-align:center;font-weight:700;font-size:14px;background:#fff}
+  .demo .tabs div.on{border-color:var(--red);color:var(--red)}
+  .demo .ph-in{height:46px;border:2px solid #e6dad6;border-radius:7px;background:#fff;margin-bottom:8px;display:flex;align-items:center;padding:0 12px;color:#aaa;font-size:15px}
+  .demo .two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .demo .fake{margin-top:6px;background:#ff6b00;color:#fff;border-radius:7px;text-align:center;padding:13px;font-weight:800}
+  .demo p{font-size:13px;color:#555;margin-top:10px;line-height:1.45}
+
+  /* resumen */
+  aside{position:sticky;top:16px}
+  .order{background:#fff;border:3px solid var(--ink);border-radius:10px;overflow:hidden}
+  .order .oh{background:var(--ink);color:#fff;padding:14px 20px;font-family:var(--display);font-style:italic;text-transform:uppercase;letter-spacing:.05em;font-size:17px;display:flex;justify-content:space-between}
+  .prod{display:flex;gap:14px;align-items:center;padding:18px 20px;border-bottom:1px solid #eee}
+  .cover{width:86px;flex:none;aspect-ratio:.74;background:var(--ink);border-radius:3px 7px 7px 3px;border-left:7px solid #2a2a2e;position:relative;overflow:hidden;padding:9px 8px;color:#fff}
+  .cover::after{content:"";position:absolute;right:-18px;bottom:-18px;width:62px;height:62px;border-radius:50%;background:var(--red)}
+  .cover b{display:block;font-family:var(--display);font-style:italic;font-weight:400;font-size:34px;line-height:.8;color:var(--red);position:relative;z-index:1}
+  .cover span{display:block;font-family:var(--display);font-style:italic;text-transform:uppercase;font-size:12px;line-height:.95;margin-top:4px;position:relative;z-index:1}
+  .prod h3{font-family:var(--headline);font-weight:700;text-transform:uppercase;letter-spacing:var(--h-ls);font-size:21px;line-height:1.02}
+  .prod p{font-size:13px;color:#555;margin-top:5px;line-height:1.4}
+  .lines{list-style:none;padding:8px 20px}
+  .lines li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;font-size:15px;border-bottom:1px dashed #eee}
+  .lines li:last-child{border-bottom:0}
+  .lines li span:first-child{font-weight:600}
+  .lines li s{color:var(--gray)}
+  .lines .bn{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--red);color:#fff;padding:2px 6px;border-radius:3px;margin-right:6px;vertical-align:1px}
+  .tot{background:var(--cream);padding:16px 20px;border-top:2px solid var(--ink)}
+  .tot .r{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;color:#555}
+  .tot .r s{text-decoration-color:var(--red);text-decoration-thickness:2px}
+  .tot .big{display:flex;justify-content:space-between;align-items:baseline;margin-top:4px}
+  .tot .big span{font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:14px}
+  .tot .big b{font-family:var(--headline);font-weight:700;font-size:44px;line-height:1;color:var(--red)}
+  .tot .c{font-size:13px;color:#555;margin-top:4px;text-align:right}
+
+  .perks{list-style:none;margin-top:16px;display:grid;gap:8px}
+  .perks li{display:flex;gap:10px;align-items:flex-start;font-size:15px;font-weight:600;line-height:1.4}
+  .perks li::before{content:"✓";flex:none;width:22px;height:22px;border-radius:4px;background:var(--red);color:#fff;font-weight:800;font-size:13px;display:grid;place-items:center;margin-top:1px}
+
+  .rev{background:#fff;border-left:5px solid var(--red);border-radius:6px;padding:14px 16px;margin-top:14px;box-shadow:0 10px 30px rgba(60,20,8,.08)}
+  .rev .st{color:var(--red);letter-spacing:.12em;font-size:13px}
+  .rev p{font-size:15px;line-height:1.45;font-weight:500;margin:4px 0 8px}
+  .rev .who{display:flex;align-items:center;gap:8px}
+  .rev .who img{width:30px;height:30px;border-radius:50%;object-fit:cover}
+  .rev cite{font-style:normal;font-weight:800;font-size:13px}
+
+  .jay{display:flex;gap:12px;align-items:center;margin-top:16px;padding:14px 16px;border:1px solid var(--line);border-radius:8px;background:#fff}
+  .jay img{width:48px;height:48px;border-radius:50%;object-fit:cover;border:3px solid var(--red);flex:none}
+  .jay p{font-size:14px;line-height:1.45;color:#333}
+  .jay b{color:var(--ink)}
+
+  /* resumen plegable en celular */
+  .mob-sum{display:none}
+
+  footer{background:var(--ink);color:#bdbdbd;text-align:center;padding:24px 16px;font-size:13px;line-height:1.6}
+  footer b{color:#fff}
+
+  @media (max-width:880px){
+    main{grid-template-columns:1fr;gap:0;margin-top:14px}
+    aside{position:static;margin-top:28px}
+    .mob-sum{display:flex;justify-content:space-between;align-items:center;width:100%;margin-top:16px;background:#fff;border:2px solid var(--ink);border-radius:8px;
+      padding:12px 14px;font:inherit;font-weight:800;font-size:15px;cursor:pointer;color:var(--ink)}
+    .mob-sum b{font-family:var(--headline);font-size:24px;color:var(--red)}
+    .steps li .t{display:none}
+    .steps li.on .t{display:inline}
+  }
+  @media (max-width:480px){
+    .strip{font-size:13px}
+    .brand span{font-size:15px}
+    .secure .t{display:none}
+    .panel .ph,.panel .pb{padding-left:16px;padding-right:16px}
+    .tel{grid-template-columns:108px 1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="strip">Launch price <b>$27</b> · One-time payment · Instant access</div>
+
+<header class="top">
+  <div class="row">
+    <a class="brand" href="../">
+      <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#E8380D" stroke-width="2.6" stroke-linecap="round"><path d="M6.5 8.5c-2 0-3.5 1.6-3.5 3.5s1.5 3.5 3.5 3.5c3.5 0 7.5-7 11-7 2 0 3.5 1.6 3.5 3.5s-1.5 3.5-3.5 3.5c-3.5 0-7.5-7-11-7z"/></svg></span>
+      <span>The Unlimited Content System</span>
+    </a>
+    <div class="secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><span class="t">Secure checkout</span></div>
+  </div>
+</header>
+
+<ol class="steps" id="steps">
+  <li class="on" data-s="1"><span class="t">Your details</span></li>
+  <li class="sep" aria-hidden="true"></li>
+  <li data-s="2"><span class="t">Payment</span></li>
+  <li class="sep" aria-hidden="true"></li>
+  <li data-s="3"><span class="t">Access</span></li>
+</ol>
+
+<main>
+  <section>
+    <h1>You're one step from <em>unlimited content</em></h1>
+    <p class="lead">Fill in your details, pay $27 once, and get the system in your inbox right away.</p>
+
+    <button class="mob-sum" id="mobSum" type="button" aria-controls="order">Show order summary <b>$27</b></button>
+
+    <!-- PASO 1 -->
+    <div class="panel" id="p1">
+      <div class="ph"><i>1</i><h2>Where do we send your access?</h2><button class="edit" id="edit1" type="button" hidden>Edit</button></div>
+      <div class="pb">
+        <form id="f1" novalidate>
+          <div class="field" id="fName">
+            <label for="name">First name</label>
+            <input id="name" name="name" autocomplete="given-name" placeholder="Your first name">
+            <div class="err">Please enter your first name.</div>
+          </div>
+          <div class="field" id="fEmail">
+            <label for="email">Email <small>(your access goes here)</small></label>
+            <input id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="you@email.com">
+            <div class="err">Please enter a valid email.</div>
+          </div>
+          <div class="field" id="fPhone">
+            <label for="phone">WhatsApp number</label>
+            <div class="tel">
+              <select id="cc" aria-label="Country code">
+                <option value="1">🇺🇸 +1</option>
+                <option value="593">🇪🇨 +593</option>
+                <option value="52">🇲🇽 +52</option>
+                <option value="57">🇨🇴 +57</option>
+                <option value="51">🇵🇪 +51</option>
+                <option value="56">🇨🇱 +56</option>
+                <option value="54">🇦🇷 +54</option>
+                <option value="34">🇪🇸 +34</option>
+                <option value="44">🇬🇧 +44</option>
+                <option value="1">🇨🇦 +1</option>
+              </select>
+              <input id="phone" name="phone" type="tel" autocomplete="tel-national" inputmode="tel" placeholder="Phone number">
+            </div>
+            <div class="err">Please enter a valid phone number.</div>
+            <p class="hint">Only used for your purchase. No spam.</p>
+          </div>
+          <button class="btn" type="submit">Continue to payment<small>Step 2 of 3: pay $27 once</small></button>
+        </form>
+        <p class="summary-line" id="sum1" hidden></p>
+      </div>
+    </div>
+
+    <!-- PASO 2 -->
+    <div class="panel locked" id="p2">
+      <div class="ph"><i>2</i><h2>Payment</h2></div>
+      <div class="pb">
+        <div id="pp-button"></div>
+        <div class="cards" aria-label="Accepted cards"><span>VISA</span><span>MASTERCARD</span><span>DINERS CLUB</span><span>DISCOVER</span></div>
+        <p class="paynote"><svg viewBox="0 0 24 24" fill="none" stroke="#E8380D" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          Your card is processed by Payphone over an encrypted connection. We never see or store your card details. It is a one-time charge of $27 USD, with no subscription.</p>
+      </div>
+    </div>
+  </section>
+
+  <aside id="order">
+    <div class="order">
+      <div class="oh"><span>Your order</span><span>1 item</span></div>
+      <div class="prod">
+        <div class="cover" aria-hidden="true"><b>∞</b><span>Unlimited<br>Content</span></div>
+        <div>
+          <h3>The Unlimited Content System</h3>
+          <p>The Notion system my agency runs for clients who pay $1,500 to $2,500 a month.</p>
+        </div>
+      </div>
+      <ul class="lines">
+        <li><span>The system in Notion</span><span><s>$197</s></span></li>
+        <li><span><i class="bn">Bonus 1</i>From Script To Camera</span><span><s>$67</s></span></li>
+        <li><span><i class="bn">Bonus 2</i>Minimum Viable Editing</span><span><s>$47</s></span></li>
+        <li><span><i class="bn">Bonus 3</i>30 Days Of Content Masterclass</span><span><s>$47</s></span></li>
+      </ul>
+      <div class="tot">
+        <div class="r"><span>Total value</span><s>$358</s></div>
+        <div class="big"><span>Today</span><b>$27</b></div>
+        <div class="c">USD · one-time payment</div>
+      </div>
+    </div>
+
+    <ul class="perks">
+      <li>12 script templates, 50 hooks and an AI prompt for each template</li>
+      <li>Works with the free Notion plan</li>
+      <li>Access by email right after payment</li>
+      <li>Future updates included at no cost</li>
+    </ul>
+
+    <div class="rev">
+      <div class="st">★★★★★</div>
+      <p>"So cute!! The system is insane. It gives you viral scripts in no time. I'm amazed ✨"</p>
+      <div class="who"><img src="../img/Rosa.jpg" alt=""><cite>Rosa A.</cite></div>
+    </div>
+    <div class="rev">
+      <div class="st">★★★★★</div>
+      <p>"It helped me a lot. Having everything laid out in a professional system made my work easier."</p>
+      <div class="who"><img src="../img/Erika.jpg" alt=""><cite>Erika N.</cite></div>
+    </div>
+
+    <div class="jay">
+      <img src="../img/jay-alvarez.jpg" alt="Jay Álvarez">
+      <p>"This is the exact system my agency uses. Now you can copy it for $27." <b>Jay Álvarez</b></p>
+    </div>
+  </aside>
+</main>
+
+<footer>
+  <b>The Unlimited Content System</b> · Sold by Digital Creations<br>
+  Payments processed securely by Payphone.
+</footer>
+
+<script>
+(function(){
+  const $ = s => document.querySelector(s);
+  const p1 = $('#p1'), p2 = $('#p2'), f1 = $('#f1'), sum1 = $('#sum1'), edit1 = $('#edit1');
+  const steps = [...document.querySelectorAll('#steps li[data-s]')];
+  let rendered = false;
+
+  function setStep(n){
+    steps.forEach(li => {
+      const s = +li.dataset.s;
+      li.classList.toggle('on', s === n);
+      li.classList.toggle('done', s < n);
+    });
+  }
+
+  // Recordar datos en este navegador (si se puede)
+  try{
+    const saved = JSON.parse(localStorage.getItem('ucs_buyer') || 'null');
+    if(saved){ $('#name').value = saved.name || ''; $('#email').value = saved.email || ''; $('#phone').value = saved.phone || ''; if(saved.ccIndex != null) $('#cc').selectedIndex = saved.ccIndex; }
+  }catch(e){}
+
+  function check(id, ok){ $(id).classList.toggle('bad', !ok); return ok; }
+
+  f1.addEventListener('submit', e => {
+    e.preventDefault();
+    const name = $('#name').value.trim();
+    const email = $('#email').value.trim();
+    const digits = $('#phone').value.replace(/\D/g,'').replace(/^0+/, '');
+    const ok = [
+      check('#fName', name.length > 1),
+      check('#fEmail', /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)),
+      check('#fPhone', digits.length >= 7 && digits.length <= 12)
+    ].every(Boolean);
+    if(!ok) return;
+
+    const phone = '+' + $('#cc').value + digits;
+    const buyer = { name, email, phone: $('#phone').value.trim(), ccIndex: $('#cc').selectedIndex };
+    try{ localStorage.setItem('ucs_buyer', JSON.stringify(buyer)); }catch(e){}
+
+    f1.hidden = true;
+    sum1.hidden = false;
+    sum1.innerHTML = '';
+    const b = document.createElement('b'); b.textContent = name;
+    sum1.append(b, document.createTextNode(' · ' + email + ' · ' + phone));
+    edit1.hidden = false;
+    p2.classList.remove('locked');
+    setStep(2);
+    renderPayment({ email, phone });
+    p2.scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+
+  edit1.addEventListener('click', () => {
+    f1.hidden = false; sum1.hidden = true; edit1.hidden = true;
+    p2.classList.add('locked'); setStep(1);
+    $('#name').focus();
+  });
+
+  function renderPayment(buyer){
+    const box = $('#pp-button');
+    if(!PAYPHONE_TOKEN || !PAYPHONE_STORE_ID){
+      box.innerHTML =
+        '<div class="demo"><span class="tag">Preview</span>' +
+        '<div class="tabs"><div class="on">Card</div><div>Payphone</div></div>' +
+        '<div class="ph-in">Card number</div><div class="two"><div class="ph-in">MM / YY</div><div class="ph-in">CVC</div></div>' +
+        '<div class="ph-in">Cardholder name</div><div class="fake">Pay $27.00</div>' +
+        '<p>This is where the Payphone payment box appears once the store credentials are connected.</p></div>';
+      return;
+    }
+    if(rendered){ box.innerHTML = ''; }
+    const txId = 'UCS-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2,7).toUpperCase();
+    try{ sessionStorage.setItem('ucs_tx', txId); }catch(e){}
+    const start = () => {
+      new PPaymentButtonBox({
+        token: PAYPHONE_TOKEN,
+        storeId: PAYPHONE_STORE_ID,
+        clientTransactionId: txId,
+        amount: PRICE_CENTS,
+        amountWithoutTax: PRICE_CENTS,
+        currency: 'USD',
+        reference: PRODUCT_REF,
+        lang: 'en',
+        defaultMethod: 'card',
+        timeZone: -5,
+        email: buyer.email,
+        phoneNumber: buyer.phone
+      }).render('pp-button');
+      rendered = true;
+    };
+    // El script de Payphone es un módulo: esperar a que exista la clase
+    (function wait(t){ if(window.PPaymentButtonBox) start(); else if(t < 50) setTimeout(() => wait(t+1), 100);
+      else box.textContent = 'The payment box could not load. Please refresh the page.'; })(0);
+  }
+
+  // Resumen plegable en celular
+  $('#mobSum').addEventListener('click', () => $('#order').scrollIntoView({ behavior:'smooth' }));
+})();
+</script>
+</body>
+</html>
